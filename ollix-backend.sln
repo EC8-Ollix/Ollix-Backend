@@ -19,23 +19,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Data", "4.1 - Data", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCutting", "4.2 - CrossCutting", "{0894166E-05E6-4294-AD66-CEEF8F8AE71A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.API", "Ollix.API\Ollix.API.csproj", "{72ACB2EF-512A-4BE2-BE44-C7599DC698E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.API", "ollix-backend\src\Ollix.API\Ollix.API.csproj", "{72ACB2EF-512A-4BE2-BE44-C7599DC698E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Application", "Ollix.Application\Ollix.Application.csproj", "{E4A2D0A8-C0EC-4AB5-BD9C-4CBB75064F75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Application", "ollix-backend\src\Ollix.Application\Ollix.Application.csproj", "{E4A2D0A8-C0EC-4AB5-BD9C-4CBB75064F75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Domain", "Ollix.Domain\Ollix.Domain.csproj", "{CACCCC48-6C2D-4069-ACAD-C28E1304E7A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Domain", "ollix-backend\src\Ollix.Domain\Ollix.Domain.csproj", "{CACCCC48-6C2D-4069-ACAD-C28E1304E7A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Infrastructure.Data", "Ollix.Infrastructure.Data\Ollix.Infrastructure.Data.csproj", "{3317CCCF-C663-433D-8115-6B9396A56AE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Infrastructure.Data", "ollix-backend\src\Ollix.Infrastructure.Data\Ollix.Infrastructure.Data.csproj", "{3317CCCF-C663-433D-8115-6B9396A56AE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Infrastructure.IoC", "Ollix.Infrastructure.IoC\Ollix.Infrastructure.IoC.csproj", "{85A5B918-70D7-4BF4-8590-B35F6B7FEB11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Infrastructure.IoC", "ollix-backend\src\Ollix.Infrastructure.IoC\Ollix.Infrastructure.IoC.csproj", "{85A5B918-70D7-4BF4-8590-B35F6B7FEB11}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{A7783F2C-1483-45CF-9870-4EBB5024EF22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Tests.Shared", "Ollix.Tests.Shared\Ollix.Tests.Shared.csproj", "{5B0B7CEF-AD81-4566-8E7F-883064F7CCF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Tests.Shared", "ollix-backend\tests\Ollix.Tests.Shared\Ollix.Tests.Shared.csproj", "{5B0B7CEF-AD81-4566-8E7F-883064F7CCF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Tests.Architecture", "Ollix.Tests.Architecture\Ollix.Tests.Architecture.csproj", "{C03A0922-43EF-4B1F-95CD-CF063EDA6755}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Tests.Architecture", "ollix-backend\tests\Ollix.Tests.Architecture\Ollix.Tests.Architecture.csproj", "{C03A0922-43EF-4B1F-95CD-CF063EDA6755}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Tests.Application", "Ollix.Tests.Application\Ollix.Tests.Application.csproj", "{C1A0AA71-41AC-484B-9B25-7C07815DF4B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Tests.Application", "ollix-backend\tests\Ollix.Tests.Application\Ollix.Tests.Application.csproj", "{C1A0AA71-41AC-484B-9B25-7C07815DF4B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
