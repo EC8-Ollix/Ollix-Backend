@@ -23,13 +23,13 @@ jobs:
           dotnet-version: '6.0.x'
           
       - name: Restore
-        run: dotnet restore ./ollix-backend/ollix-backend.sln
+        run: dotnet restore ./ollix-backend.sln
         
       - name: Build
-        run: dotnet build ./ollix-backend/ollix-backend.sln --configuration Release --no-restore
+        run: dotnet build ./ollix-backend.sln --configuration Release --no-restore
         
       - name: Publish
-        run: dotnet publish ./ollix-backend/ollix-backend.sln --configuration Release --no-build --output '${{ secrets.AZURE_PUBLISH_PROFILE }}'
+        run: dotnet publish ./ollix-backend.sln --configuration Release --no-build --output '${{ secrets.AZURE_PUBLISH_PROFILE }}'
 
       - name: Deployment
         uses: azure/webapps-deploy@v2
