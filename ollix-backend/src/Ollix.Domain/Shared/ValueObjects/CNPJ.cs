@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ollix.SharedKernel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ollix.Domain.Shared.ValueObjects
 {
-    public class CNPJ
+    public class CNPJ : ValueObject
     {
         private string? value;
 
@@ -62,6 +63,11 @@ namespace Ollix.Domain.Shared.ValueObjects
         {
             cnpj = Regex.Replace(cnpj, @"[^\d]", "");
             return string.Format("{0:00\\.000\\.000\\/0000-00}", long.Parse(cnpj));
+        }
+
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return Value;
         }
     }
 }
