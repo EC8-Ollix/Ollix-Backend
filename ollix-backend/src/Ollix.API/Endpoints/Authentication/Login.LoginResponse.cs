@@ -1,13 +1,10 @@
-﻿using Ollix.Application.Authentication.Commands.Login;
+﻿using Ollix.API.Endpoints.Authentication.Shared;
+using Ollix.Application.UseCases.Authentication.Shared;
+using Ollix.Domain.UserAggregate;
 
 namespace Ollix.API.Endpoints.Authentication
 {
-    public class LoginResponse
-    {
-        public string Token { get; set; }
-        public LoginResponse(LoginCommandResponse response)
-        {
-            Token = "ASDDSASDASASDA155";
-        }
-    }
+    public record LoginResponse(
+        string? Token,
+        UserInfo User);
 }

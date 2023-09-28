@@ -9,6 +9,7 @@ using Ollix.Infrastructure.IoC.Interfaces;
 using Ollix.SharedKernel.Interfaces;
 using Ollix.SharedKernel;
 using System.Reflection;
+using Ollix.Infrastructure.Data.Repositories;
 
 namespace Ollix.Infrastructure.IoC.Installers
 {
@@ -19,8 +20,8 @@ namespace Ollix.Infrastructure.IoC.Installers
             var applicationAssembly = typeof(Application.AssemblyReference).Assembly;
             var sharedAssembly = typeof(SharedKernel.AssemblyReference).Assembly;
 
-            //services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            //services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
 
             services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
 

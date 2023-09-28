@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ollix.Domain.Shared
+namespace Ollix.Domain.Abstractions
 {
     public interface IClientAppEntity
     {
-        public Guid? ClientAppId { get; set; }
+        public Guid ClientId { get; set; }
     }
 }

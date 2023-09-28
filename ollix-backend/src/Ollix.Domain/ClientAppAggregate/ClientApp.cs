@@ -1,5 +1,6 @@
-﻿using Ollix.Domain.Shared.ValueObjects;
+﻿using Ollix.Domain.ValueObjects;
 using Ollix.SharedKernel;
+using Ollix.SharedKernel.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

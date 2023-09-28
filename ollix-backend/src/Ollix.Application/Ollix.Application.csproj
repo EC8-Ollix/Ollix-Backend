@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Ardalis.Result" Version="7.1.0" />
+    <PackageReference Include="FluentValidation" Version="11.7.1" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.8.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,6 @@
-﻿using Ollix.Domain.ClientAppAggregate;
-using Ollix.Domain.Shared;
+﻿using Ollix.Domain.Abstractions;
+using Ollix.Domain.ClientAppAggregate;
+using Ollix.Domain.ValueObjects;
 using Ollix.SharedKernel;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,9 @@ namespace Ollix.Domain.UserAggregate
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public string? Email { get; set; }
-        public string? Password { get; set; }
-        public Guid? ClientAppId { get; set; }
-        public bool IsLoggedIn { get; set; }
+        public Guid ClientId { get; set; }
         public UserType UserType { get; set; }
+        public string? UserEmail { get; set; }
+        public string? UserPassword { get; set; }
     }
 }

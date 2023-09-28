@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Ollix.Infrastructure.Data.DataBaseContext;
 using Ollix.Infrastructure.IoC.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Julius.Infrastructure.IoC.Installers
 {
@@ -8,21 +10,21 @@ namespace Julius.Infrastructure.IoC.Installers
     {
         public void Install(IServiceCollection services, IConfiguration configuration)
         {
-            //services.Scan(
-            //    selector => selector
-            //        .FromAssemblies(
-            //            Julius.Infrastructure.Data.AssemblyReference.Assembly)
-            //        .AddClasses(false)
-            //        .UsingRegistrationStrategy(Scrutor.RegistrationStrategy.Skip)
-            //        .AsMatchingInterface()
-            //        .WithScopedLifetime());
+            services.Scan(
+                selector => selector
+                    .FromAssemblies(
+                        Ollix.Infrastructure.Data.AssemblyReference.Assembly)
+                    .AddClasses(false)
+                    .UsingRegistrationStrategy(Scrutor.RegistrationStrategy.Skip)
+                    .AsMatchingInterface()
+                    .WithScopedLifetime());
 
-            //services.AddDbContext<AppDbContext>(
-            //    (sp, optionsBuilder) =>
-            //    {
-            //        optionsBuilder.UseSqlServer(
-            //            configuration.GetConnectionString("DefaultConnection"));
-            //    });
+            services.AddDbContext<AppDbContext>(
+                (sp, optionsBuilder) =>
+                {
+                    optionsBuilder.UseSqlServer(
+                        configuration.GetConnectionString("DefaultConnection"));
+                });
         }
     }
 }

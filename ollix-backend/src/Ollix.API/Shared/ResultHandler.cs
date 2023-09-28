@@ -38,18 +38,27 @@ namespace Ollix.API.Shared
 
             return this;
         }
-
-        public ResultHandler<TCommandResult> OnNotFound(Func<TCommandResult, ActionResult> onNotFound)
+        public ResultHandler<TCommandResult> OnConflict(Func<IEnumerable<string>, ActionResult> onError)
         {
-            if (_result.Status == ResultStatus.NotFound)
+            if (_result.Status == ResultStatus.Conflict)
             {
-                _actionResult = onNotFound(_result);
+                _actionResult = onError(_result.Errors);
             }
 
             return this;
         }
 
-        public ActionResult Resolve() => _actionResult ?? throw new ArgumentNullException("A internal error Ocurred");
+        public ResultHandler<TCommandResult> OnNotFound(Func<IEnumerable<string>, ActionResult> onNotFound)
+        {
+            if (_result.Status == ResultStatus.NotFound)
+            {
+                _actionResult = onNotFound(_result.Errors);
+            }
+
+            return this;
+        }
+
+        public ActionResult Return() => _actionResult ?? throw new ArgumentNullException("Erro");
 
         private ActionResult? _actionResult;
     }

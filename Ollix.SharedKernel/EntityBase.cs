@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
+using Ollix.SharedKernel.Interfaces;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ollix.SharedKernel;
 
-public abstract class EntityBase : IEquatable<EntityBase>
+public abstract class EntityBase : IEquatable<EntityBase>, IAggregateRoot
 {
     public Guid Id { get; set; }
 

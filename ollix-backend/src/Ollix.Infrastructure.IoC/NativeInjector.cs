@@ -34,7 +34,6 @@ namespace Ollix.Infrastructure.IoC
         {
             app.UseHttpsRedirection();
             app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
-            app.UseMiddleware<FakeUserMiddleware>();
             //app.UseAuthentication();
             //app.UseAuthorization();
             //app.UseCors(builder => builder

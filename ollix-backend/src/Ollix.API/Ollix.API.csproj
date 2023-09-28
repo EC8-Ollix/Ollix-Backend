@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Endpoints\Authentication\Register.RegisterRequest.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Endpoints\Authentication\Register.RegisterRequest.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Ardalis.ApiEndpoints" Version="4.1.0" />
     <PackageReference Include="Ardalis.Result" Version="7.1.0" />
     <PackageReference Include="MediatR" Version="12.1.1" />
