@@ -1,5 +1,6 @@
 # backend
 
+```
 USE OllixDB
 
 CREATE TABLE ClientApp (
@@ -23,3 +24,4 @@ CREATE TABLE UserApp (
 
 Select * from UserApp
 Select * from ClientApp
+```
