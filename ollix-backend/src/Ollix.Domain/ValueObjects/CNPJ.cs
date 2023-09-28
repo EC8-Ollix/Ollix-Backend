@@ -11,11 +11,16 @@ namespace Ollix.Domain.ValueObjects
     public class CNPJ : ValueObject
     {
         public string? Value { get; set; }
+        public string? Error { get; set; }
+        public bool IsInvalidCnpj { get => !string.IsNullOrEmpty(Error); }
 
         public CNPJ(string cnpj)
         {
             if (!IsValidCnpj(cnpj))
-                throw new ArgumentException("Invalid CNPJ");
+            {
+                Error = "CNPJ inválido!";
+                return;
+            }
 
             Value = FormatCnpj(cnpj);
         }

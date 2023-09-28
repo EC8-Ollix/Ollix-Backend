@@ -6,6 +6,7 @@ using Ollix.Domain.UserAggregate;
 using Ollix.Domain.UserAppAggregate.Specifications;
 using Ollix.Domain.ValueObjects;
 using Ollix.SharedKernel;
+using Ollix.SharedKernel.Extensions;
 using Ollix.SharedKernel.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace Ollix.Application.Authentication.Commands.Register
         public async Task<Result<ClientApp>> Handle(CreateClientCommand request, CancellationToken cancellationToken)
         {
             var cnpj = new CNPJ(request.Cnpj!);
+            if (cnpj.IsInvalidCnpj)
+                return Result.Error(cnpj.Error);
 
             var company = await _repository
                 .FirstOrDefaultAsync(new GetCompanyByCnpjSpec(cnpj), cancellationToken);
@@ -40,7 +43,7 @@ namespace Ollix.Application.Authentication.Commands.Register
                 BussinessName = request.BussinessName,
                 Cnpj = cnpj,
             };
-
+            
             await _repository.AddAsync(client, cancellationToken);
 
             return Result.Success(client);

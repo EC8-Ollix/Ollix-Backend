@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Ollix.SharedKernel.Extensions;
+using System;
 
 namespace Ollix.Application.UseCases.Authentication.Commands.Register
 {
@@ -22,16 +23,6 @@ namespace Ollix.Application.UseCases.Authentication.Commands.Register
                 .Matches("@\"^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$").WithMessage("Email Inválido!");
 
             RuleFor(p => p.UserPassword)
-                .NotEmpty().WithMessage("O Email é obrigatório")
-                .MaximumLength(200).WithMessage("O Email deve ter no máximo 200 caracteres");
-        }
-    }
-
-    internal class PasswordValidator : AbstractValidator<RegisterCommand>
-    {
-        public PasswordValidator()
-        {
-            RuleFor(p => p.UserPassword)
                 .NotEmpty().WithMessage("A Senha é obrigatório")
                 .MinimumLength(8).WithMessage("Sua Senha deve ter pelo menos 8 caracteres")
                 .MaximumLength(20).WithMessage("Sua Senha deve ter no máximo 20 caracteres")
@@ -39,6 +30,31 @@ namespace Ollix.Application.UseCases.Authentication.Commands.Register
                 .Must(password => password.ContainsLowercase()).WithMessage("Sua Senha deve conter pelo menos uma letra minúscula")
                 .Must(password => password.ContainsNumber()).WithMessage("Sua Senha deve conter pelo menos um número")
                 .Must(password => password.ContainsSpecialCharacter()).WithMessage("Sua senha deve conter pelo menos um caractere especial");
+
+            RuleFor(p => p.CreateClientCommand)
+                .NotEmpty().WithMessage("Os campos da Empresa são obrigatórios");
+
+            RuleFor(p => p.CreateClientCommand.BussinessName)
+                .NotEmpty().WithMessage("O Nome da Empresa é obrigatório")
+                .MaximumLength(400).When(r => r.CreateClientCommand != null).WithMessage("O Nome da Empresa deve ter no máximo 400 caracteres");
+
+            RuleFor(p => p.CreateClientCommand.CompanyName)
+                .NotEmpty().WithMessage("O Nome Fantasia da Empresa é obrigatório")
+                .MaximumLength(400).When(r => r.CreateClientCommand != null).WithMessage("O Nome Fantasia da Empresa deve ter no máximo 400 caracteres");
+
+            RuleFor(p => p.CreateClientCommand.Cnpj)
+                .NotEmpty().WithMessage("O CNPJ da Empresa é obrigatório")
+                .Length(14, 14).WithMessage("O CNPJ deve conter apenas 14 caracteres")
+                .Must(r => r.IsValidCnpj()).When(r => r.CreateClientCommand != null).WithMessage("O CNPJ informado está Inválido");
+
+        }
+    }
+
+    internal class PasswordValidator : AbstractValidator<RegisterCommand>
+    {
+        public PasswordValidator()
+        {
+
         }
     }
 }
