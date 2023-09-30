@@ -1,0 +1,27 @@
+name: Production Build 
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3 # Atualize para v2, pois não existe uma versão v3 no momento de corte do meu conhecimento.
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3 # Atualize para v1, pois não existe uma versão v3 no momento de corte do meu conhecimento.
+        with:
+          dotnet-version: '6.0.x'
+          
+      - name: Restore
+        run: dotnet restore ./ollix-backend.sln
+        
+      - name: Build
+        run: dotnet build ./ollix-backend.sln --configuration Release --no-restore
+        
+      - name: Test
+        run: dotnet test ./ollix-backend.sln --no-restore --verbosity normal
