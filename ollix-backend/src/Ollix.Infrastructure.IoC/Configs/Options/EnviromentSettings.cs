@@ -1,4 +1,4 @@
-﻿namespace Ollix.Infrastructure.IoC.Configs
+﻿namespace Ollix.Infrastructure.IoC.Configs.Options
 {
     public class EnviromentSettings
     {

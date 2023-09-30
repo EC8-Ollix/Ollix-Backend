@@ -4,9 +4,9 @@ namespace Ollix.Domain.UserAggregate
 {
     public enum UserType
     {
-        [Description("ADMIN")]
+        [Description("Admin")]
         Admin,
-        [Description("CLIENT")]
+        [Description("Client")]
         Client
     }
 }

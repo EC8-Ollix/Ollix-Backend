@@ -1,5 +1,6 @@
 ﻿using Ardalis.ApiEndpoints;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Shared;
 using Ollix.Application.UseCases.Authentication.Shared;
@@ -8,6 +9,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Ollix.API.Endpoints.Authentication
 {
+    [AllowAnonymous]
     public class Register : EndpointBaseAsync
             .WithRequest<RegisterRequest>
             .WithActionResult<UserInfo>

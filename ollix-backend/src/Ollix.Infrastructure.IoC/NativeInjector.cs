@@ -35,8 +35,6 @@ namespace Ollix.Infrastructure.IoC
         {
             app.UseHttpsRedirection();
             app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
-            //app.UseAuthentication();
-            //app.UseAuthorization();
             //app.UseCors(builder => builder
             //    .SetIsOriginAllowed(orign => true)
             //    .AllowAnyMethod()
@@ -45,6 +43,9 @@ namespace Ollix.Infrastructure.IoC
             app.UseSwagger();
 
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", configuration.GetApiName()));
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.MapControllers();
 

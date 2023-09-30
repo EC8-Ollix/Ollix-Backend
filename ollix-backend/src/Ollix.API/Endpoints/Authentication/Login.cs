@@ -1,9 +1,12 @@
 ﻿using Ardalis.ApiEndpoints;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Ollix.API.Shared;
 using Ollix.Application.UseCases.Authentication.Shared;
+using Ollix.Infrastructure.IoC.Configs.Options;
+using Ollix.Infrastructure.IoC.Extensions;
 using Ollix.SharedKernel.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
 using System.IdentityModel.Tokens.Jwt;
@@ -12,6 +15,7 @@ using System.Text;
 
 namespace Ollix.API.Endpoints.Authentication
 {
+    [AllowAnonymous]
     public class Login : EndpointBaseAsync
             .WithRequest<LoginRequest>
             .WithActionResult<LoginResponse>
@@ -59,19 +63,25 @@ namespace Ollix.API.Endpoints.Authentication
                 new Claim(ClaimTypes.Role, user.UserType.GetDescription())
             };
 
+            var jwtSettings = _configuration.GetJwtSettings() ?? new JwtSettings();
+
             var key = new SymmetricSecurityKey(Encoding.UTF8
-                .GetBytes(_configuration.GetSection("JwtSettings:Key").Value));
+                .GetBytes(jwtSettings.Key!));
 
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.Add(TimeSpan.FromHours(8)),
+                Issuer = jwtSettings.Issuer,
+                Audience = jwtSettings.Audience,
+                SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature)
+            };
 
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.Now.AddDays(1),
-                signingCredentials: creds);
+            var tokenHandler = new JwtSecurityTokenHandler();
 
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+            var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return jwt;
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
