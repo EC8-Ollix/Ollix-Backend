@@ -1,9 +1,14 @@
-name: Production Build 
+name: Production Publish 🚀
 
 on:
-  pull_request:
+  workflow_dispatch:
+  push:
     branches:
-      - master
+    - master
+
+env:
+  AZURE_WEBAPP_NAME: ollix-api
+  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
 
 jobs:
   build:
@@ -30,3 +35,27 @@ jobs:
           dotnet-version: '6.0.x'
       - name: Test
         run: dotnet test ./ollix-backend.sln --no-restore --verbosity normal
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+      - name: Publish
+        run: dotnet publish ./ollix-backend.sln --configuration Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+
+  deploy:
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deployment
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          package: "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
