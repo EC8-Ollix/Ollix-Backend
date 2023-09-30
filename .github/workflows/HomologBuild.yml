@@ -6,22 +6,37 @@ on:
       - develop
 
 jobs:
-  publish:
+  restore:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0.x'
-
       - name: Restore
         run: dotnet restore ./ollix-backend.sln
 
+  build:
+    needs: restore
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
       - name: Build
         run: dotnet build ./ollix-backend.sln --configuration Release --no-restore
 
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
       - name: Test
         run: dotnet test ./ollix-backend.sln --no-restore --verbosity normal
