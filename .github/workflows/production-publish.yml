@@ -45,7 +45,7 @@ jobs:
         with:
           dotnet-version: '6.0.x'
       - name: Test
-        run: dotnet test ./ollix-backend.sln --no-restore --verbosity normal
+        run: dotnet test ./ollix-backend.sln --verbosity normal
 
   publish:
     needs: test
