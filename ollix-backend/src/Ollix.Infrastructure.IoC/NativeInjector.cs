@@ -1,16 +1,17 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Autofac;
-using System.Reflection;
-using Ollix.Infrastructure.IoC.Interfaces;
+﻿using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Ollix.Infrastructure.IoC.Installers.Api;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Ollix.Infrastructure.IoC.Configs;
+using Ollix.Infrastructure.IoC.Extensions;
+using Ollix.Infrastructure.IoC.Interfaces;
+using System.Reflection;
 
 namespace Ollix.Infrastructure.IoC
 {
     public static class NativeInjector
-    {    
+    {
         public static IServiceCollection InstallServices(this IServiceCollection services, IConfiguration configuration, params Assembly[] assemblies)
         {
             IEnumerable<IServiceInstaller> servicesInstallers = assemblies
@@ -30,7 +31,7 @@ namespace Ollix.Infrastructure.IoC
             return services;
         }
 
-        public static WebApplication UseServices(this WebApplication app, IWebHostEnvironment env)
+        public static WebApplication UseServices(this WebApplication app, IWebHostEnvironment env, IConfiguration configuration)
         {
             app.UseHttpsRedirection();
             app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
@@ -43,7 +44,7 @@ namespace Ollix.Infrastructure.IoC
             //    .AllowCredentials());
             app.UseSwagger();
 
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", configuration.GetApiName()));
 
             app.MapControllers();
 

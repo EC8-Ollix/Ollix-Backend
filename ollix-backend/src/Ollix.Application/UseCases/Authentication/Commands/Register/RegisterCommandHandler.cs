@@ -1,24 +1,14 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.Abstractions;
-using Ollix.Application.Authentication.Commands.Register;
 using Ollix.Application.UseCases.Authentication.Shared;
-using Ollix.Domain.ClientAppAggregate;
 using Ollix.Domain.UserAggregate;
 using Ollix.Domain.UserAppAggregate.Specifications;
-using Ollix.Domain.ValueObjects;
-using Ollix.SharedKernel;
-using Ollix.SharedKernel.Interfaces;
 using Ollix.SharedKernel.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Ollix.SharedKernel.Interfaces;
 
 namespace Ollix.Application.UseCases.Authentication.Commands.Register
 {
-    internal sealed class RegisterCommandHandler : ICommandHandler<RegisterCommand, UserInfo>
+    internal sealed class RegisterCommandHandler : IRequestHandler<RegisterCommand, Result<UserInfo>>
     {
         private readonly IRepository<UserApp> _repository;
         private readonly IMediator _mediator;
@@ -54,7 +44,7 @@ namespace Ollix.Application.UseCases.Authentication.Commands.Register
 
             await _repository.AddAsync(user, cancellationToken);
 
-            return Result.Success(new UserInfo(user));
+            return Result.Success(new UserInfo(user, clientCreated.Value));
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿using Ollix.Application.Abstractions;
-using Ollix.SharedKernel;
+﻿using MediatR;
 
 namespace Ollix.API.Shared.Request
 {
-    public interface IApiRequest<T, Q> where T : ICommand<Q>  where Q : class
+    public interface IApiRequest<T, Q> where T : IRequest<Q> where Q : class
     {
         public T ToCommand();
     }

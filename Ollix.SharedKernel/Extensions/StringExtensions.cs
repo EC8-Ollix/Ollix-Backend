@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Ollix.SharedKernel.Extensions
 {
@@ -68,6 +64,11 @@ namespace Ollix.SharedKernel.Extensions
             int digito2 = resto < 2 ? 0 : 11 - resto;
 
             return cnpj[12] - '0' == digito1 && cnpj[13] - '0' == digito2;
+        }
+
+        public static string JustNumbers(this string? value)
+        {
+            return !string.IsNullOrEmpty(value) ? Regex.Replace(value, @"[^\d]", "") : string.Empty;
         }
     }
 }

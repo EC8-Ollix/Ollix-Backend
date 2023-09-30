@@ -1,10 +1,11 @@
-﻿using Ollix.Infrastructure.IoC.Interfaces;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Ollix.Infrastructure.IoC.Installers.Api;
+using Ollix.Infrastructure.IoC.Configs;
+using Ollix.Infrastructure.IoC.Extensions;
+using Ollix.Infrastructure.IoC.Interfaces;
 
-namespace Julius.Infrastructure.IoC.Installers.Api
+namespace Ollix.Infrastructure.IoC.Installers
 {
     public class APIServiceInstaller : IServiceInstaller
     {
@@ -25,7 +26,7 @@ namespace Julius.Infrastructure.IoC.Installers.Api
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = configuration.GetApiName(), Version = "v1" });
                 c.EnableAnnotations();
             });
         }

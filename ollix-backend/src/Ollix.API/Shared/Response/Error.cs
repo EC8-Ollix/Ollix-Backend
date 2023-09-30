@@ -1,5 +1,4 @@
 ﻿using Ardalis.Result;
-using Ollix.API.Shared.Response;
 using System.Text.Json.Serialization;
 
 namespace Ollix.API.Shared.Response
@@ -14,7 +13,7 @@ namespace Ollix.API.Shared.Response
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string[]? ValidationErrors { get; set; }
-        
+
         public static ErrorModel<T> GetResponse(Result<T> result)
         {
             return new ErrorModel<T>()
