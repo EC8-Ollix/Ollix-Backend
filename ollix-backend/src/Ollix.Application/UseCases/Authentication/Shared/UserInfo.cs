@@ -21,7 +21,7 @@ namespace Ollix.Application.UseCases.Authentication.Shared
             UserType = user.UserType;
             ClientApp = new ClientApp()
             {
-                Id = user.Id
+                Id = user.ClientId
             };
         }
 
