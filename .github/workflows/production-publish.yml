@@ -23,7 +23,7 @@ jobs:
         run: dotnet restore ./ollix-backend.sln
       - name: Build
         run: dotnet build ./ollix-backend.sln --configuration Release --no-restore
-      - name: Upload artifacts
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Download artifacts
+      - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
           name: build-artifacts
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Download artifacts
+      - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
           name: build-artifacts
@@ -64,12 +64,22 @@ jobs:
         run: dotnet restore ./ollix-backend.sln
       - name: Publish
         run: dotnet publish ./ollix-backend.sln --configuration Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+      - name: Upload publish artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: publish-artifacts
+          path: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
 
   deploy:
     needs: publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Download publish artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: publish-artifacts
+          path: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
       - name: Deployment
         uses: azure/webapps-deploy@v2
         with:
