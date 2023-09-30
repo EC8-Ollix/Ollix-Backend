@@ -8,6 +8,8 @@ namespace Ollix.Infrastructure.Data.DataBaseContext.Config
     {
         public void Configure(EntityTypeBuilder<ClientApp> builder)
         {
+            builder.ToTable(nameof(ClientApp));
+
             builder.HasKey(k => k.Id);
 
             builder.Property(p => p.CompanyName)

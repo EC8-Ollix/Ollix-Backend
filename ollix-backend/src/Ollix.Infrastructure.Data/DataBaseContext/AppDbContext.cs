@@ -36,7 +36,7 @@ public class AppDbContext : DbContext
     {
         int result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
         if (result == 0)
-            throw new Exception("An error occurred while trying to save changes");
+            throw new Exception("Ocorreu um erro ao se comunicar com o Banco de Dados");
 
         if (_dispatcher == null) return result;
 
