@@ -1,4 +1,4 @@
-name: Homolog Publish
+name: Homolog Publish 🚀
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
     - develop
 
 env:
-  AZURE_WEBAPP_NAME: hom-ollix-api
+  AZURE_WEBAPP_NAME: ollix-api
   AZURE_WEBAPP_PACKAGE_PATH: "./publish"
 
 jobs:
@@ -23,12 +23,23 @@ jobs:
         run: dotnet restore ./ollix-backend.sln
       - name: Build
         run: dotnet build ./ollix-backend.sln --configuration Release --no-restore
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            **/obj/
+            **/bin/
 
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
@@ -41,18 +52,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0.x'
+      - name: Restore
+        run: dotnet restore ./ollix-backend.sln
       - name: Publish
         run: dotnet publish ./ollix-backend.sln --configuration Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+      - name: Upload publish artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: publish-artifacts
+          path: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
 
   deploy:
     needs: publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Download publish artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: publish-artifacts
+          path: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
       - name: Deployment
         uses: azure/webapps-deploy@v2
         with:
