@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ollix.Infrastructure.Data.DataBaseContext;
 using Ollix.Infrastructure.IoC.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace Julius.Infrastructure.IoC.Installers
 {

@@ -1,16 +1,10 @@
-﻿using Ollix.Application.Abstractions;
+﻿using Ardalis.Result;
+using MediatR;
 using Ollix.Domain.ClientAppAggregate;
-using Ollix.Domain.ValueObjects;
-using Ollix.Domain.UserAggregate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Ollix.Application.Authentication.Commands.Register
+namespace Ollix.Application.UseCases.Clients.Commands.CreateClient
 {
-    public sealed record CreateClientCommand : ICommand<ClientApp>
+    public sealed record CreateClientCommand : IRequest<Result<ClientApp>>
     {
         public string? CompanyName { get; set; }
         public string? BussinessName { get; set; }

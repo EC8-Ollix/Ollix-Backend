@@ -1,5 +1,5 @@
-﻿using Ollix.SharedKernel.Interfaces;
-using MediatR;
+﻿using MediatR;
+using Ollix.SharedKernel.Interfaces;
 
 namespace Ollix.SharedKernel;
 

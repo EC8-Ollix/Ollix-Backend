@@ -1,16 +1,11 @@
-﻿using Ollix.Application.Abstractions;
-using Ollix.Application.Authentication.Commands.Register;
+﻿using Ardalis.Result;
+using MediatR;
 using Ollix.Application.UseCases.Authentication.Shared;
-using Ollix.Domain.UserAggregate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Ollix.Application.UseCases.Clients.Commands.CreateClient;
 
 namespace Ollix.Application.UseCases.Authentication.Commands.Register
 {
-    public sealed record RegisterCommand : ICommand<UserInfo>
+    public sealed record RegisterCommand : IRequest<Result<UserInfo>>
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }

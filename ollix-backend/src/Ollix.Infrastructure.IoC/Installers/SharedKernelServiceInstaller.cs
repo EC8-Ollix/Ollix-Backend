@@ -1,15 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ollix.Infrastructure.IoC.Interfaces;
-using Ollix.SharedKernel.Interfaces;
-using Ollix.SharedKernel;
-using System.Reflection;
 using Ollix.Infrastructure.Data.Repositories;
+using Ollix.Infrastructure.IoC.Interfaces;
+using Ollix.SharedKernel;
+using Ollix.SharedKernel.Interfaces;
 
 namespace Ollix.Infrastructure.IoC.Installers
 {

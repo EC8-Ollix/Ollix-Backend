@@ -1,15 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
-namespace Ollix.Infrastructure.IoC.Installers.Api
+namespace Ollix.Infrastructure.IoC.Configs
 {
     internal class GlobalExceptionHandlingMiddleware : IMiddleware
     {
@@ -39,7 +34,7 @@ namespace Ollix.Infrastructure.IoC.Installers.Api
                     Status = httpCode,
                     Type = "Server Error",
                     Title = "Um erro inesperado ocorreu!",
-                    Detail = "Um erro inesperado ocorreu!",
+                    Detail = e.Message,
                 });
 
                 context.Response.ContentType = "application/json";

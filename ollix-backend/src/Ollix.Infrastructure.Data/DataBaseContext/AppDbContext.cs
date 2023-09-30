@@ -1,10 +1,10 @@
-﻿using Ollix.SharedKernel.Interfaces;
-using Ollix.SharedKernel;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore;
-using Ollix.Domain.UserAggregate;
 using Ollix.Domain.ClientAppAggregate;
+using Ollix.Domain.UserAggregate;
 using Ollix.Infrastructure.Data.DataBaseContext.Config;
+using Ollix.SharedKernel;
+using Ollix.SharedKernel.Interfaces;
 
 namespace Ollix.Infrastructure.Data.DataBaseContext;
 

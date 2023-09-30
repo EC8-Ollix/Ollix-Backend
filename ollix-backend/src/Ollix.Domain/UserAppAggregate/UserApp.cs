@@ -1,12 +1,5 @@
 ﻿using Ollix.Domain.Abstractions;
-using Ollix.Domain.ClientAppAggregate;
-using Ollix.Domain.ValueObjects;
 using Ollix.SharedKernel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ollix.Domain.UserAggregate
 {

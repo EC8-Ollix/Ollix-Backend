@@ -1,6 +1,4 @@
-﻿using Ollix.API.Endpoints.Authentication.Shared;
-using Ollix.Application.UseCases.Authentication.Shared;
-using Ollix.Domain.UserAggregate;
+﻿using Ollix.Application.UseCases.Authentication.Shared;
 
 namespace Ollix.API.Endpoints.Authentication
 {

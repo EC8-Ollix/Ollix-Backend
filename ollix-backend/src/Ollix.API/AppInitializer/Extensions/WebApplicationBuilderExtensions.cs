@@ -11,7 +11,7 @@ namespace Ollix.API.AppInitializer.Extensions
 
             var app = builder.Build();
 
-            app.UseServices(app.Environment);
+            app.UseServices(app.Environment, builder.Configuration);
 
             app.Run();
 
