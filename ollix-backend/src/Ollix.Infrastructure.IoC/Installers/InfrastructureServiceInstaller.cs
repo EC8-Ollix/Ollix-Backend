@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Ollix.Infrastructure.Data.DataBaseContext;
 using Ollix.Infrastructure.IoC.Interfaces;
 
-namespace Julius.Infrastructure.IoC.Installers
+namespace Ollix.Infrastructure.IoC.Installers
 {
     public class InfrastructureServiceInstaller : IServiceInstaller
     {
