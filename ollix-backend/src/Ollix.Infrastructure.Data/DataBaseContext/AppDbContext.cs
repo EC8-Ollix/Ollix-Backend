@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Configuration;
 using Ollix.Domain.ClientAppAggregate;
 using Ollix.Domain.UserAggregate;
 using Ollix.Infrastructure.Data.DataBaseContext.Config;
@@ -30,6 +31,22 @@ public class AppDbContext : DbContext
 
         modelBuilder.ApplyConfiguration(new ClientAppEfConfig());
         modelBuilder.ApplyConfiguration(new UserAppEFConfig());
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            optionsBuilder
+                .UseSqlServer(configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Ollix.API"));
+
+            base.OnConfiguring(optionsBuilder);
+        }
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

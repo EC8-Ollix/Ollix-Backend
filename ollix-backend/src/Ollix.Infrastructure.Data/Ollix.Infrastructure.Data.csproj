@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Ollix.SharedKernel\Ollix.SharedKernel.csproj" />
     <ProjectReference Include="..\Ollix.Domain\Ollix.Domain.csproj" />
+    <ProjectReference Include="..\Ollix.SharedKernel\Ollix.SharedKernel.csproj" />
   </ItemGroup>
 
 </Project>
