@@ -23,6 +23,7 @@ namespace Ollix.Infrastructure.Data.DataBaseContext.Config
             builder.OwnsOne(x => x.Cnpj)
                 .Property(x => x.Value)
                 .HasColumnName("Cnpj")
+                .HasMaxLength(18)
                 .IsRequired(true);
         }
     }
