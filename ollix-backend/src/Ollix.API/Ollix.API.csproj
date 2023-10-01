@@ -23,6 +23,7 @@
     <ProjectReference Include="..\Ollix.Application\Ollix.Application.csproj" />
     <ProjectReference Include="..\Ollix.Domain\Ollix.Domain.csproj" />
     <ProjectReference Include="..\Ollix.Infrastructure.IoC\Ollix.Infrastructure.IoC.csproj" />
+    <ProjectReference Include="..\Ollix.SharedKernel\Ollix.SharedKernel.csproj" />
   </ItemGroup>
 
 </Project>
