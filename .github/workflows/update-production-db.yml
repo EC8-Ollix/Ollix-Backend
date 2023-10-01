@@ -20,7 +20,7 @@ jobs:
         run: dotnet restore ./ollix-backend.sln
       - name: Update Database
         run: |
-          cd ollix-backend\src\Ollix.Infrastructure.Data
+          cd ollix-backend/src/Ollix.Infrastructure.Data
           dotnet ef database update --context AppDbContext --startup-project ../Ollix.Infrastructure.IoC
         env:
           DefaultConnection: ${{ secrets.DbConnectionString }}
