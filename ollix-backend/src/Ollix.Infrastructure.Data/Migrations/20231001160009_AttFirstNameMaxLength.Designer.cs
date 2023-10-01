@@ -12,8 +12,8 @@ using Ollix.Infrastructure.Data.DataBaseContext;
 namespace Ollix.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231001033801_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231001160009_AttFirstNameMaxLength")]
+    partial class AttFirstNameMaxLength
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,8 +56,8 @@ namespace Ollix.Infrastructure.Data.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("LastName")
                         .HasMaxLength(200)
@@ -90,7 +90,8 @@ namespace Ollix.Infrastructure.Data.Migrations
 
                             b1.Property<string>("Value")
                                 .IsRequired()
-                                .HasColumnType("nvarchar(max)")
+                                .HasMaxLength(18)
+                                .HasColumnType("nvarchar(18)")
                                 .HasColumnName("Cnpj");
 
                             b1.HasKey("ClientAppId");

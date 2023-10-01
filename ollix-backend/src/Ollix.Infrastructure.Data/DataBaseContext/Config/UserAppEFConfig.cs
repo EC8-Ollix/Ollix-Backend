@@ -14,7 +14,7 @@ public class UserAppEFConfig : IEntityTypeConfiguration<UserApp>
         builder.HasKey(k => k.Id);
 
         builder.Property(p => p.FirstName)
-            .HasMaxLength(100)
+            .HasMaxLength(200)
             .IsRequired();
 
         builder.Property(p => p.LastName)

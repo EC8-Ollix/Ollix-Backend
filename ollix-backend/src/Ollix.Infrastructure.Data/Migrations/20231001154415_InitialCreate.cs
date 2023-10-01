@@ -16,7 +16,7 @@ namespace Ollix.Infrastructure.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CompanyName = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
                     BussinessName = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
-                    Cnpj = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Cnpj = table.Column<string>(type: "nvarchar(18)", maxLength: 18, nullable: true)
                 },
                 constraints: table =>
                 {

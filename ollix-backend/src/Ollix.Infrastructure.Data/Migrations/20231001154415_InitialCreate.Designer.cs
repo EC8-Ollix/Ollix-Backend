@@ -12,8 +12,8 @@ using Ollix.Infrastructure.Data.DataBaseContext;
 namespace Ollix.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231001034353_CnpjMaxLength")]
-    partial class CnpjMaxLength
+    [Migration("20231001154415_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
