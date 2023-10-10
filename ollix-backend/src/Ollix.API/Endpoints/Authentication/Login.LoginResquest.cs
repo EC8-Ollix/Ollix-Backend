@@ -1,7 +1,7 @@
 ﻿using Ardalis.Result;
 using Ollix.API.Shared.Request;
+using Ollix.Application.Shared;
 using Ollix.Application.UseCases.Authentication.Commands.Login;
-using Ollix.Application.UseCases.Authentication.Shared;
 
 namespace Ollix.API.Endpoints.Authentication
 {

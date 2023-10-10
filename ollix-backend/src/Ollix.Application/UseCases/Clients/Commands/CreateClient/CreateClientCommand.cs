@@ -1,6 +1,6 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Domain.ClientAppAggregate;
+using Ollix.Domain.Aggregates.ClientAppAggregate;
 
 namespace Ollix.Application.UseCases.Clients.Commands.CreateClient
 {

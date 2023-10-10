@@ -1,7 +1,7 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Domain.ClientAppAggregate;
-using Ollix.Domain.ClientAppAggregate.Specifications;
+using Ollix.Domain.Aggregates.ClientAppAggregate;
+using Ollix.Domain.Aggregates.ClientAppAggregate.Specifications;
 using Ollix.Domain.ValueObjects;
 using Ollix.SharedKernel.Interfaces;
 

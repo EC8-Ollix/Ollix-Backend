@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
-using Ollix.Domain.ClientAppAggregate;
-using Ollix.Domain.UserAggregate;
+using Ollix.Domain.Aggregates.ClientAppAggregate;
+using Ollix.Domain.Aggregates.UserAppAggregate;
 using Ollix.Infrastructure.Data.DataBaseContext.Config;
 using Ollix.SharedKernel;
 using Ollix.SharedKernel.Interfaces;

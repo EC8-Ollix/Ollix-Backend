@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Ollix.Domain.ClientAppAggregate;
+using Ollix.Domain.Aggregates.ClientAppAggregate;
 
 namespace Ollix.Infrastructure.Data.DataBaseContext.Config
 {

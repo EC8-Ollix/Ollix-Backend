@@ -1,7 +1,7 @@
 ﻿using Ardalis.Specification;
 using Ollix.Domain.ValueObjects;
 
-namespace Ollix.Domain.ClientAppAggregate.Specifications
+namespace Ollix.Domain.Aggregates.ClientAppAggregate.Specifications
 {
     public class GetCompanyByCnpjSpec : SingleResultSpecification<ClientApp>
     {

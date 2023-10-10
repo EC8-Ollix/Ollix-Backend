@@ -1,8 +1,8 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Authentication.Shared;
-using Ollix.Domain.UserAggregate;
-using Ollix.Domain.UserAppAggregate.Specifications;
+using Ollix.Application.Shared;
+using Ollix.Domain.Aggregates.UserAppAggregate;
+using Ollix.Domain.Aggregates.UserAppAggregate.Specifications;
 using Ollix.SharedKernel.Extensions;
 using Ollix.SharedKernel.Interfaces;
 

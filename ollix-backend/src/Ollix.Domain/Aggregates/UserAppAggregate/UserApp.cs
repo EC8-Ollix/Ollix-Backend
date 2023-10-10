@@ -1,7 +1,7 @@
 ﻿using Ollix.Domain.Abstractions;
 using Ollix.SharedKernel;
 
-namespace Ollix.Domain.UserAggregate
+namespace Ollix.Domain.Aggregates.UserAppAggregate
 {
     public class UserApp : EntityBase, IClientAppEntity
     {

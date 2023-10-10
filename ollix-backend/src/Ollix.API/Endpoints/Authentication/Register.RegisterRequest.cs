@@ -1,7 +1,7 @@
 ﻿using Ardalis.Result;
 using Ollix.API.Shared.Request;
+using Ollix.Application.Shared;
 using Ollix.Application.UseCases.Authentication.Commands.Register;
-using Ollix.Application.UseCases.Authentication.Shared;
 using Ollix.Application.UseCases.Clients.Commands.CreateClient;
 using Ollix.SharedKernel.Extensions;
 

@@ -6,7 +6,6 @@ using Microsoft.OpenApi.Models;
 using Ollix.Infrastructure.IoC.Configs;
 using Ollix.Infrastructure.IoC.Extensions;
 using Ollix.Infrastructure.IoC.Interfaces;
-using System.Configuration;
 using System.Text;
 
 namespace Ollix.Infrastructure.IoC.Installers

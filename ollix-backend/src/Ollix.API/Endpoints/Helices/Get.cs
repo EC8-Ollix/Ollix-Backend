@@ -1,13 +1,7 @@
 ﻿using Ardalis.ApiEndpoints;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
-using Ollix.API.Endpoints.Authentication;
 using Ollix.API.Shared;
-using Ollix.Application.UseCases.Authentication.Shared;
-using Ollix.Domain.UserAggregate;
-using Ollix.SharedKernel.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Ollix.API.Endpoints.Helices
@@ -31,10 +25,10 @@ namespace Ollix.API.Endpoints.Helices
         {
             var helices = new object[]
             {
-                new 
+                new
                 {
                     Id = 1,
-                    Nome = "Hélice 1" 
+                    Nome = "Hélice 1"
                 }
             };
 

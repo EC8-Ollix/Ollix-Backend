@@ -1,7 +1,7 @@
 ﻿using Ollix.Domain.ValueObjects;
 using Ollix.SharedKernel;
 
-namespace Ollix.Domain.ClientAppAggregate
+namespace Ollix.Domain.Aggregates.ClientAppAggregate
 {
     public class ClientApp : EntityBase
     {

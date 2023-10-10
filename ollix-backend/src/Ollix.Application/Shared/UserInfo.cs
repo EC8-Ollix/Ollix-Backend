@@ -1,7 +1,7 @@
-﻿using Ollix.Domain.ClientAppAggregate;
-using Ollix.Domain.UserAggregate;
+﻿using Ollix.Domain.Aggregates.ClientAppAggregate;
+using Ollix.Domain.Aggregates.UserAppAggregate;
 
-namespace Ollix.Application.UseCases.Authentication.Shared
+namespace Ollix.Application.Shared
 {
     public record UserInfo
     {

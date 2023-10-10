@@ -1,7 +1,6 @@
 ﻿using Ardalis.Specification;
-using Ollix.Domain.UserAggregate;
 
-namespace Ollix.Domain.UserAppAggregate.Specifications
+namespace Ollix.Domain.Aggregates.UserAppAggregate.Specifications
 {
     public class GetUserAppByEmailSpec : SingleResultSpecification<UserApp>
     {

@@ -1,6 +1,6 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Authentication.Shared;
+using Ollix.Application.Shared;
 
 namespace Ollix.Application.UseCases.Authentication.Commands.Login;
 
