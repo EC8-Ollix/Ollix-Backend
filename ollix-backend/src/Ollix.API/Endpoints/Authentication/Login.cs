@@ -56,10 +56,13 @@ namespace Ollix.API.Endpoints.Authentication
         {
             List<Claim> claims = new()
             {
-                new Claim("userId", user.Id.ToString()),
-                new Claim("clientId", user.ClientApp!.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.FirstName!),
-                new Claim(ClaimTypes.Email, user.UserEmail!),
+                new Claim(ApplicationClaims.UserId, user.Id.ToString()),
+                new Claim(ApplicationClaims.FirstName, user.FirstName!),
+                new Claim(ApplicationClaims.LastName, user.LastName!),
+                new Claim(ApplicationClaims.Email, user.UserEmail!),
+                new Claim(ApplicationClaims.ClientId, user.ClientApp!.Id.ToString()),
+                new Claim(ApplicationClaims.UserType, user.UserType.GetDescription()),
+
                 new Claim(ClaimTypes.Role, user.UserType.GetDescription())
             };
 

@@ -3,9 +3,9 @@ using Ollix.Domain.ValueObjects;
 
 namespace Ollix.Domain.Aggregates.ClientAppAggregate.Specifications
 {
-    public class GetCompanyByCnpjSpec : SingleResultSpecification<ClientApp>
+    public class GetClientByCnpjSpec : SingleResultSpecification<ClientApp>
     {
-        public GetCompanyByCnpjSpec(CNPJ cnpj)
+        public GetClientByCnpjSpec(CNPJ cnpj)
         {
             Query.Where(u => u.Cnpj!.Value == cnpj.Value);
         }

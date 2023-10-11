@@ -34,7 +34,7 @@ namespace Ollix.API.Endpoints.Authentication
             var result = await _mediator.Send(request.ToCommand(), cancellationToken);
 
             return result.Handle()
-                        .OnSuccess(resultValue => Created(Routes.RegisterUri, resultValue))
+                        .OnSuccess(resultValue => Created($"{Routes.RegisterUri}/{resultValue.Id}", resultValue))
                         .OnError(errors => BadRequest(result.ToErrorModel()))
                         .OnInvalid(errors => BadRequest(result.ToErrorModel()))
                         .Return();

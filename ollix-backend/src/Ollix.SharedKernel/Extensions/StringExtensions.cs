@@ -70,5 +70,11 @@ namespace Ollix.SharedKernel.Extensions
         {
             return !string.IsNullOrEmpty(value) ? Regex.Replace(value, @"[^\d]", "") : string.Empty;
         }
+
+        public static bool IsInvalidGuid(this string guidInd, out Guid clientIdOut)
+        {
+            clientIdOut = Guid.Empty;
+            return !string.IsNullOrEmpty(guidInd) && !Guid.TryParse(guidInd, out clientIdOut) ;
+        }
     }
 }

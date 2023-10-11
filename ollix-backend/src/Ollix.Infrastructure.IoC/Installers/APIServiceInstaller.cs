@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -24,6 +25,14 @@ namespace Ollix.Infrastructure.IoC.Installers
                 jsonOptions.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 jsonOptions.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
+
+            services.Configure<ApiBehaviorOptions>
+             (
+                aApiBehaviorOptions =>
+                {
+                    aApiBehaviorOptions.SuppressInferBindingSourcesForParameters = true;
+                }
+             );
 
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddEndpointsApiExplorer();
