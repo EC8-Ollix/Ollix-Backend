@@ -11,6 +11,7 @@ namespace Ollix.Application.Shared
         public string? UserEmail { get; set; }
         public UserType UserType { get; set; }
         public ClientApp? ClientApp { get; set; }
+        public UserInfo() { }
 
         public UserInfo(UserApp user)
         {

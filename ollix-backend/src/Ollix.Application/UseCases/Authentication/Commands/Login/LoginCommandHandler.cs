@@ -18,10 +18,11 @@ internal sealed class LoginCommandHandler : IRequestHandler<LoginCommand, Result
         _repository = repository;
     }
 
-    public async Task<Result<UserInfo>> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<Result<UserInfo>> Handle(LoginCommand request, 
+        CancellationToken cancellationToken)
     {
         var user = await _repository
-            .FirstOrDefaultAsync(new GetUserAppByEmailSpec(request.UserEmail!), cancellationToken);
+            .FirstOrDefaultAsync(new GetUserAppByEmailSpec(request.UserEmail!.ToLower()!), cancellationToken);
 
         if (user is null)
             return credencialsError;

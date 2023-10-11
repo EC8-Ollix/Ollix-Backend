@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Ollix.Application.Shared;
 
 namespace Ollix.API.Shared.Request
 {

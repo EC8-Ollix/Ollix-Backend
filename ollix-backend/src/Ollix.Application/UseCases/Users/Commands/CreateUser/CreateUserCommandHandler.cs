@@ -1,25 +1,28 @@
 ﻿using Ardalis.Result;
 using MediatR;
 using Ollix.Application.Shared;
-using Ollix.Domain.Aggregates.UserAppAggregate;
+using Ollix.Application.UseCases.Authentication.Commands.Register;
 using Ollix.Domain.Aggregates.UserAppAggregate.Specifications;
-using Ollix.SharedKernel.Extensions;
+using Ollix.Domain.Aggregates.UserAppAggregate;
 using Ollix.SharedKernel.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Ollix.SharedKernel.Extensions;
 
-namespace Ollix.Application.UseCases.Authentication.Commands.Register
+namespace Ollix.Application.UseCases.Users.Commands.CreateUser
 {
-    internal sealed class RegisterCommandHandler : IRequestHandler<RegisterCommand, Result<UserInfo>>
+    internal sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Result<UserInfo>>
     {
         private readonly IRepository<UserApp> _repository;
-        private readonly IMediator _mediator;
-        public RegisterCommandHandler(IRepository<UserApp> repository,
-            IMediator mediator)
+        public CreateUserCommandHandler(IRepository<UserApp> repository)
         {
             _repository = repository;
-            _mediator = mediator;
         }
 
-        public async Task<Result<UserInfo>> Handle(RegisterCommand request, 
+        public async Task<Result<UserInfo>> Handle(CreateUserCommand request, 
             CancellationToken cancellationToken)
         {
             var user = await _repository
@@ -27,25 +30,20 @@ namespace Ollix.Application.UseCases.Authentication.Commands.Register
 
             if (user is not null)
                 return Result.Error("Email já cadastrado na plataforma");
-
-            var clientCreated = await _mediator.Send(request.CreateClientCommand!, cancellationToken);
-
-            if (!clientCreated.IsSuccess)
-                return Result.Error(clientCreated.Errors.FirstOrDefault() ?? string.Empty);
-
+            
             user = new UserApp()
             {
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 UserEmail = request.UserEmail!.ToLower()!,
                 UserPassword = request.UserPassword!.ToHash(),
-                UserType = UserType.Client,
-                ClientId = clientCreated.Value.Id,
+                UserType = request.UserInfo!.UserType,
+                ClientId = request.UserInfo.ClientApp!.Id,
             };
 
             await _repository.AddAsync(user, cancellationToken);
 
-            return Result.Success(new UserInfo(user, clientCreated.Value));
+            return Result.Success(new UserInfo(user));
         }
     }
 }

@@ -16,12 +16,13 @@ namespace Ollix.Application.UseCases.Clients.Commands.CreateClient
             _repository = repository;
         }
 
-        public async Task<Result<ClientApp>> Handle(CreateClientCommand request, CancellationToken cancellationToken)
+        public async Task<Result<ClientApp>> Handle(CreateClientCommand request, 
+            CancellationToken cancellationToken)
         {
             var cnpj = new CNPJ(request.Cnpj!);
 
             var company = await _repository
-                .FirstOrDefaultAsync(new GetCompanyByCnpjSpec(cnpj), cancellationToken);
+                .FirstOrDefaultAsync(new GetClientByCnpjSpec(cnpj), cancellationToken);
 
             if (company is not null)
                 return Result.Error("CNPJ da empresa já está cadastrado na plataforma");
