@@ -17,6 +17,7 @@ namespace Ollix.Domain.Events
                 ClientId = userInfo.ClientApp!.Id
             };
         }
+
         public LogApp LogApp { get; private set; }
     }
 }
