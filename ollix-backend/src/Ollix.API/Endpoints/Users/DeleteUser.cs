@@ -1,13 +1,9 @@
 ﻿using Ardalis.ApiEndpoints;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Shared;
-using Ollix.Application.Shared;
-using Ollix.Application.UseCases.Clients.Queries.GetClientById;
 using Ollix.Application.UseCases.Users.Commands.DeleteUser;
-using Ollix.Application.UseCases.Users.Queries.GetUserById;
 using Ollix.SharedKernel.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;

@@ -1,19 +1,11 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Clients.Queries.GetClients;
-using Ollix.Domain.Aggregates.ClientAppAggregate.Specifications;
-using Ollix.Domain.Aggregates.ClientAppAggregate;
+using Ollix.Application.UseCases.Clients.Queries.GetClientById;
+using Ollix.Domain.Aggregates.LogAggregate;
+using Ollix.Domain.Aggregates.LogAppAggregate.Models;
+using Ollix.Domain.Aggregates.LogAppAggregate.Specifications;
 using Ollix.Domain.Models;
 using Ollix.SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ollix.Domain.Aggregates.LogAggregate;
-using Ollix.Domain.Aggregates.LogAppAggregate.Specifications;
-using Ollix.Application.UseCases.Clients.Queries.GetClientById;
-using Ollix.Domain.Aggregates.LogAppAggregate.Models;
 
 namespace Ollix.Application.UseCases.Logs.Queries.GetLogs
 {

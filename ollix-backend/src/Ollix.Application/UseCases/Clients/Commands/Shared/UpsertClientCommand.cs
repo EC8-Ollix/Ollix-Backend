@@ -1,8 +1,4 @@
-﻿using Ardalis.Result;
-using MediatR;
-using Ollix.Domain.Aggregates.ClientAppAggregate;
-
-namespace Ollix.Application.UseCases.Clients.Commands.Shared
+﻿namespace Ollix.Application.UseCases.Clients.Commands.Shared
 {
     public record UpsertClientCommand
     {

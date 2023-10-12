@@ -1,6 +1,6 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.Shared;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 using Ollix.Domain.Models;
 
 namespace Ollix.Application.UseCases.Users.Queries.GetUsers

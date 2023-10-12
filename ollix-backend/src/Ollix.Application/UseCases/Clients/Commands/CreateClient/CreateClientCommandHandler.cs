@@ -16,7 +16,7 @@ namespace Ollix.Application.UseCases.Clients.Commands.CreateClient
             _repository = repository;
         }
 
-        public async Task<Result<ClientApp>> Handle(CreateClientCommand request, 
+        public async Task<Result<ClientApp>> Handle(CreateClientCommand request,
             CancellationToken cancellationToken)
         {
             var cnpj = new CNPJ(request.Cnpj!);

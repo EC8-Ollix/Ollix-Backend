@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Ollix.Application.UseCases.Clients.Commands.Shared;
-using Ollix.Application.UseCases.Users.Commands.Shared;
 using Ollix.SharedKernel.Extensions;
 
 namespace Ollix.Application.UseCases.Clients.Commands.CreateClient

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Ollix.API.Shared;
-using Ollix.Application.Shared;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 using Ollix.Infrastructure.IoC.Configs.Options;
 using Ollix.Infrastructure.IoC.Extensions;
 using Ollix.SharedKernel.Extensions;

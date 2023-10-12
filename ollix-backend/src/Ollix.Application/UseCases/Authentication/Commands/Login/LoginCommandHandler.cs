@@ -1,8 +1,8 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.Shared;
 using Ollix.Application.UseCases.Clients.Queries.GetClientById;
 using Ollix.Domain.Aggregates.UserAppAggregate;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 using Ollix.Domain.Aggregates.UserAppAggregate.Specifications;
 using Ollix.SharedKernel.Extensions;
 using Ollix.SharedKernel.Interfaces;
@@ -22,7 +22,7 @@ internal sealed class LoginCommandHandler : IRequestHandler<LoginCommand, Result
         _mediator = mediator;
     }
 
-    public async Task<Result<UserInfo>> Handle(LoginCommand request, 
+    public async Task<Result<UserInfo>> Handle(LoginCommand request,
         CancellationToken cancellationToken)
     {
         var user = await _repository

@@ -1,10 +1,9 @@
 ﻿using Ardalis.Result;
 using Ardalis.Specification;
 using MediatR;
-using Ollix.Application.Shared;
 using Ollix.Application.UseCases.Clients.Queries.GetClientById;
-using Ollix.Domain.Aggregates.ClientAppAggregate;
 using Ollix.Domain.Aggregates.UserAppAggregate;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 using Ollix.Domain.Aggregates.UserAppAggregate.Specifications;
 using Ollix.Domain.Models;
 using Ollix.SharedKernel.Interfaces;
@@ -41,6 +40,6 @@ namespace Ollix.Application.UseCases.Users.Queries.GetUsers
                 (users.Select(u => new UserInfo(u)), countUsers, query.PaginationRequest);
 
             return Result.Success(usersResult);
-        }   
+        }
     }
 }

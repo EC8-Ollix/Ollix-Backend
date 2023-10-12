@@ -2,14 +2,9 @@
 using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
-using Ollix.API.Endpoints.Users;
 using Ollix.API.Shared;
-using Ollix.Application.Shared;
 using Ollix.Application.UseCases.Logs.Queries.GetLogs;
-using Ollix.Application.UseCases.Users.Queries.GetUsers;
-using Ollix.Domain.Aggregates.LogAggregate;
 using Ollix.Domain.Aggregates.LogAppAggregate.Models;
 using Ollix.Domain.Models;
 using Ollix.SharedKernel.Extensions;

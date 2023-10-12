@@ -1,7 +1,7 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.Shared;
 using Ollix.Domain.Aggregates.UserAppAggregate;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 using Ollix.Domain.Aggregates.UserAppAggregate.Specifications;
 using Ollix.SharedKernel.Extensions;
 using Ollix.SharedKernel.Interfaces;
@@ -19,7 +19,7 @@ namespace Ollix.Application.UseCases.Authentication.Commands.Register
             _mediator = mediator;
         }
 
-        public async Task<Result<UserInfo>> Handle(RegisterCommand request, 
+        public async Task<Result<UserInfo>> Handle(RegisterCommand request,
             CancellationToken cancellationToken)
         {
             var user = await _repository

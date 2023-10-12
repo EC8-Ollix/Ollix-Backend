@@ -2,9 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Endpoints.Users.Shared;
 using Ollix.API.Shared.Request;
-using Ollix.Application.Shared;
-using Ollix.Application.UseCases.Users.Commands.CreateUser;
 using Ollix.Application.UseCases.Users.Commands.UpdateUser;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ollix.API.Endpoints.Users

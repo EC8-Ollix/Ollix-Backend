@@ -11,14 +11,14 @@ namespace Ollix.Domain.Aggregates.ClientAppAggregate
 
         public ClientApp() { }
 
-        public ClientApp(string companyName, string bussinessname, CNPJ cnpj) 
-        { 
+        public ClientApp(string companyName, string bussinessname, CNPJ cnpj)
+        {
             CompanyName = companyName;
             BussinessName = bussinessname;
             Cnpj = cnpj;
         }
 
-        public void SetCompanyName(string? companyName) 
+        public void SetCompanyName(string? companyName)
         {
             if (string.IsNullOrEmpty(companyName)) return;
 

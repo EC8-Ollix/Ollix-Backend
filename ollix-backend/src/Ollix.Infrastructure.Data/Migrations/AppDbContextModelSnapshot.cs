@@ -65,14 +65,13 @@ namespace Ollix.Infrastructure.Data.Migrations
                     b.Property<int>("Operation")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("LogApp", (string)null);
                 });
@@ -144,18 +143,10 @@ namespace Ollix.Infrastructure.Data.Migrations
                     b.HasOne("Ollix.Domain.Aggregates.ClientAppAggregate.ClientApp", "ClientApp")
                         .WithMany()
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Ollix.Domain.Aggregates.UserAppAggregate.UserApp", "UserApp")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ClientApp");
-
-                    b.Navigation("UserApp");
                 });
 
             modelBuilder.Entity("Ollix.Domain.Aggregates.UserAppAggregate.UserApp", b =>

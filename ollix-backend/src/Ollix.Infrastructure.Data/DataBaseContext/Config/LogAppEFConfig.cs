@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Ollix.Domain.Aggregates.LogAggregate;
-using Ollix.Domain.Aggregates.UserAppAggregate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ollix.Infrastructure.Data.DataBaseContext.Config
 {
@@ -27,16 +21,13 @@ namespace Ollix.Infrastructure.Data.DataBaseContext.Config
             builder.Property(p => p.EntityId)
                 .IsRequired();
 
-            builder.HasOne(p => p.UserApp)
-                .WithMany()
-                .HasForeignKey(e => e.UserId)
-                .OnDelete(DeleteBehavior.Restrict)
+            builder.Property(p => p.UserName)
                 .IsRequired();
 
             builder.HasOne(p => p.ClientApp)
                 .WithMany()
                 .HasForeignKey(e => e.ClientId)
-                .OnDelete(DeleteBehavior.Restrict)
+                .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
             builder.Property(p => p.Date)

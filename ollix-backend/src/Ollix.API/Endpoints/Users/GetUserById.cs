@@ -1,20 +1,13 @@
 ﻿using Ardalis.ApiEndpoints;
-using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Shared;
-using Ollix.Application.Shared;
-using Ollix.Application.UseCases.Clients.Queries.GetClientById;
-using Ollix.Application.UseCases.Users.Queries.GetUsers;
 using Ollix.Application.UseCases.Users.Queries.GetUserById;
-using Ollix.Domain.Models;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 using Ollix.SharedKernel.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json.Linq;
-using Ollix.API.Endpoints.Authentication;
 
 namespace Ollix.API.Endpoints.Users
 {
@@ -38,7 +31,7 @@ namespace Ollix.API.Endpoints.Users
           OperationId = "users.getbyid",
           Tags = new[] { "Usuarios" }
         )]
-        public override async Task<ActionResult<UserInfo>> HandleAsync([Required]Guid userId,
+        public override async Task<ActionResult<UserInfo>> HandleAsync([Required] Guid userId,
             CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(new GetUserByIdQuery(userId), cancellationToken);

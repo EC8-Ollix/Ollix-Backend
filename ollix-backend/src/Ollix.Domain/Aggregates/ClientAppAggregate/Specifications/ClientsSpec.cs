@@ -1,7 +1,5 @@
 ﻿using Ardalis.Specification;
-using Ollix.Domain.Aggregates.UserAppAggregate;
 using Ollix.Domain.Models;
-using Ollix.Domain.ValueObjects;
 
 namespace Ollix.Domain.Aggregates.ClientAppAggregate.Specifications
 {
