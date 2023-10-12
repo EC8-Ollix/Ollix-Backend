@@ -1,7 +1,7 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.Shared;
 using Ollix.Application.UseCases.Clients.Commands.CreateClient;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 
 namespace Ollix.Application.UseCases.Authentication.Commands.Register
 {

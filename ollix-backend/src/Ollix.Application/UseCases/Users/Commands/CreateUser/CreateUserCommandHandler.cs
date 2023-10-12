@@ -1,16 +1,12 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.Shared;
-using Ollix.Application.UseCases.Authentication.Commands.Register;
-using Ollix.Domain.Aggregates.UserAppAggregate.Specifications;
+using Ollix.Domain.Aggregates.LogAggregate;
 using Ollix.Domain.Aggregates.UserAppAggregate;
-using Ollix.SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
+using Ollix.Domain.Aggregates.UserAppAggregate.Specifications;
+using Ollix.Domain.Events;
 using Ollix.SharedKernel.Extensions;
+using Ollix.SharedKernel.Interfaces;
 
 namespace Ollix.Application.UseCases.Users.Commands.CreateUser
 {
@@ -22,24 +18,24 @@ namespace Ollix.Application.UseCases.Users.Commands.CreateUser
             _repository = repository;
         }
 
-        public async Task<Result<UserInfo>> Handle(CreateUserCommand request, 
+        public async Task<Result<UserInfo>> Handle(CreateUserCommand request,
             CancellationToken cancellationToken)
         {
             var user = await _repository
-                .FirstOrDefaultAsync(new GetUserAppByEmailSpec(request.UserEmail!), cancellationToken);
+                .FirstOrDefaultAsync(new UserAppByEmailSpec(request.UserEmail!), cancellationToken);
 
             if (user is not null)
                 return Result.Error("Email já cadastrado na plataforma");
-            
-            user = new UserApp()
-            {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                UserEmail = request.UserEmail!.ToLower()!,
-                UserPassword = request.UserPassword!.ToHash(),
-                UserType = request.UserInfo!.UserType,
-                ClientId = request.UserInfo.ClientApp!.Id,
-            };
+
+            user = new UserApp(
+                request.FirstName!,
+                request.LastName!,
+                request.UserInfo!.UserType,
+                request.UserEmail!.ToLower()!,
+                request.UserPassword!.ToHash(),
+                request.UserInfo.ClientApp!.Id);
+
+            user.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, EntityEnum.User, OperationEnum.Create, user));
 
             await _repository.AddAsync(user, cancellationToken);
 

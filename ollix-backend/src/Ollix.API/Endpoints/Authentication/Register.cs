@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Shared;
-using Ollix.Application.Shared;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 using Ollix.SharedKernel.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
 

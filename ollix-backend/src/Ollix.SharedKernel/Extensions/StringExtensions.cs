@@ -74,7 +74,7 @@ namespace Ollix.SharedKernel.Extensions
         public static bool IsInvalidGuid(this string guidInd, out Guid clientIdOut)
         {
             clientIdOut = Guid.Empty;
-            return !string.IsNullOrEmpty(guidInd) && !Guid.TryParse(guidInd, out clientIdOut) ;
+            return !string.IsNullOrEmpty(guidInd) && !Guid.TryParse(guidInd, out clientIdOut);
         }
     }
 }

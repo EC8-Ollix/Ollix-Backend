@@ -1,19 +1,10 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.Shared;
-using Ollix.Application.UseCases.Users.Queries.GetUsers;
-using Ollix.Domain.Aggregates.ClientAppAggregate;
-using Ollix.Domain.Aggregates.UserAppAggregate.Specifications;
-using Ollix.Domain.Aggregates.UserAppAggregate;
-using Ollix.Domain.Models;
-using Ollix.SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ollix.Application.UseCases.Clients.Queries.GetClientById;
 using Ollix.Application.UseCases.Users.Queries.GetUserById;
+using Ollix.Domain.Aggregates.LogAggregate;
+using Ollix.Domain.Aggregates.UserAppAggregate;
+using Ollix.Domain.Events;
+using Ollix.SharedKernel.Interfaces;
 
 namespace Ollix.Application.UseCases.Users.Commands.DeleteUser
 {
@@ -29,17 +20,20 @@ namespace Ollix.Application.UseCases.Users.Commands.DeleteUser
             _mediator = mediator;
         }
 
-        public async Task<Result> Handle(DeleteUserCommand query,
+        public async Task<Result> Handle(DeleteUserCommand request,
             CancellationToken cancellationToken)
         {
-            if(query.UserId == Guid.Empty)
+            if (request.UserId == Guid.Empty)
                 return Result.Error("O Usuário deve ser informado para a exclusão!");
 
-            var userAppResult = await _mediator.Send(new GetUserByIdQuery(query.UserId), cancellationToken);
-            if(!userAppResult.IsSuccess)
+            var userAppResult = await _mediator.Send(new GetUserByIdQuery(request.UserId), cancellationToken);
+            if (!userAppResult.IsSuccess)
                 return Result.Error(userAppResult.Errors.ToArray());
 
-            await _repository.DeleteAsync(userAppResult.Value, cancellationToken);
+            var userApp = userAppResult.Value;
+            userApp.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, EntityEnum.User, OperationEnum.Delete, userApp));
+
+            await _repository.DeleteAsync(userApp, cancellationToken);
 
             return Result.Success();
         }

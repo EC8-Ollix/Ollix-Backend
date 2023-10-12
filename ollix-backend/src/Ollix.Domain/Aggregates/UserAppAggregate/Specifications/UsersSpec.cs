@@ -4,9 +4,9 @@ using Ollix.Domain.Models;
 
 namespace Ollix.Domain.Aggregates.UserAppAggregate.Specifications
 {
-    public class GetUsersSpec : Specification<UserApp>
+    public class UsersSpec : Specification<UserApp>
     {
-        public GetUsersSpec(PaginationRequest paginationRequest, ClientApp client)
+        public UsersSpec(PaginationRequest paginationRequest, ClientApp client)
         {
             paginationRequest.NormalizePager();
 
@@ -16,7 +16,7 @@ namespace Ollix.Domain.Aggregates.UserAppAggregate.Specifications
                 .Take(paginationRequest.PageSize);
         }
 
-        public GetUsersSpec(ClientApp client)
+        public UsersSpec(ClientApp client)
         {
             Query
                 .Where(u => u.ClientId == client.Id);

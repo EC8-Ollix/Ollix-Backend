@@ -1,10 +1,9 @@
 ﻿using Ardalis.Result;
 using Ardalis.Specification;
 using MediatR;
-using Ollix.Application.Shared;
 using Ollix.Application.UseCases.Clients.Queries.GetClientById;
-using Ollix.Domain.Aggregates.ClientAppAggregate;
 using Ollix.Domain.Aggregates.UserAppAggregate;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 using Ollix.Domain.Aggregates.UserAppAggregate.Specifications;
 using Ollix.Domain.Models;
 using Ollix.SharedKernel.Interfaces;
@@ -32,15 +31,15 @@ namespace Ollix.Application.UseCases.Users.Queries.GetUsers
                 return Result.Error(clientAppResult.Errors.ToArray());
 
             var users = await _repository
-                .ListAsync(new GetUsersSpec(query.PaginationRequest, clientAppResult.Value), cancellationToken);
+                .ListAsync(new UsersSpec(query.PaginationRequest, clientAppResult.Value), cancellationToken);
 
             var countUsers = await _repository
-                .CountAsync(new GetUsersSpec(clientAppResult.Value), cancellationToken);
+                .CountAsync(new UsersSpec(clientAppResult.Value), cancellationToken);
 
             var usersResult = new PaginationResponse<UserInfo>
                 (users.Select(u => new UserInfo(u)), countUsers, query.PaginationRequest);
 
             return Result.Success(usersResult);
-        }   
+        }
     }
 }

@@ -4,12 +4,11 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Shared;
-using Ollix.Application.Shared;
 using Ollix.Application.UseCases.Users.Queries.GetUsers;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 using Ollix.Domain.Models;
 using Ollix.SharedKernel.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Security.Claims;
 
 namespace Ollix.API.Endpoints.Users
 {
@@ -33,14 +32,14 @@ namespace Ollix.API.Endpoints.Users
           OperationId = "users.get",
           Tags = new[] { "Usuarios" }
         )]
-        public override async Task<ActionResult<PaginationResponse<UserInfo>>> HandleAsync([FromQuery]GetUsersRequest getUsersRequest,
+        public override async Task<ActionResult<PaginationResponse<UserInfo>>> HandleAsync(GetUsersRequest getUsersRequest,
             CancellationToken cancellationToken = default)
         {
             if (getUsersRequest.ClientId!.IsInvalidGuid(out Guid clientId))
                 return BadRequest(Result.Error("Informe um Cliente Válido!").ToErrorModel());
 
             var userInfo = ApplicationClaims.GetUserInfoByClaims(User.Claims.ToArray());
-            var result = await _mediator.Send(new GetUsersQuery(userInfo!, getUsersRequest.PaginationRequest!, clientId), cancellationToken);
+            var result = await _mediator.Send(new GetUsersQuery(userInfo!, clientId, getUsersRequest.PaginationRequest!), cancellationToken);
 
             return Ok(result.Value);
         }

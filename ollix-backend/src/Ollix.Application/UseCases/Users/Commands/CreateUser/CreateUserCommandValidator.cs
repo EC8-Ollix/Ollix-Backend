@@ -1,7 +1,5 @@
 ﻿using FluentValidation;
 using Ollix.Application.UseCases.Users.Commands.Shared;
-using Ollix.SharedKernel.Extensions;
-using System;
 
 namespace Ollix.Application.UseCases.Users.Commands.CreateUser
 {

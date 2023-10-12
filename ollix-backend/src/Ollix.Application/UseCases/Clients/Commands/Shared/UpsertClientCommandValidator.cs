@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Ollix.SharedKernel.Extensions;
 
 namespace Ollix.Application.UseCases.Clients.Commands.Shared
 {

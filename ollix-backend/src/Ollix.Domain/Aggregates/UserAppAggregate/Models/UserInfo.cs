@@ -1,7 +1,6 @@
 ﻿using Ollix.Domain.Aggregates.ClientAppAggregate;
-using Ollix.Domain.Aggregates.UserAppAggregate;
 
-namespace Ollix.Application.Shared
+namespace Ollix.Domain.Aggregates.UserAppAggregate.Models
 {
     public record UserInfo
     {

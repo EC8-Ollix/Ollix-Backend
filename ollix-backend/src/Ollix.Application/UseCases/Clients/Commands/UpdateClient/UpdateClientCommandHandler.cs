@@ -1,8 +1,8 @@
 ﻿using Ardalis.Result;
 using MediatR;
 using Ollix.Domain.Aggregates.ClientAppAggregate;
-using Ollix.Domain.Aggregates.ClientAppAggregate.Specifications;
-using Ollix.Domain.ValueObjects;
+using Ollix.Domain.Aggregates.LogAggregate;
+using Ollix.Domain.Events;
 using Ollix.SharedKernel.Interfaces;
 
 namespace Ollix.Application.UseCases.Clients.Commands.CreateClient
@@ -16,18 +16,20 @@ namespace Ollix.Application.UseCases.Clients.Commands.CreateClient
             _repository = repository;
         }
 
-        public async Task<Result<ClientApp>> Handle(UpdateClientCommand request, 
+        public async Task<Result<ClientApp>> Handle(UpdateClientCommand request,
             CancellationToken cancellationToken)
         {
             var client = await _repository.GetByIdAsync(request.ClientId, cancellationToken);
             if (client is null)
                 return Result.NotFound("Cliente não encontrado!");
 
-            if(request.UserInfo!.ClientApp!.Id != client.Id)
+            if (request.UserInfo!.ClientApp!.Id != client.Id)
                 return Result.NotFound("Usuário não autorizado a editar o Cliente!");
 
-            client.CompanyName = request.CompanyName;
-            client.BussinessName = request.BussinessName;
+            client.SetCompanyName(request.CompanyName);
+            client.SetBussinessName(request.BussinessName);
+
+            client.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, EntityEnum.Client, OperationEnum.Update, client));
 
             await _repository.UpdateAsync(client, cancellationToken);
 

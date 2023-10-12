@@ -1,16 +1,11 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.Shared;
-using Ollix.Application.UseCases.Authentication.Commands.Register;
-using Ollix.Domain.Aggregates.UserAppAggregate.Specifications;
+using Ollix.Domain.Aggregates.LogAggregate;
 using Ollix.Domain.Aggregates.UserAppAggregate;
-using Ollix.SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
+using Ollix.Domain.Events;
 using Ollix.SharedKernel.Extensions;
+using Ollix.SharedKernel.Interfaces;
 
 namespace Ollix.Application.UseCases.Users.Commands.UpdateUser
 {
@@ -22,7 +17,7 @@ namespace Ollix.Application.UseCases.Users.Commands.UpdateUser
             _repository = repository;
         }
 
-        public async Task<Result<UserInfo>> Handle(UpdateUserCommand request, 
+        public async Task<Result<UserInfo>> Handle(UpdateUserCommand request,
             CancellationToken cancellationToken)
         {
             if (request.UserId != request.UserInfo!.Id)
@@ -32,9 +27,11 @@ namespace Ollix.Application.UseCases.Users.Commands.UpdateUser
             if (user is null)
                 return Result.NotFound("Usuário não encontrado!");
 
-            user.FirstName = request.FirstName;
-            user.LastName = request.LastName;
-            user.UserPassword = request.UserPassword!.ToHash();      
+            user.SetFirstName(request.FirstName!);
+            user.SetLastName(request.LastName!);
+            user.SetUserPassword(request.UserPassword!.ToHash());
+
+            user.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, EntityEnum.User, OperationEnum.Update, user));
 
             await _repository.UpdateAsync(user, cancellationToken);
 

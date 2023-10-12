@@ -2,6 +2,6 @@
 {
     public interface IClientAppEntity
     {
-        public Guid ClientId { get; set; }
+        public Guid ClientId { get; }
     }
 }

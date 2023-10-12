@@ -22,7 +22,7 @@ namespace Ollix.Infrastructure.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Ollix.Domain.ClientAppAggregate.ClientApp", b =>
+            modelBuilder.Entity("Ollix.Domain.Aggregates.ClientAppAggregate.ClientApp", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,7 +43,40 @@ namespace Ollix.Infrastructure.Data.Migrations
                     b.ToTable("ClientApp", (string)null);
                 });
 
-            modelBuilder.Entity("Ollix.Domain.UserAggregate.UserApp", b =>
+            modelBuilder.Entity("Ollix.Domain.Aggregates.LogAggregate.LogApp", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("Date")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("Entity")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("EntityId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Operation")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("LogApp", (string)null);
+                });
+
+            modelBuilder.Entity("Ollix.Domain.Aggregates.UserAppAggregate.UserApp", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,10 +109,12 @@ namespace Ollix.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId");
+
                     b.ToTable("UserApp", (string)null);
                 });
 
-            modelBuilder.Entity("Ollix.Domain.ClientAppAggregate.ClientApp", b =>
+            modelBuilder.Entity("Ollix.Domain.Aggregates.ClientAppAggregate.ClientApp", b =>
                 {
                     b.OwnsOne("Ollix.Domain.ValueObjects.CNPJ", "Cnpj", b1 =>
                         {
@@ -101,6 +136,28 @@ namespace Ollix.Infrastructure.Data.Migrations
                         });
 
                     b.Navigation("Cnpj");
+                });
+
+            modelBuilder.Entity("Ollix.Domain.Aggregates.LogAggregate.LogApp", b =>
+                {
+                    b.HasOne("Ollix.Domain.Aggregates.ClientAppAggregate.ClientApp", "ClientApp")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ClientApp");
+                });
+
+            modelBuilder.Entity("Ollix.Domain.Aggregates.UserAppAggregate.UserApp", b =>
+                {
+                    b.HasOne("Ollix.Domain.Aggregates.ClientAppAggregate.ClientApp", "ClientApp")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ClientApp");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,6 +1,6 @@
-﻿using Ollix.Application.Shared;
-using Ollix.Domain.Aggregates.ClientAppAggregate;
+﻿using Ollix.Domain.Aggregates.ClientAppAggregate;
 using Ollix.Domain.Aggregates.UserAppAggregate;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 using Ollix.SharedKernel.Extensions;
 using System.Security.Claims;
 
