@@ -1,14 +1,4 @@
-﻿IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
-BEGIN
-    CREATE TABLE [__EFMigrationsHistory] (
-        [MigrationId] nvarchar(150) NOT NULL,
-        [ProductVersion] nvarchar(32) NOT NULL,
-        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
-    );
-END;
-GO
-
-BEGIN TRANSACTION;
+﻿BEGIN TRANSACTION;
 GO
 
 CREATE TABLE [ClientApp] (
@@ -32,10 +22,6 @@ CREATE TABLE [UserApp] (
 );
 GO
 
-INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20231001154415_InitialCreate', N'6.0.22');
-GO
-
 COMMIT;
 GO
 
@@ -49,10 +35,6 @@ INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [
 WHERE ([d].[parent_object_id] = OBJECT_ID(N'[UserApp]') AND [c].[name] = N'FirstName');
 IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [UserApp] DROP CONSTRAINT [' + @var0 + '];');
 ALTER TABLE [UserApp] ALTER COLUMN [FirstName] nvarchar(200) NOT NULL;
-GO
-
-INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20231001160009_AttFirstNameMaxLength', N'6.0.22');
 GO
 
 COMMIT;
@@ -73,10 +55,6 @@ CREATE TABLE [LogApp] (
 );
 GO
 
-INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20231012050037_AddLogAppTable', N'6.0.22');
-GO
-
 COMMIT;
 GO
 
@@ -87,10 +65,6 @@ CREATE INDEX [IX_UserApp_ClientId] ON [UserApp] ([ClientId]);
 GO
 
 ALTER TABLE [UserApp] ADD CONSTRAINT [FK_UserApp_ClientApp_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [ClientApp] ([Id]) ON DELETE CASCADE;
-GO
-
-INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20231012051022_AttRefClienteToUser', N'6.0.22');
 GO
 
 COMMIT;
@@ -110,10 +84,6 @@ ALTER TABLE [LogApp] ADD CONSTRAINT [FK_LogApp_ClientApp_ClientId] FOREIGN KEY (
 GO
 
 ALTER TABLE [LogApp] ADD CONSTRAINT [FK_LogApp_UserApp_UserId] FOREIGN KEY ([UserId]) REFERENCES [UserApp] ([Id]) ON DELETE NO ACTION;
-GO
-
-INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20231012065053_AddFkLogAppUpCascade', N'6.0.22');
 GO
 
 COMMIT;
