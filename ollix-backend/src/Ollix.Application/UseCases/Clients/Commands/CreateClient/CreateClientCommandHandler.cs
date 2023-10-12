@@ -22,17 +22,12 @@ namespace Ollix.Application.UseCases.Clients.Commands.CreateClient
             var cnpj = new CNPJ(request.Cnpj!);
 
             var company = await _repository
-                .FirstOrDefaultAsync(new GetClientByCnpjSpec(cnpj), cancellationToken);
+                .FirstOrDefaultAsync(new ClientByCnpjSpec(cnpj), cancellationToken);
 
             if (company is not null)
                 return Result.Error("CNPJ da empresa já está cadastrado na plataforma");
 
-            var client = new ClientApp()
-            {
-                CompanyName = request.CompanyName,
-                BussinessName = request.BussinessName,
-                Cnpj = cnpj,
-            };
+            var client = new ClientApp(request.CompanyName!, request.BussinessName!, cnpj);
 
             await _repository.AddAsync(client, cancellationToken);
 

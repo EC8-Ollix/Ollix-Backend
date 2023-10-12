@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Ollix.API.Endpoints.Users
 {
-    public class UpdateUserRequest : IApiRequest<UpdateUserCommand, Result<UserInfo>>
+    public record UpdateUserRequest : IApiRequest<UpdateUserCommand, Result<UserInfo>>
     {
         [FromBody]
         public UpsertUserRequest? UpsertUserRequest { get; set; }

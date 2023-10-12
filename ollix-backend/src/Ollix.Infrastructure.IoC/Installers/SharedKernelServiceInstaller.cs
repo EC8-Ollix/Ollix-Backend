@@ -13,6 +13,7 @@ namespace Ollix.Infrastructure.IoC.Installers
         {
             var applicationAssembly = typeof(Application.AssemblyReference).Assembly;
             var sharedAssembly = typeof(SharedKernel.AssemblyReference).Assembly;
+            var domainAssembly = typeof(Domain.AssemblyReference).Assembly;
 
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
@@ -20,7 +21,7 @@ namespace Ollix.Infrastructure.IoC.Installers
             services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
 
             services.AddMediatR(cfg =>
-                cfg.RegisterServicesFromAssemblies(applicationAssembly, sharedAssembly));
+                cfg.RegisterServicesFromAssemblies(domainAssembly, applicationAssembly, sharedAssembly));
         }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using MediatR;
+using System;
 
 namespace Ollix.SharedKernel;
 
-public class DomainEventBase : INotification
+public abstract class DomainEventBase : INotification
 {
-    public DateTime DateOccurred { get; protected set; } = DateTime.UtcNow;
+    public DateTimeOffset DateOccurred { get; protected set; } = DateTimeOffset.UtcNow;
 }
 

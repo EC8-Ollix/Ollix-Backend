@@ -32,10 +32,10 @@ namespace Ollix.Application.UseCases.Users.Queries.GetUsers
                 return Result.Error(clientAppResult.Errors.ToArray());
 
             var users = await _repository
-                .ListAsync(new GetUsersSpec(query.PaginationRequest, clientAppResult.Value), cancellationToken);
+                .ListAsync(new UsersSpec(query.PaginationRequest, clientAppResult.Value), cancellationToken);
 
             var countUsers = await _repository
-                .CountAsync(new GetUsersSpec(clientAppResult.Value), cancellationToken);
+                .CountAsync(new UsersSpec(clientAppResult.Value), cancellationToken);
 
             var usersResult = new PaginationResponse<UserInfo>
                 (users.Select(u => new UserInfo(u)), countUsers, query.PaginationRequest);

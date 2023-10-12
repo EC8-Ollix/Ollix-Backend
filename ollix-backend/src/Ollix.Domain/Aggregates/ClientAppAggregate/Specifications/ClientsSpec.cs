@@ -5,9 +5,9 @@ using Ollix.Domain.ValueObjects;
 
 namespace Ollix.Domain.Aggregates.ClientAppAggregate.Specifications
 {
-    public class GetClientsSpec : Specification<ClientApp>
+    public class ClientsSpec : Specification<ClientApp>
     {
-        public GetClientsSpec(PaginationRequest paginationRequest)
+        public ClientsSpec(PaginationRequest paginationRequest)
         {
             paginationRequest.NormalizePager();
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ollix.Infrastructure.Data.DataBaseContext;
 
@@ -11,9 +12,10 @@ using Ollix.Infrastructure.Data.DataBaseContext;
 namespace Ollix.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231012051022_AttRefClienteToUser")]
+    partial class AttRefClienteToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,10 +71,6 @@ namespace Ollix.Infrastructure.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("LogApp", (string)null);
                 });
@@ -137,25 +135,6 @@ namespace Ollix.Infrastructure.Data.Migrations
                         });
 
                     b.Navigation("Cnpj");
-                });
-
-            modelBuilder.Entity("Ollix.Domain.Aggregates.LogAggregate.LogApp", b =>
-                {
-                    b.HasOne("Ollix.Domain.Aggregates.ClientAppAggregate.ClientApp", "ClientApp")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Ollix.Domain.Aggregates.UserAppAggregate.UserApp", "UserApp")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ClientApp");
-
-                    b.Navigation("UserApp");
                 });
 
             modelBuilder.Entity("Ollix.Domain.Aggregates.UserAppAggregate.UserApp", b =>

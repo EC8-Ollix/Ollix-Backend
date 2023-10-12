@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ollix.SharedKernel.Extensions;
+using Ollix.Domain.Aggregates.LogAggregate;
+using Ollix.Domain.Events;
 
 namespace Ollix.Application.UseCases.Users.Commands.UpdateUser
 {
@@ -32,9 +34,11 @@ namespace Ollix.Application.UseCases.Users.Commands.UpdateUser
             if (user is null)
                 return Result.NotFound("Usuário não encontrado!");
 
-            user.FirstName = request.FirstName;
-            user.LastName = request.LastName;
-            user.UserPassword = request.UserPassword!.ToHash();      
+            user.SetFirstName(request.FirstName!);
+            user.SetLastName(request.LastName!);
+            user.SetUserPassword(request.UserPassword!.ToHash());
+
+            user.RegisterDomainEvent(new EntityUpdatedEvent(request.UserInfo.Id, EntityEnum.User, user));
 
             await _repository.UpdateAsync(user, cancellationToken);
 

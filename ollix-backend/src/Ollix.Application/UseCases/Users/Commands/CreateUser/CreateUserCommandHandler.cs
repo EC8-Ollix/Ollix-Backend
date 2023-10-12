@@ -26,20 +26,18 @@ namespace Ollix.Application.UseCases.Users.Commands.CreateUser
             CancellationToken cancellationToken)
         {
             var user = await _repository
-                .FirstOrDefaultAsync(new GetUserAppByEmailSpec(request.UserEmail!), cancellationToken);
+                .FirstOrDefaultAsync(new UserAppByEmailSpec(request.UserEmail!), cancellationToken);
 
             if (user is not null)
                 return Result.Error("Email já cadastrado na plataforma");
-            
-            user = new UserApp()
-            {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                UserEmail = request.UserEmail!.ToLower()!,
-                UserPassword = request.UserPassword!.ToHash(),
-                UserType = request.UserInfo!.UserType,
-                ClientId = request.UserInfo.ClientApp!.Id,
-            };
+
+            user = new UserApp(
+                request.FirstName!,
+                request.LastName!,
+                request.UserInfo!.UserType,
+                request.UserEmail!.ToLower()!,
+                request.UserPassword!.ToHash(),
+                request.UserInfo.ClientApp!.Id);
 
             await _repository.AddAsync(user, cancellationToken);
 

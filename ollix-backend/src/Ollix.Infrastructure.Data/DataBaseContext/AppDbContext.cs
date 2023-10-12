@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
 using Ollix.Domain.Aggregates.ClientAppAggregate;
+using Ollix.Domain.Aggregates.LogAggregate;
 using Ollix.Domain.Aggregates.UserAppAggregate;
 using Ollix.Infrastructure.Data.DataBaseContext.Config;
 using Ollix.SharedKernel;
@@ -24,6 +25,7 @@ public class AppDbContext : DbContext
 
     public DbSet<UserApp> UserApp => Set<UserApp>();
     public DbSet<ClientApp> ClientApp => Set<ClientApp>();
+    public DbSet<LogApp> LogApp => Set<LogApp>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -31,6 +33,7 @@ public class AppDbContext : DbContext
 
         modelBuilder.ApplyConfiguration(new ClientAppEfConfig());
         modelBuilder.ApplyConfiguration(new UserAppEFConfig());
+        modelBuilder.ApplyConfiguration(new LogAppEFConfig());
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

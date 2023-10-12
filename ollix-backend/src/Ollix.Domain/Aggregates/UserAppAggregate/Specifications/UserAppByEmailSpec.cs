@@ -2,9 +2,9 @@
 
 namespace Ollix.Domain.Aggregates.UserAppAggregate.Specifications
 {
-    public class GetUserAppByEmailSpec : SingleResultSpecification<UserApp>
+    public class UserAppByEmailSpec : SingleResultSpecification<UserApp>
     {
-        public GetUserAppByEmailSpec(string email)
+        public UserAppByEmailSpec(string email)
         {
             if (!string.IsNullOrEmpty(email))
                 Query.Where(u => u.UserEmail! == email);

@@ -28,8 +28,8 @@ namespace Ollix.Application.UseCases.Clients.Queries.GetClients
         public async Task<Result<PaginationResponse<ClientApp>>> Handle(GetClientsQuery query,
             CancellationToken cancellationToken)
         {
-            var clientsCount = await _repository.CountAsync(new GetClientsSpec(query.PaginationRequest), cancellationToken);
-            var clientsResult = await _repository.ListAsync(new GetClientsSpec(query.PaginationRequest), cancellationToken);
+            var clientsCount = await _repository.CountAsync(new ClientsSpec(query.PaginationRequest), cancellationToken);
+            var clientsResult = await _repository.ListAsync(new ClientsSpec(query.PaginationRequest), cancellationToken);
             
             return Result.Success(new PaginationResponse<ClientApp>(clientsResult, clientsCount, query.PaginationRequest));
         }

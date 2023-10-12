@@ -2,6 +2,8 @@
 using MediatR;
 using Ollix.Domain.Aggregates.ClientAppAggregate;
 using Ollix.Domain.Aggregates.ClientAppAggregate.Specifications;
+using Ollix.Domain.Aggregates.LogAggregate;
+using Ollix.Domain.Events;
 using Ollix.Domain.ValueObjects;
 using Ollix.SharedKernel.Interfaces;
 
@@ -26,8 +28,10 @@ namespace Ollix.Application.UseCases.Clients.Commands.CreateClient
             if(request.UserInfo!.ClientApp!.Id != client.Id)
                 return Result.NotFound("Usuário não autorizado a editar o Cliente!");
 
-            client.CompanyName = request.CompanyName;
-            client.BussinessName = request.BussinessName;
+            client.SetCompanyName(request.CompanyName);
+            client.SetBussinessName(request.BussinessName);
+
+            client.RegisterDomainEvent(new EntityUpdatedEvent(request.UserInfo.Id, EntityEnum.Client, client));
 
             await _repository.UpdateAsync(client, cancellationToken);
 

@@ -37,7 +37,7 @@ namespace Ollix.API.Endpoints.Clients
           OperationId = "clients.get",
           Tags = new[] { "Clientes" }
         )]
-        public override async Task<ActionResult<PaginationResponse<ClientApp>>> HandleAsync([FromQuery] GetClientsRequest getClientsRequest,
+        public override async Task<ActionResult<PaginationResponse<ClientApp>>> HandleAsync(GetClientsRequest getClientsRequest,
             CancellationToken cancellationToken = default)
         {
             var userInfo = ApplicationClaims.GetUserInfoByClaims(User.Claims.ToArray());

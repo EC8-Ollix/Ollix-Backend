@@ -26,7 +26,7 @@ internal sealed class LoginCommandHandler : IRequestHandler<LoginCommand, Result
         CancellationToken cancellationToken)
     {
         var user = await _repository
-            .FirstOrDefaultAsync(new GetUserAppByEmailSpec(request.UserEmail!.ToLower()!), cancellationToken);
+            .FirstOrDefaultAsync(new UserAppByEmailSpec(request.UserEmail!.ToLower()!), cancellationToken);
 
         if (user is null)
             return credencialsError;

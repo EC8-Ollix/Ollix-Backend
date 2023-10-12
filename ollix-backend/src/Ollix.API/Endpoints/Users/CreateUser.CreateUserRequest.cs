@@ -9,7 +9,7 @@ using Ollix.SharedKernel.Extensions;
 
 namespace Ollix.API.Endpoints.Users
 {
-    public class CreateUserRequest : UpsertUserRequest, IApiRequest<CreateUserCommand, Result<UserInfo>>
+    public record CreateUserRequest : UpsertUserRequest, IApiRequest<CreateUserCommand, Result<UserInfo>>
     {
         public string? UserEmail { get; set; }
 

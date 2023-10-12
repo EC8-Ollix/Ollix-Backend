@@ -1,6 +1,6 @@
 ﻿namespace Ollix.API.Endpoints.Users.Shared
 {
-    public class UpsertUserRequest
+    public record UpsertUserRequest
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }

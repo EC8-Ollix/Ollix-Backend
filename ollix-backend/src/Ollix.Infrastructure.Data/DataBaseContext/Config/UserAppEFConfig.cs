@@ -19,7 +19,9 @@ public class UserAppEFConfig : IEntityTypeConfiguration<UserApp>
         builder.Property(p => p.LastName)
             .HasMaxLength(200);
 
-        builder.Property(p => p.ClientId)
+        builder.HasOne(p => p.ClientApp)
+            .WithMany()
+            .HasForeignKey(e => e.ClientId)
             .IsRequired();
 
         builder.Property(p => p.UserType)
