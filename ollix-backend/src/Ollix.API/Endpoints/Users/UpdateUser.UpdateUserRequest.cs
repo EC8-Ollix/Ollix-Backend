@@ -12,7 +12,7 @@ namespace Ollix.API.Endpoints.Users
     public class UpdateUserRequest : IApiRequest<UpdateUserCommand, Result<UserInfo>>
     {
         [FromBody]
-        public UpsertUserRequest? UpsertUserRequest { get; set; }\
+        public UpsertUserRequest? UpsertUserRequest { get; set; }
 
         [FromRoute(Name = "userId")]
         [FromQuery]
