@@ -1,8 +1,8 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Authentication.Shared;
-using Ollix.Domain.UserAggregate;
-using Ollix.Domain.UserAppAggregate.Specifications;
+using Ollix.Application.Shared;
+using Ollix.Domain.Aggregates.UserAppAggregate;
+using Ollix.Domain.Aggregates.UserAppAggregate.Specifications;
 using Ollix.SharedKernel.Extensions;
 using Ollix.SharedKernel.Interfaces;
 
@@ -18,10 +18,11 @@ internal sealed class LoginCommandHandler : IRequestHandler<LoginCommand, Result
         _repository = repository;
     }
 
-    public async Task<Result<UserInfo>> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<Result<UserInfo>> Handle(LoginCommand request, 
+        CancellationToken cancellationToken)
     {
         var user = await _repository
-            .FirstOrDefaultAsync(new GetUserAppByEmailSpec(request.UserEmail!), cancellationToken);
+            .FirstOrDefaultAsync(new GetUserAppByEmailSpec(request.UserEmail!.ToLower()!), cancellationToken);
 
         if (user is null)
             return credencialsError;

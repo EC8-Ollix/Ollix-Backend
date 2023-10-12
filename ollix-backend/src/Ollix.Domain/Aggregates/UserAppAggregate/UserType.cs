@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Ollix.Domain.UserAggregate
+namespace Ollix.Domain.Aggregates.UserAppAggregate
 {
     public enum UserType
     {

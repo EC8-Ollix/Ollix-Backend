@@ -39,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ollix.Tests.Application", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - SharedKernel", "5 - SharedKernel", "{3AF549A3-0A29-44F5-92E6-9F8505DE0ED8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.SharedKernel", "ollix-backend\src\Ollix.SharedKernel\Ollix.SharedKernel.csproj", "{864168AA-2D75-4005-8CB9-7061B17F078C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ollix.SharedKernel", "ollix-backend\src\Ollix.SharedKernel\Ollix.SharedKernel.csproj", "{864168AA-2D75-4005-8CB9-7061B17F078C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

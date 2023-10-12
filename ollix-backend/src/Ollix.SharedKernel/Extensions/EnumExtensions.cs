@@ -21,5 +21,28 @@ namespace Ollix.SharedKernel.Extensions
 
             return value.ToString();
         }
+
+        public static TEnum GetEnum<TEnum>(this string description) where TEnum : Enum
+        {
+            foreach (var field in typeof(TEnum).GetFields())
+            {
+                if (Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) is DescriptionAttribute attribute)
+                {
+                    if (attribute.Description == description)
+                    {
+                        return (TEnum)field.GetValue(null);
+                    }
+                }
+                else
+                {
+                    if (field.Name == description)
+                    {
+                        return (TEnum)field.GetValue(null);
+                    }
+                }
+            }
+
+            throw new ArgumentException($"No {typeof(TEnum)} with description {description} found", nameof(description));
+        }
     }
 }

@@ -7,6 +7,9 @@
         public const string LoginUri = $"{BaseUri}/auth/login";
         public const string RegisterUri = $"{BaseUri}/auth/register";
 
+
+        public const string ClientsUri = $"{BaseUri}/clients";
+        public const string UsersUri = $"{BaseUri}/users";
         public const string HelicesUri = $"{BaseUri}/helices";
     }
 }
