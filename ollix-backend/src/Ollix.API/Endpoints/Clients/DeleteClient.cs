@@ -5,13 +5,14 @@ using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Shared;
 using Ollix.Application.UseCases.Clients.Commands.DeleteClient;
+using Ollix.Domain.Aggregates.UserAppAggregate;
 using Ollix.SharedKernel.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ollix.API.Endpoints.Clients
 {
-    [Authorize]
+    [Authorize(Roles = nameof(UserType.Admin))]
     public class DeleteClient : EndpointBaseAsync
         .WithRequest<Guid>
         .WithoutResult

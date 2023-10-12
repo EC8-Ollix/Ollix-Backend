@@ -15,7 +15,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Ollix.API.Endpoints.Clients
 {
-    [Authorize(Roles = nameof(UserType.Admin))]
+    [Authorize]
     public class GetClientById : EndpointBaseAsync
         .WithRequest<Guid>
         .WithActionResult<ClientApp>
