@@ -96,3 +96,26 @@ GO
 COMMIT;
 GO
 
+
+BEGIN TRANSACTION;
+GO
+
+ALTER TABLE [LogApp] DROP CONSTRAINT [FK_LogApp_ClientApp_ClientId];
+GO
+
+ALTER TABLE [LogApp] DROP CONSTRAINT [FK_LogApp_UserApp_UserId];
+GO
+
+ALTER TABLE [LogApp] ADD CONSTRAINT [FK_LogApp_ClientApp_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [ClientApp] ([Id]) ON DELETE NO ACTION;
+GO
+
+ALTER TABLE [LogApp] ADD CONSTRAINT [FK_LogApp_UserApp_UserId] FOREIGN KEY ([UserId]) REFERENCES [UserApp] ([Id]) ON DELETE NO ACTION;
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20231012065053_AddFkLogAppUpCascade', N'6.0.22');
+GO
+
+COMMIT;
+GO
+
