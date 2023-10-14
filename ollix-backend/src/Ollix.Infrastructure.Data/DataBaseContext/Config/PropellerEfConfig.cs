@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Ollix.Domain.Aggregates.OrderAggregate;
 using Ollix.Domain.Aggregates.PropellerAggregate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ollix.Infrastructure.Data.DataBaseContext.Config
 {
