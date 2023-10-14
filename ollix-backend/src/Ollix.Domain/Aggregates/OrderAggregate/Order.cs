@@ -2,13 +2,7 @@
 using Ollix.Domain.Aggregates.AddressAppAggregate;
 using Ollix.Domain.Aggregates.ClientAppAggregate;
 using Ollix.Domain.Aggregates.PropellerAggregate;
-using Ollix.Domain.Aggregates.UserAppAggregate;
 using Ollix.SharedKernel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ollix.Domain.Aggregates.OrderAggregate
 {
@@ -21,7 +15,7 @@ namespace Ollix.Domain.Aggregates.OrderAggregate
         public OrderStatus OrderStatus { get; private set; }
         public int QuantityRequested { get; private set; }
         public Guid AddressId { get; private set; }
-        public Guid PropellerId { get; private set; }
+        public Guid? PropellerId { get; private set; }
         public Guid ClientId { get; private set; }
 
         public AddressApp? AddressApp { get; set; }
@@ -33,11 +27,11 @@ namespace Ollix.Domain.Aggregates.OrderAggregate
         public Order(
             string requesterName,
             string requesterEmail,
-            string observation,
+            string? observation,
             DateTimeOffset requestDate,
             OrderStatus orderStatus,
             int quantityRequested,
-            Guid addressId,
+            AddressApp address,
             Guid clientId)
         {
             RequesterName = requesterName;
@@ -46,8 +40,11 @@ namespace Ollix.Domain.Aggregates.OrderAggregate
             RequestDate = requestDate;
             OrderStatus = orderStatus;
             QuantityRequested = quantityRequested;
-            AddressId = addressId;
+            AddressId = address.Id;
             ClientId = clientId;
+
+            AddressApp = address;
+            PropellerId = null;
         }
 
         public void SetOrderStatus(OrderStatus orderStatus)
