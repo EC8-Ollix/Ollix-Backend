@@ -11,6 +11,7 @@
         public const string ClientsUri = $"{BaseUri}/clients";
         public const string UsersUri = $"{BaseUri}/users";
         public const string LogsUri = $"{BaseUri}/logs";
+        public const string OrdersUri = $"{BaseUri}/orders";
         public const string HelicesUri = $"{BaseUri}/helices";
     }
 }

@@ -14,8 +14,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Ollix.Infrastructure.Integrations\Ollix.Infrastructure.Integrations.csproj" />
     <ProjectReference Include="..\Ollix.Domain\Ollix.Domain.csproj" />
     <ProjectReference Include="..\Ollix.SharedKernel\Ollix.SharedKernel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="UseCases\Orders\Commands\DeleteOrder\" />
+    <Folder Include="UseCases\Orders\Commands\ProcessOrder\" />
+    <Folder Include="UseCases\Orders\Queries\GetOrders\" />
+    <Folder Include="UseCases\Orders\Queries\GetOrderById\" />
   </ItemGroup>
 
 </Project>
