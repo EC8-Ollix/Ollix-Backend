@@ -18,6 +18,10 @@ namespace Ollix.Infrastructure.Data.DataBaseContext.Config
 
             builder.HasKey(k => k.Id);
 
+            builder.Property(p => p.HelixId)
+                .HasMaxLength(80)
+                .IsRequired();
+
             builder.Property(p => p.Active)
                 .IsRequired();
 

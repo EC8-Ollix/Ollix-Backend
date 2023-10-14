@@ -26,13 +26,6 @@ namespace Ollix.Infrastructure.Data.DataBaseContext.Config
                 .HasMaxLength(400)
                 .IsRequired();
 
-            builder.Property(p => p.Number)
-                .HasMaxLength(16)
-                .IsRequired();
-
-            builder.Property(p => p.Complement)
-                .HasMaxLength(400);
-
             builder.Property(p => p.Neighborhood)
                 .HasMaxLength(400)
                 .IsRequired();

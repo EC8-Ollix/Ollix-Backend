@@ -42,7 +42,7 @@ namespace Ollix.Infrastructure.Data.DataBaseContext.Config
 
             builder.HasOne(p => p.Propeller)
                 .WithMany()
-                .OnDelete(DeleteBehavior.SetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasForeignKey(e => e.PropellerId);
 
             builder.HasOne(p => p.AddressApp)
