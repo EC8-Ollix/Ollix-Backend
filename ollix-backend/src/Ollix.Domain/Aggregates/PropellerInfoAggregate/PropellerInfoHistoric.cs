@@ -19,7 +19,7 @@ namespace Ollix.Domain.Aggregates.PropellerInfoAggregate
             AvarageRpm = avarageRpm;
             Avaragekwh = avaragekwh;
 
-            UpdatedAt = DateTimeOffset.UtcNow;
+            UpdatedAt = DateTimeOffset.Now;
         }
     }
 }

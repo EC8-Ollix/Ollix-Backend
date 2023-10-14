@@ -8,7 +8,7 @@ namespace Ollix.Domain.Aggregates.AddressAppAggregate.Specifications
         public AdressByPostalCode(string postalCode)
         {
             Query
-                .Where(p => p.PostalCode == postalCode.JustNumbers());
+                .Where(p => p.PostalCode == postalCode.JustNumbers()).AsNoTracking();
         }
     }
 }

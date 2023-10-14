@@ -16,12 +16,13 @@ namespace Ollix.Domain.Aggregates.LogAppAggregate.Specifications
                 .Select(s => new LogAppModel(s))
                 .Where(q => q.ClientId == clientApp.Id)
                 .Skip(paginationRequest.GetSkip())
-                .Take(paginationRequest.PageSize);
+                .Take(paginationRequest.PageSize)
+                .AsNoTracking(); 
         }
 
         public LogsSpec(ClientApp clientApp)
         {
-            Query.Where(q => q.ClientId == clientApp.Id);
+            Query.Where(q => q.ClientId == clientApp.Id).AsNoTracking();
         }
     }
 }

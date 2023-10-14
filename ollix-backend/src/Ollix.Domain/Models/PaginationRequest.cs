@@ -1,10 +1,16 @@
-﻿namespace Ollix.Domain.Models
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
+
+namespace Ollix.Domain.Models
 {
     public class PaginationRequest
     {
         private int _maxPageSize = 50;
 
+        [FromQuery(Name = "page")]
         public int Page { get; set; }
+
+        [FromQuery(Name = "pageSize")]
         public int PageSize { get; set; }
 
         public PaginationRequest() { }

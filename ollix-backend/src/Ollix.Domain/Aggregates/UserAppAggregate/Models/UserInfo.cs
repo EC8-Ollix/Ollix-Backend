@@ -34,5 +34,8 @@ namespace Ollix.Domain.Aggregates.UserAppAggregate.Models
             UserType = user.UserType;
             ClientApp = clientApp;
         }
+
+        public bool IsAdmin() => UserType is UserType.Admin;
+        public bool IsClient() => UserType is UserType.Client;
     }
 }

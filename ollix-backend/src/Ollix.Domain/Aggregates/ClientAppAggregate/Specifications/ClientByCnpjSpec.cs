@@ -7,7 +7,7 @@ namespace Ollix.Domain.Aggregates.ClientAppAggregate.Specifications
     {
         public ClientByCnpjSpec(CNPJ cnpj)
         {
-            Query.Where(u => u.Cnpj!.Value == cnpj.Value);
+            Query.Where(u => u.Cnpj!.Value == cnpj.Value).AsNoTracking();
         }
     }
 }

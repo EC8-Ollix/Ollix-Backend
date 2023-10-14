@@ -23,7 +23,7 @@ namespace Ollix.Domain.Aggregates.PropellerInfoAggregate
             TotalKwh = kwh;
             ReadingCount = 1;
 
-            InfoDate = DateTimeOffset.UtcNow;
+            InfoDate = DateTimeOffset.Now;
         }
 
         public void UpdateInfoData(int newRpm, int newKwh)

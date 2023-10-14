@@ -7,7 +7,7 @@ namespace Ollix.Domain.Aggregates.UserAppAggregate.Specifications
         public UserAppByEmailSpec(string email)
         {
             if (!string.IsNullOrEmpty(email))
-                Query.Where(u => u.UserEmail! == email);
+                Query.Where(u => u.UserEmail! == email).AsNoTracking();
         }
     }
 }

@@ -32,11 +32,6 @@ namespace Ollix.Infrastructure.Data.DataBaseContext.Config
             builder.Property(p => p.QuantityRequested)
                 .IsRequired();
 
-            builder.HasOne(p => p.Propeller)
-                .WithMany()
-                .OnDelete(DeleteBehavior.NoAction)
-                .HasForeignKey(e => e.PropellerId);
-
             builder.HasOne(p => p.AddressApp)
                 .WithMany()
                 .HasForeignKey(e => e.AddressId)
