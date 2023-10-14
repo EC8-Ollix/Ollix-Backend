@@ -55,11 +55,14 @@ CREATE TABLE [Propeller] (
     [Id] uniqueidentifier NOT NULL,
     [HelixId] nvarchar(80) NOT NULL,
     [Active] bit NOT NULL,
+    [Installed] bit NOT NULL,
     [AddressId] uniqueidentifier NOT NULL,
     [ClientId] uniqueidentifier NOT NULL,
+    [OrderId] uniqueidentifier NOT NULL, 
     CONSTRAINT [PK_Propeller] PRIMARY KEY ([Id]),
     CONSTRAINT [FK_Propeller_AddressApp_AddressId] FOREIGN KEY ([AddressId]) REFERENCES [AddressApp] ([Id]) ON DELETE CASCADE,
-    CONSTRAINT [FK_Propeller_ClientApp_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [ClientApp] ([Id]) ON DELETE CASCADE
+    CONSTRAINT [FK_Propeller_ClientApp_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [ClientApp] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Propeller_Order_OrderId] FOREIGN KEY ([OrderId]) REFERENCES [Order] ([Id]) ON DELETE NO ACTION 
 );
 
 
@@ -82,15 +85,15 @@ CREATE TABLE [Order] (
     [Observation] nvarchar(600) NULL,
     [RequestDate] datetimeoffset NOT NULL,
     [OrderStatus] int NOT NULL,
+    [InstallationDate] datetimeoffset NULL,
     [QuantityRequested] int NOT NULL,
     [AddressId] uniqueidentifier NOT NULL,
-    [PropellerId] uniqueidentifier NULL,
     [ClientId] uniqueidentifier NOT NULL,
     CONSTRAINT [PK_Order] PRIMARY KEY ([Id]),
     CONSTRAINT [FK_Order_AddressApp_AddressId] FOREIGN KEY ([AddressId]) REFERENCES [AddressApp] ([Id]) ON DELETE NO ACTION,
-    CONSTRAINT [FK_Order_ClientApp_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [ClientApp] ([Id]) ON DELETE CASCADE,
-    CONSTRAINT [FK_Order_Propeller_PropellerId] FOREIGN KEY ([PropellerId]) REFERENCES [Propeller] ([Id]) ON DELETE NO ACTION
+    CONSTRAINT [FK_Order_ClientApp_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [ClientApp] ([Id]) ON DELETE CASCADE
 );
+
 
 
 CREATE INDEX [IX_Order_AddressId] ON [Order] ([AddressId]);
