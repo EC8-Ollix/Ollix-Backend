@@ -102,11 +102,10 @@ CREATE INDEX [IX_Address_PostalCode] ON [AddressApp] ([PostalCode]);
 
 CREATE INDEX [IX_Order_ClientId] ON [Order] ([ClientId]);
 
-CREATE INDEX [IX_Order_PropellerId] ON [Order] ([PropellerId]);
-
 CREATE INDEX [IX_Propeller_AddressId] ON [Propeller] ([AddressId]);
 
 CREATE INDEX [IX_Propeller_ClientId] ON [Propeller] ([ClientId]);
 
-CREATE INDEX [IX_PropellerInfoDate_PropellerId] ON [PropellerInfoDate] ([PropellerId]);
+CREATE INDEX [IX_Propeller_OrderId] ON [Propeller] ([OrderId]);
 
+CREATE INDEX [IX_PropellerInfoDate_PropellerId] ON [PropellerInfoDate] ([PropellerId]);
