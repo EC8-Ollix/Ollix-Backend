@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - SharedKernel", "5 - Sha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ollix.SharedKernel", "ollix-backend\src\Ollix.SharedKernel\Ollix.SharedKernel.csproj", "{864168AA-2D75-4005-8CB9-7061B17F078C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollix.Infrastructure.Integrations", "Ollix.Infrastructure.Integrations\Ollix.Infrastructure.Integrations.csproj", "{F47E1BF0-85D8-4697-9740-5BE3F97ADA0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{864168AA-2D75-4005-8CB9-7061B17F078C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{864168AA-2D75-4005-8CB9-7061B17F078C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{864168AA-2D75-4005-8CB9-7061B17F078C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F47E1BF0-85D8-4697-9740-5BE3F97ADA0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F47E1BF0-85D8-4697-9740-5BE3F97ADA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F47E1BF0-85D8-4697-9740-5BE3F97ADA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F47E1BF0-85D8-4697-9740-5BE3F97ADA0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +111,7 @@ Global
 		{C1A0AA71-41AC-484B-9B25-7C07815DF4B0} = {09238CC0-2CD3-4A47-A12A-E1C3005C245B}
 		{3AF549A3-0A29-44F5-92E6-9F8505DE0ED8} = {AA831FB7-1467-4BAA-8613-42FD51A2EFD3}
 		{864168AA-2D75-4005-8CB9-7061B17F078C} = {3AF549A3-0A29-44F5-92E6-9F8505DE0ED8}
+		{F47E1BF0-85D8-4697-9740-5BE3F97ADA0C} = {0894166E-05E6-4294-AD66-CEEF8F8AE71A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0CD6B99E-70D7-4D08-ABCB-8F4D83022A9F}
