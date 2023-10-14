@@ -29,17 +29,8 @@ namespace Ollix.Infrastructure.Data.DataBaseContext.Config
             builder.HasOne(p => p.ClientApp)
                 .WithMany()
                 .HasForeignKey(e => e.ClientId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
-
-            builder.HasMany(p => p.PropellerInfoDates)
-                .WithOne()
-                .HasForeignKey(e => e.PropellerId)
-                .IsRequired();
-
-            //builder.HasMany(p => p.PropellerInfoHistorics)
-            //    .WithOne()
-            //    .HasForeignKey(e => e.PropellerId)
-            //    .IsRequired();
         }
     }
 }

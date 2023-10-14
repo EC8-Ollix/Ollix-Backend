@@ -30,11 +30,6 @@ namespace Ollix.Infrastructure.Data.DataBaseContext.Config
 
             builder.Property(p => p.InfoDate)
                 .IsRequired();
-
-            builder.HasOne(p => p.Propeller)
-                .WithMany()
-                .HasForeignKey(e => e.PropellerId)
-                .IsRequired();
         }
     }
 }

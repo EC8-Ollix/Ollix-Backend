@@ -42,16 +42,19 @@ namespace Ollix.Infrastructure.Data.DataBaseContext.Config
 
             builder.HasOne(p => p.Propeller)
                 .WithMany()
+                .OnDelete(DeleteBehavior.SetNull)
                 .HasForeignKey(e => e.PropellerId);
 
             builder.HasOne(p => p.AddressApp)
                 .WithMany()
                 .HasForeignKey(e => e.AddressId)
+                .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired();
 
             builder.HasOne(p => p.ClientApp)
                 .WithMany()
                 .HasForeignKey(e => e.ClientId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
         }
     }

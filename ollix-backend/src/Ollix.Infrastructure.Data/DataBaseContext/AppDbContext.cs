@@ -42,8 +42,8 @@ public class AppDbContext : DbContext
         modelBuilder.ApplyConfiguration(new LogAppEfConfig());
         modelBuilder.ApplyConfiguration(new AddressAppEfConfig());
         modelBuilder.ApplyConfiguration(new OrderEfConfig());
+        modelBuilder.ApplyConfiguration(new PropellerInfoDateEfConfig());
         modelBuilder.ApplyConfiguration(new PropellerEfConfig());
-        //modelBuilder.ApplyConfiguration(new PropellerInfoDateEfConfig());
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
