@@ -44,8 +44,6 @@ CREATE TABLE [AddressApp] (
     [Id] uniqueidentifier NOT NULL,
     [PostalCode] nvarchar(16) NOT NULL,
     [Street] nvarchar(400) NOT NULL,
-    [Number] nvarchar(16) NOT NULL,
-    [Complement] nvarchar(400) NULL,
     [Neighborhood] nvarchar(400) NOT NULL,
     [City] nvarchar(400) NOT NULL,
     [State] nvarchar(400) NOT NULL,
@@ -55,7 +53,7 @@ CREATE TABLE [AddressApp] (
 
 CREATE TABLE [Propeller] (
     [Id] uniqueidentifier NOT NULL,
-    [HelixId] nvarchar(max) NULL,
+    [HelixId] nvarchar(80) NOT NULL,
     [Active] bit NOT NULL,
     [AddressId] uniqueidentifier NOT NULL,
     [ClientId] uniqueidentifier NOT NULL,
@@ -97,6 +95,8 @@ CREATE TABLE [Order] (
 
 CREATE INDEX [IX_Order_AddressId] ON [Order] ([AddressId]);
 
+CREATE INDEX [IX_Address_PostalCode] ON [AddressApp] ([PostalCode]);
+
 CREATE INDEX [IX_Order_ClientId] ON [Order] ([ClientId]);
 
 CREATE INDEX [IX_Order_PropellerId] ON [Order] ([PropellerId]);
@@ -106,5 +106,4 @@ CREATE INDEX [IX_Propeller_AddressId] ON [Propeller] ([AddressId]);
 CREATE INDEX [IX_Propeller_ClientId] ON [Propeller] ([ClientId]);
 
 CREATE INDEX [IX_PropellerInfoDate_PropellerId] ON [PropellerInfoDate] ([PropellerId]);
-
 
