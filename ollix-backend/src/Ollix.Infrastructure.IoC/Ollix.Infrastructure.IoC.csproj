@@ -35,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ollix.Infrastructure.Integrations\Ollix.Infrastructure.Integrations.csproj" />
     <ProjectReference Include="..\Ollix.Application\Ollix.Application.csproj" />
     <ProjectReference Include="..\Ollix.Infrastructure.Data\Ollix.Infrastructure.Data.csproj" />
     <ProjectReference Include="..\Ollix.SharedKernel\Ollix.SharedKernel.csproj" />

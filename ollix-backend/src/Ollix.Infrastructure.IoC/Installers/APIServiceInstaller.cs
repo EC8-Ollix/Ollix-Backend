@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Ollix.Infrastructure.Integrations.ViaCep;
 using Ollix.Infrastructure.IoC.Configs;
 using Ollix.Infrastructure.IoC.Extensions;
 using Ollix.Infrastructure.IoC.Interfaces;
@@ -83,6 +84,11 @@ namespace Ollix.Infrastructure.IoC.Installers
                 });
 
             services.AddAuthorization();
+
+            services.AddHttpClient(nameof(ViaCepClient), c =>
+            {
+                c.BaseAddress = new Uri(ViaCepClient.BaseAddress!);
+            });
         }
     }
 }
