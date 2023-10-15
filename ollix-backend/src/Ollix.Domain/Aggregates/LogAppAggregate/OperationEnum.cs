@@ -18,5 +18,13 @@ namespace Ollix.Domain.Aggregates.LogAggregate
         OrderCompleted = 6,
         [Description("Hélice Instalada")]
         PropellerInstalled = 7,
+        [Description("Cliente Ativado")]
+        ActiveClient = 8,
+        [Description("Cliente Desativado")]
+        InactiveClient = 9,
+        [Description("Hélice Ativada")]
+        ActivePropeller = 10,
+        [Description("Hélice Desativada")]
+        InactivePropeller = 11
     }
 }

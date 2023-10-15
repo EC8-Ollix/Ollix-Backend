@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ollix.Domain.Aggregates.OrderAggregate;
 using Ollix.Domain.Aggregates.OrderAggregate.Specifications;
+using Ollix.Domain.Aggregates.PropellerAggregate.Specifications;
 
 namespace Ollix.Application.UseCases.Orders.Queries.GetOrders
 {

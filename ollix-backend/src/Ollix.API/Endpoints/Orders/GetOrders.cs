@@ -42,12 +42,9 @@ namespace Ollix.API.Endpoints.Orders
         {
             var userInfo = ApplicationClaims.GetUserInfoByClaims(User.Claims.ToArray());
 
-            if (RequiresClientId(userInfo, request) || request.ClientId!.IsInvalidGuid(out Guid clientId))
-                return BadRequest(Result.Error("Informe um Cliente Válido!").ToErrorModel());
-
             var query = new GetOrdersQuery(
                 userInfo!,
-                clientId,
+                request.ClientId,
                 request.OrderStatus,
                 request.RequestedDate,
                 request.PaginationRequest!);
@@ -55,11 +52,6 @@ namespace Ollix.API.Endpoints.Orders
             var result = await _mediator.Send(query, cancellationToken);
 
             return Ok(result.Value);
-        }
-
-        private static bool RequiresClientId(UserInfo? userInfo, GetOrdersRequest getUsersRequest)
-        {
-            return userInfo!.UserType is UserType.Admin && string.IsNullOrEmpty(getUsersRequest.ClientId);
         }
     }
 }

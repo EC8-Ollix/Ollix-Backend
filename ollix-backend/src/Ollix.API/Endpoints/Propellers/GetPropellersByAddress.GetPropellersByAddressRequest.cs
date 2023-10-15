@@ -1,17 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ollix.Domain.Aggregates.OrderAggregate;
 using Ollix.Domain.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace Ollix.API.Endpoints.Orders
+namespace Ollix.API.Endpoints.Propellers
 {
-    public class GetOrdersRequest
+    public class GetPropellersByAddressRequest
     {
         [FromQuery]
         [Required(ErrorMessage = "Informe os dados de Paginação")]
         public PaginationRequest? PaginationRequest { get; set; }
+
+        [Required]
         public Guid ClientId { get; set; }
-        public OrderStatus OrderStatus { get; set; }
-        public DateTimeOffset? RequestedDate { get; set; }
+        [Required]
+        public Guid AddressId { get; set; }
+
+        public Guid OrderId { get; set; }
+        public bool? Active { get; set; }
+        public bool? Installed { get; set; }
     }
 }

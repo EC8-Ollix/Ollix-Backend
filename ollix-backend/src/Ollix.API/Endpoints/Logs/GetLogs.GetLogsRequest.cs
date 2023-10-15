@@ -9,6 +9,6 @@ namespace Ollix.API.Endpoints.Logs
         [FromQuery]
         [Required(ErrorMessage = "Informe os dados de Paginação")]
         public PaginationRequest? PaginationRequest { get; set; }
-        public string? ClientId { get; set; }
+        public Guid ClientId { get; set; }
     }
 }

@@ -32,5 +32,7 @@ namespace Ollix.Domain.Aggregates.PropellerAggregate
             OrderId = order.Id;
             ClientId = order.ClientId;
         }
+
+        public void ToggleActive() => Active = !Active;
     }
 }

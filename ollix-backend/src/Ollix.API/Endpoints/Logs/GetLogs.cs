@@ -35,11 +35,8 @@ namespace Ollix.API.Endpoints.Logs
         public override async Task<ActionResult<PaginationResponse<LogAppModel>>> HandleAsync(GetLogsRequest getLogsRequest,
             CancellationToken cancellationToken = default)
         {
-            if (getLogsRequest.ClientId!.IsInvalidGuid(out Guid clientId))
-                return BadRequest(Result.Error("Informe um Cliente Válido!").ToErrorModel());
-
             var userInfo = ApplicationClaims.GetUserInfoByClaims(User.Claims.ToArray());
-            var result = await _mediator.Send(new GetLogsQuery(userInfo!, clientId, getLogsRequest.PaginationRequest!), cancellationToken);
+            var result = await _mediator.Send(new GetLogsQuery(userInfo!, getLogsRequest.ClientId, getLogsRequest.PaginationRequest!), cancellationToken);
 
             return Ok(result.Value);
         }

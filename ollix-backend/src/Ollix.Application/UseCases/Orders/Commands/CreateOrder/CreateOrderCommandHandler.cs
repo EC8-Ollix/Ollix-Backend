@@ -2,7 +2,9 @@
 using MediatR;
 using Ollix.Domain.Aggregates.AddressAppAggregate;
 using Ollix.Domain.Aggregates.AddressAppAggregate.Specifications;
+using Ollix.Domain.Aggregates.LogAggregate;
 using Ollix.Domain.Aggregates.OrderAggregate;
+using Ollix.Domain.Events;
 using Ollix.Infrastructure.Integrations.ViaCep;
 using Ollix.SharedKernel.Extensions;
 using Ollix.SharedKernel.Interfaces;
@@ -45,6 +47,8 @@ namespace Ollix.Application.UseCases.Orders.Commands.CreateOrder
                 request.QuantityRequested,
                 address!,
                 request.UserInfo!.ClientApp!.Id);
+
+            order.RegisterDomainEvent(new EntityControlEvent(request.UserInfo!, EntityEnum.Order, OperationEnum.Create, order));
 
             await _repository.AddAsync(order, cancellationToken);
 

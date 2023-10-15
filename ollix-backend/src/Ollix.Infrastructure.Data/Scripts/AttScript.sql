@@ -6,6 +6,7 @@ CREATE TABLE [ClientApp] (
     [CompanyName] nvarchar(400) NOT NULL,
     [BussinessName] nvarchar(400) NOT NULL,
     [Cnpj] nvarchar(18) NULL,
+    [Active] bit NOT NULL DEFAULT 1,
     CONSTRAINT [PK_ClientApp] PRIMARY KEY ([Id])
 );
 
