@@ -51,6 +51,21 @@ CREATE TABLE [AddressApp] (
     CONSTRAINT [PK_AddressApp] PRIMARY KEY ([Id])
 );
 
+CREATE TABLE [Order] (
+    [Id] uniqueidentifier NOT NULL,
+    [RequesterName] nvarchar(200) NOT NULL,
+    [RequesterEmail] nvarchar(200) NOT NULL,
+    [Observation] nvarchar(600) NULL,
+    [RequestDate] datetimeoffset NOT NULL,
+    [OrderStatus] int NOT NULL,
+    [InstallationDate] datetimeoffset NULL,
+    [QuantityRequested] int NOT NULL,
+    [AddressId] uniqueidentifier NOT NULL,
+    [ClientId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_Order] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Order_AddressApp_AddressId] FOREIGN KEY ([AddressId]) REFERENCES [AddressApp] ([Id]) ON DELETE NO ACTION,
+    CONSTRAINT [FK_Order_ClientApp_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [ClientApp] ([Id]) ON DELETE CASCADE
+);
 
 CREATE TABLE [Propeller] (
     [Id] uniqueidentifier NOT NULL,
@@ -76,23 +91,6 @@ CREATE TABLE [PropellerInfoDate] (
     [PropellerId] uniqueidentifier NOT NULL,
     CONSTRAINT [PK_PropellerInfoDate] PRIMARY KEY ([Id]),
     CONSTRAINT [FK_PropellerInfoDate_Propeller_PropellerId] FOREIGN KEY ([PropellerId]) REFERENCES [Propeller] ([Id]) ON DELETE CASCADE
-);
-
-
-CREATE TABLE [Order] (
-    [Id] uniqueidentifier NOT NULL,
-    [RequesterName] nvarchar(200) NOT NULL,
-    [RequesterEmail] nvarchar(200) NOT NULL,
-    [Observation] nvarchar(600) NULL,
-    [RequestDate] datetimeoffset NOT NULL,
-    [OrderStatus] int NOT NULL,
-    [InstallationDate] datetimeoffset NULL,
-    [QuantityRequested] int NOT NULL,
-    [AddressId] uniqueidentifier NOT NULL,
-    [ClientId] uniqueidentifier NOT NULL,
-    CONSTRAINT [PK_Order] PRIMARY KEY ([Id]),
-    CONSTRAINT [FK_Order_AddressApp_AddressId] FOREIGN KEY ([AddressId]) REFERENCES [AddressApp] ([Id]) ON DELETE NO ACTION,
-    CONSTRAINT [FK_Order_ClientApp_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [ClientApp] ([Id]) ON DELETE CASCADE
 );
 
 
