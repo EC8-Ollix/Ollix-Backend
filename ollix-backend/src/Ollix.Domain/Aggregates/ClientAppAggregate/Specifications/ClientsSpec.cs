@@ -11,7 +11,7 @@ namespace Ollix.Domain.Aggregates.ClientAppAggregate.Specifications
 
             Query
                 .Skip(paginationRequest.GetSkip())
-                .Take(paginationRequest.PageSize);
+                .Take(paginationRequest.PageSize).AsNoTracking();
         }
     }
 }

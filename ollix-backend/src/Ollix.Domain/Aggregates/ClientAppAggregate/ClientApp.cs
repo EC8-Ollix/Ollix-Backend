@@ -8,6 +8,7 @@ namespace Ollix.Domain.Aggregates.ClientAppAggregate
         public string? CompanyName { get; private set; }
         public string? BussinessName { get; private set; }
         public CNPJ? Cnpj { get; private set; }
+        public bool Active { get; private set; }
 
         public ClientApp() { }
 
@@ -16,6 +17,7 @@ namespace Ollix.Domain.Aggregates.ClientAppAggregate
             CompanyName = companyName;
             BussinessName = bussinessname;
             Cnpj = cnpj;
+            Active = true;
         }
 
         public void SetCompanyName(string? companyName)
@@ -31,5 +33,7 @@ namespace Ollix.Domain.Aggregates.ClientAppAggregate
 
             this.BussinessName = bussinessName;
         }
+
+        public void ToggleActive() => Active = !Active;
     }
 }

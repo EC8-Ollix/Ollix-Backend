@@ -4,7 +4,7 @@ using Ollix.Domain.Aggregates.LogAggregate;
 
 namespace Ollix.Infrastructure.Data.DataBaseContext.Config
 {
-    public class LogAppEFConfig : IEntityTypeConfiguration<LogApp>
+    public class LogAppEfConfig : IEntityTypeConfiguration<LogApp>
     {
         public void Configure(EntityTypeBuilder<LogApp> builder)
         {

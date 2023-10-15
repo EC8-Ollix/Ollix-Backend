@@ -4,7 +4,7 @@ using Ollix.Domain.Aggregates.UserAppAggregate;
 
 namespace Ollix.Infrastructure.Data.DataBaseContext.Config;
 
-public class UserAppEFConfig : IEntityTypeConfiguration<UserApp>
+public class UserAppEfConfig : IEntityTypeConfiguration<UserApp>
 {
     public void Configure(EntityTypeBuilder<UserApp> builder)
     {

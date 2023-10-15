@@ -8,5 +8,9 @@ namespace Ollix.Domain.Aggregates.LogAggregate
         User = 1,
         [Description("Cliente")]
         Client = 2,
+        [Description("Pedido")]
+        Order = 3,
+        [Description("Hélice")]
+        Propeller = 4
     }
 }

@@ -31,7 +31,10 @@ namespace Ollix.Application.UseCases.Clients.Commands.DeleteClient
                 return Result.Error(clientAppResult.Errors.ToArray());
 
             var clientApp = clientAppResult.Value;
-            clientApp.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, EntityEnum.Client, OperationEnum.Update, clientApp));
+            if (clientApp.Id == request.UserInfo!.ClientApp!.Id && request.UserInfo.IsAdmin())
+                return Result.Error("Não é permitido excluir seu proprio cliente!");
+
+            clientApp.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, EntityEnum.Client, OperationEnum.Delete, clientApp));
 
             await _repository.DeleteAsync(clientApp, cancellationToken);
 
