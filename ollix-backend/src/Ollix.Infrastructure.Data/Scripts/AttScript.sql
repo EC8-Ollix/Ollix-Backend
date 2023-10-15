@@ -93,7 +93,6 @@ CREATE TABLE [PropellerInfoDate] (
     CONSTRAINT [FK_PropellerInfoDate_Propeller_PropellerId] FOREIGN KEY ([PropellerId]) REFERENCES [Propeller] ([Id]) ON DELETE CASCADE
 );
 
-
 CREATE INDEX [IX_Order_AddressId] ON [Order] ([AddressId]);
 
 CREATE INDEX [IX_Address_PostalCode] ON [AddressApp] ([PostalCode]);
