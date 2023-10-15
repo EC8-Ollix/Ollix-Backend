@@ -1,18 +1,12 @@
 ﻿using Ardalis.ApiEndpoints;
-using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
-using Ollix.API.Endpoints.Orders;
 using Ollix.API.Shared;
-using Ollix.Application.UseCases.Orders.Queries.GetOrders;
+using Ollix.Application.UseCases.Propellers.Queries.GetAdressesFromPropellers;
 using Ollix.Domain.Aggregates.AddressAppAggregate.Models;
-using Ollix.Domain.Aggregates.OrderAggregate;
 using Ollix.Domain.Models;
 using Swashbuckle.AspNetCore.Annotations;
-using Ollix.SharedKernel.Extensions;
-using Ollix.Application.UseCases.Propellers.Queries.GetAdressesFromPropellers;
 
 namespace Ollix.API.Endpoints.Propellers
 {

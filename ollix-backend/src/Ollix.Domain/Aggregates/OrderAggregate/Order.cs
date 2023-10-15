@@ -2,7 +2,6 @@
 using Ollix.Domain.Aggregates.AddressAppAggregate;
 using Ollix.Domain.Aggregates.ClientAppAggregate;
 using Ollix.Domain.Aggregates.PropellerAggregate;
-using Ollix.Domain.Aggregates.PropellerInfoAggregate;
 using Ollix.SharedKernel;
 
 namespace Ollix.Domain.Aggregates.OrderAggregate

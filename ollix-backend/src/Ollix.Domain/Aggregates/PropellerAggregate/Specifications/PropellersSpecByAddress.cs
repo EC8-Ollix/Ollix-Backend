@@ -3,7 +3,7 @@ using Ollix.Domain.Aggregates.AddressAppAggregate;
 
 namespace Ollix.Domain.Aggregates.PropellerAggregate.Specifications
 {
-    public class PropellersSpecByAddress : Specification<Propeller , AddressApp>
+    public class PropellersSpecByAddress : Specification<Propeller, AddressApp>
     {
         public PropellersSpecByAddress(Guid clientId, string? state, string? city, bool? installed)
         {

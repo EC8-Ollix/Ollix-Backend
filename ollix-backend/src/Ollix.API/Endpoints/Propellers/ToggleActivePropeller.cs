@@ -1,15 +1,12 @@
 ﻿using Ardalis.ApiEndpoints;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Shared;
-using Ollix.Application.UseCases.Propellers.Queries.GetPropellerById;
-using Ollix.Domain.Aggregates.PropellerAggregate;
+using Ollix.Application.UseCases.Propellers.Commands.TogglePropeller;
+using Ollix.SharedKernel.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
-using Ollix.SharedKernel.Extensions;
-using Ollix.Application.UseCases.Propellers.Commands.TogglePropeller;
 
 namespace Ollix.API.Endpoints.Propellers
 {

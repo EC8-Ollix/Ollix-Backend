@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ollix.Domain.Aggregates.OrderAggregate;
 using Ollix.Domain.Models;
 using System.ComponentModel.DataAnnotations;
 

@@ -1,10 +1,4 @@
 ﻿using FluentValidation;
-using Ollix.Application.UseCases.Orders.Commands.CreateOrder;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ollix.Application.UseCases.Orders.Commands.ProcessOrder
 {
@@ -22,7 +16,7 @@ namespace Ollix.Application.UseCases.Orders.Commands.ProcessOrder
             RuleFor(p => p.IntallationDate)
                 .GreaterThan(DateTimeOffset.UtcNow.Date).When(p => p.Approved)
                 .WithMessage("Necessário informar a Data de Instalação para um Pedido Aprovado");
-                
+
             RuleFor(p => p.UserInfo)
                 .NotEmpty().WithMessage("O Usuário é obrigatório");
         }

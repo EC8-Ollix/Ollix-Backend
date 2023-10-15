@@ -1,10 +1,8 @@
 ﻿using Ardalis.ApiEndpoints;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Shared;
-using Ollix.Application.UseCases.Clients.Commands.DeleteClient;
 using Ollix.Application.UseCases.Orders.Commands.CancelOrder;
 using Ollix.Domain.Aggregates.UserAppAggregate;
 using Ollix.SharedKernel.Extensions;

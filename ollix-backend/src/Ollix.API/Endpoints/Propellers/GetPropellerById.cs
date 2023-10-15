@@ -1,16 +1,13 @@
 ﻿using Ardalis.ApiEndpoints;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Shared;
-using Ollix.Application.UseCases.Orders.Queries.GetOrderById;
 using Ollix.Application.UseCases.Propellers.Queries.GetPropellerById;
-using Ollix.Domain.Aggregates.OrderAggregate;
 using Ollix.Domain.Aggregates.PropellerAggregate;
+using Ollix.SharedKernel.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
-using Ollix.SharedKernel.Extensions;
 
 namespace Ollix.API.Endpoints.Propellers
 {

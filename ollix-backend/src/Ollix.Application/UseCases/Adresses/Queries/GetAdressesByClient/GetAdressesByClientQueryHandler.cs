@@ -1,17 +1,9 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Propellers.Queries.GetAdressesFromPropellers;
-using Ollix.Domain.Aggregates.AddressAppAggregate.Models;
-using Ollix.Domain.Aggregates.PropellerAggregate.Specifications;
-using Ollix.Domain.Aggregates.PropellerAggregate;
-using Ollix.Domain.Models;
-using Ollix.SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ollix.Domain.Aggregates.AddressAppAggregate;
+using Ollix.Domain.Aggregates.PropellerAggregate;
+using Ollix.Domain.Aggregates.PropellerAggregate.Specifications;
+using Ollix.SharedKernel.Interfaces;
 
 namespace Ollix.Application.UseCases.Adresses.Queries.GetAdressesByClient
 {

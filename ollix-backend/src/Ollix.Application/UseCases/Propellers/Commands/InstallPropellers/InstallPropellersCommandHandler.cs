@@ -1,16 +1,10 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Propellers.Commands.CreatePropellers;
 using Ollix.Domain.Aggregates.LogAggregate;
 using Ollix.Domain.Aggregates.PropellerAggregate;
 using Ollix.Domain.Aggregates.PropellerAggregate.Specifications;
 using Ollix.Domain.Events;
 using Ollix.SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ollix.Application.UseCases.Propellers.Commands.InstallPropellers
 {
@@ -23,7 +17,7 @@ namespace Ollix.Application.UseCases.Propellers.Commands.InstallPropellers
             _repository = repository;
         }
 
-        public async Task<Result> Handle(InstallPropellersCommand request, 
+        public async Task<Result> Handle(InstallPropellersCommand request,
             CancellationToken cancellationToken)
         {
             var propellers = await _repository.ListAsync(new PropellersByOrderSpec(request.Order!), cancellationToken);

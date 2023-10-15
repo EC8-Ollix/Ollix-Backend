@@ -1,16 +1,9 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Clients.Commands.DeleteClient;
-using Ollix.Application.UseCases.Clients.Queries.GetClientById;
 using Ollix.Domain.Aggregates.ClientAppAggregate;
 using Ollix.Domain.Aggregates.LogAggregate;
 using Ollix.Domain.Events;
 using Ollix.SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ollix.Application.UseCases.Clients.Commands.ToggleClient
 {

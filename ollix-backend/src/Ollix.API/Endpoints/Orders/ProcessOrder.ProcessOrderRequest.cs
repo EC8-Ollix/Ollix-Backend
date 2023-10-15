@@ -1,11 +1,9 @@
 ﻿using Ardalis.Result;
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Shared.Request;
-using Ollix.Application.UseCases.Orders.Commands.CreateOrder;
 using Ollix.Application.UseCases.Orders.Commands.ProcessOrder;
 using Ollix.Domain.Aggregates.OrderAggregate;
 using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
 namespace Ollix.API.Endpoints.Orders
 {

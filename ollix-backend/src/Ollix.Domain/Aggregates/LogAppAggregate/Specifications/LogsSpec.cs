@@ -1,5 +1,4 @@
 ﻿using Ardalis.Specification;
-using Ollix.Domain.Aggregates.ClientAppAggregate;
 using Ollix.Domain.Aggregates.LogAggregate;
 using Ollix.Domain.Aggregates.LogAppAggregate.Models;
 using Ollix.Domain.Models;
@@ -20,7 +19,7 @@ namespace Ollix.Domain.Aggregates.LogAppAggregate.Specifications
             Query
                 .Skip(paginationRequest.GetSkip())
                 .Take(paginationRequest.PageSize)
-                .AsNoTracking(); 
+                .AsNoTracking();
         }
 
         public LogsSpec(Guid clientId)

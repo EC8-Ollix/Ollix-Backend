@@ -1,20 +1,9 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Clients.Queries.GetClientById;
-using Ollix.Application.UseCases.Users.Queries.GetUsers;
-using Ollix.Domain.Aggregates.UserAppAggregate.Models;
-using Ollix.Domain.Aggregates.UserAppAggregate.Specifications;
-using Ollix.Domain.Aggregates.UserAppAggregate;
-using Ollix.Domain.Models;
-using Ollix.SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ollix.Domain.Aggregates.OrderAggregate;
 using Ollix.Domain.Aggregates.OrderAggregate.Specifications;
-using Ollix.Domain.Aggregates.PropellerAggregate.Specifications;
+using Ollix.Domain.Models;
+using Ollix.SharedKernel.Interfaces;
 
 namespace Ollix.Application.UseCases.Orders.Queries.GetOrders
 {

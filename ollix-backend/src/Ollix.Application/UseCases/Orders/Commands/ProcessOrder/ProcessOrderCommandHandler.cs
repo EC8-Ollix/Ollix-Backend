@@ -1,18 +1,10 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Clients.Queries.GetClientById;
-using Ollix.Application.UseCases.Orders.Commands.CancelOrder;
 using Ollix.Application.UseCases.Propellers.Commands.CreatePropellers;
 using Ollix.Domain.Aggregates.LogAggregate;
 using Ollix.Domain.Aggregates.OrderAggregate;
-using Ollix.Domain.Aggregates.PropellerAggregate;
 using Ollix.Domain.Events;
 using Ollix.SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ollix.Application.UseCases.Orders.Commands.ProcessOrder
 {
@@ -21,7 +13,7 @@ namespace Ollix.Application.UseCases.Orders.Commands.ProcessOrder
         private readonly IRepository<Order> _repository;
         private readonly IMediator _mediator;
 
-        public ProcessOrderCommandHandler(IRepository<Order> repository, 
+        public ProcessOrderCommandHandler(IRepository<Order> repository,
             IMediator mediator)
         {
             _repository = repository;

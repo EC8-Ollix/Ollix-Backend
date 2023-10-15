@@ -1,5 +1,4 @@
 ﻿using Ardalis.ApiEndpoints;
-using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +6,6 @@ using Ollix.API.Shared;
 using Ollix.Application.UseCases.Logs.Queries.GetLogs;
 using Ollix.Domain.Aggregates.LogAppAggregate.Models;
 using Ollix.Domain.Models;
-using Ollix.SharedKernel.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Ollix.API.Endpoints.Logs

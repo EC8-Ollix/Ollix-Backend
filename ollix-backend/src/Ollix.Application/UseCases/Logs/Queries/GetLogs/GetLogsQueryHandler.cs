@@ -1,6 +1,5 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Clients.Queries.GetClientById;
 using Ollix.Domain.Aggregates.LogAggregate;
 using Ollix.Domain.Aggregates.LogAppAggregate.Models;
 using Ollix.Domain.Aggregates.LogAppAggregate.Specifications;

@@ -1,12 +1,9 @@
 ﻿using Ardalis.ApiEndpoints;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Shared;
-using Ollix.Application.UseCases.Orders.Commands.CancelOrder;
 using Ollix.Application.UseCases.Orders.Commands.ConfirmIntallation;
-using Ollix.Domain.Aggregates.OrderAggregate;
 using Ollix.Domain.Aggregates.UserAppAggregate;
 using Ollix.SharedKernel.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
@@ -38,7 +35,7 @@ namespace Ollix.API.Endpoints.Orders
             CancellationToken cancellationToken = default)
         {
             var userInfo = ApplicationClaims.GetUserInfoByClaims(User.Claims.ToArray());
-            var result = await _mediator.Send(new ConfirmInstallationCommand(orderId , userInfo!), cancellationToken);
+            var result = await _mediator.Send(new ConfirmInstallationCommand(orderId, userInfo!), cancellationToken);
 
             return result.Handle()
                         .OnSuccess(resultValue => NoContent())

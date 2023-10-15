@@ -1,16 +1,9 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Orders.Commands.ProcessOrder;
 using Ollix.Domain.Aggregates.LogAggregate;
-using Ollix.Domain.Aggregates.OrderAggregate;
 using Ollix.Domain.Aggregates.PropellerAggregate;
 using Ollix.Domain.Events;
 using Ollix.SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ollix.Application.UseCases.Propellers.Commands.CreatePropellers
 {

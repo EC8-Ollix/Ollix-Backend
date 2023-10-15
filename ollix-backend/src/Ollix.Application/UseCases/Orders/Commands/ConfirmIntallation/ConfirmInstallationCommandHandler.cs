@@ -1,19 +1,11 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Orders.Commands.ProcessOrder;
-using Ollix.Application.UseCases.Propellers.Commands.CreatePropellers;
 using Ollix.Application.UseCases.Propellers.Commands.InstallPropellers;
 using Ollix.Domain.Aggregates.LogAggregate;
 using Ollix.Domain.Aggregates.OrderAggregate;
-using Ollix.Domain.Aggregates.PropellerAggregate;
 using Ollix.Domain.Events;
 using Ollix.SharedKernel.Extensions;
 using Ollix.SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ollix.Application.UseCases.Orders.Commands.ConfirmIntallation
 {
@@ -37,7 +29,7 @@ namespace Ollix.Application.UseCases.Orders.Commands.ConfirmIntallation
             if (order is null)
                 return Result.NotFound("Pedido não encontrado!");
 
-            if(!order.CanConfirmInstallation())
+            if (!order.CanConfirmInstallation())
                 return Result.Error($"O Pedido deve ter o status '{OrderStatus.InstallationPending.GetDescription()}' " +
                     $"para ter sua instalação confirmada!");
 

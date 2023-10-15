@@ -1,18 +1,10 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Clients.Commands.DeleteClient;
-using Ollix.Application.UseCases.Clients.Queries.GetClientById;
-using Ollix.Domain.Aggregates.ClientAppAggregate;
 using Ollix.Domain.Aggregates.LogAggregate;
 using Ollix.Domain.Aggregates.OrderAggregate;
 using Ollix.Domain.Events;
 using Ollix.SharedKernel.Extensions;
 using Ollix.SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ollix.Application.UseCases.Orders.Commands.CancelOrder
 {
@@ -35,7 +27,7 @@ namespace Ollix.Application.UseCases.Orders.Commands.CancelOrder
             if (order is null)
                 return Result.NotFound("Pedido não encontrado!");
 
-            if(order.OrderStatus is OrderStatus.Cancel)
+            if (order.OrderStatus is OrderStatus.Cancel)
                 return Result.Success();
 
             if (!order.CanCancel())

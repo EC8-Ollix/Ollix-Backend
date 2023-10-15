@@ -1,19 +1,12 @@
 ﻿using Ardalis.ApiEndpoints;
-using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
-using Ollix.API.Endpoints.Users;
 using Ollix.API.Shared;
-using Ollix.Application.UseCases.Users.Queries.GetUsers;
+using Ollix.Application.UseCases.Orders.Queries.GetOrders;
 using Ollix.Domain.Aggregates.OrderAggregate;
-using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 using Ollix.Domain.Models;
 using Swashbuckle.AspNetCore.Annotations;
-using Ollix.SharedKernel.Extensions;
-using Ollix.Domain.Aggregates.UserAppAggregate;
-using Ollix.Application.UseCases.Orders.Queries.GetOrders;
 
 namespace Ollix.API.Endpoints.Orders
 {

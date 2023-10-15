@@ -1,16 +1,13 @@
 ﻿using Ardalis.ApiEndpoints;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Shared;
 using Ollix.Application.UseCases.Clients.Commands.ToggleClient;
-using Ollix.Application.UseCases.Propellers.Commands.TogglePropeller;
-using Ollix.Domain.Aggregates.PropellerAggregate;
 using Ollix.Domain.Aggregates.UserAppAggregate;
+using Ollix.SharedKernel.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
-using Ollix.SharedKernel.Extensions;
 
 namespace Ollix.API.Endpoints.Clients
 {

@@ -1,16 +1,9 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Application.UseCases.Propellers.Commands.CreatePropellers;
-using Ollix.Domain.Aggregates.ClientAppAggregate;
 using Ollix.Domain.Aggregates.LogAggregate;
 using Ollix.Domain.Aggregates.PropellerAggregate;
 using Ollix.Domain.Events;
 using Ollix.SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ollix.Application.UseCases.Propellers.Commands.TogglePropeller
 {
@@ -23,7 +16,7 @@ namespace Ollix.Application.UseCases.Propellers.Commands.TogglePropeller
             _repository = repository;
         }
 
-        public async Task<Result> Handle(TogglePropellerCommand request, 
+        public async Task<Result> Handle(TogglePropellerCommand request,
             CancellationToken cancellationToken)
         {
             var propeller = await _repository.GetByIdAsync(request.PropellerId, cancellationToken);
