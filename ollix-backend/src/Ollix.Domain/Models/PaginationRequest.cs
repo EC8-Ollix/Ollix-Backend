@@ -17,7 +17,7 @@ namespace Ollix.Domain.Models
         public void NormalizePager()
         {
             Page = Page < 1 ? 1 : Page;
-            PageSize = (PageSize < 1 ? 10 : PageSize <= _maxPageSize ? PageSize : _maxPageSize);
+            PageSize = (PageSize < 1 ? 5 : PageSize <= _maxPageSize ? PageSize : _maxPageSize);
         }
 
         public int GetSkip()

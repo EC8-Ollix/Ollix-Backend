@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Ollix.Infrastructure.Integrations.ViaCep;
 using Ollix.Infrastructure.IoC.Configs;
+using Ollix.Infrastructure.IoC.Configs.Binders;
 using Ollix.Infrastructure.IoC.Extensions;
 using Ollix.Infrastructure.IoC.Interfaces;
 using System.Text;
@@ -20,6 +21,7 @@ namespace Ollix.Infrastructure.IoC.Installers
             services.AddHttpContextAccessor();
             services.AddControllers(options =>
             {
+                options.ModelBinderProviders.Insert(0, new PaginationRequestModelBinderProvider());
                 options.Conventions.Add(new EndpointConvention());
             }).AddNewtonsoftJson(jsonOptions =>
             {

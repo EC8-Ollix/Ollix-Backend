@@ -25,7 +25,7 @@ namespace Ollix.API.Endpoints.Clients
         }
 
         [HttpGet(Routes.ClientsUri)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PaginationResponse<UserInfo>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PaginationResponse<ClientApp>))]
         [SwaggerOperation(
           Summary = "Obter Clientes",
           Description = "Retorna os Clientes cadastrados na plataforma",
