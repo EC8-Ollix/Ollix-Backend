@@ -1,4 +1,4 @@
-﻿using Ollix.Application.UseCases.Authentication.Shared;
+﻿using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 
 namespace Ollix.API.Endpoints.Authentication
 {

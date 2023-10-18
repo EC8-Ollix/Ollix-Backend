@@ -35,11 +35,11 @@ namespace Ollix.Infrastructure.IoC
         {
             app.UseHttpsRedirection();
             app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
-            //app.UseCors(builder => builder
-            //    .SetIsOriginAllowed(orign => true)
-            //    .AllowAnyMethod()
-            //    .AllowAnyHeader()
-            //    .AllowCredentials());
+            app.UseCors(builder => builder
+                .SetIsOriginAllowed(orign => true)
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
             app.UseSwagger();
 
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", configuration.GetApiName()));

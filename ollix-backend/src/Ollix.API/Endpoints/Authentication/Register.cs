@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ollix.API.Shared;
-using Ollix.Application.UseCases.Authentication.Shared;
+using Ollix.Domain.Aggregates.UserAppAggregate.Models;
 using Ollix.SharedKernel.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -34,7 +34,7 @@ namespace Ollix.API.Endpoints.Authentication
             var result = await _mediator.Send(request.ToCommand(), cancellationToken);
 
             return result.Handle()
-                        .OnSuccess(resultValue => Created(Routes.RegisterUri, resultValue))
+                        .OnSuccess(resultValue => Created($"{Routes.RegisterUri}/{resultValue.Id}", resultValue))
                         .OnError(errors => BadRequest(result.ToErrorModel()))
                         .OnInvalid(errors => BadRequest(result.ToErrorModel()))
                         .Return();

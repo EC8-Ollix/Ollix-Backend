@@ -1,13 +1,12 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Ollix.Domain.ClientAppAggregate;
+using Ollix.Application.UseCases.Clients.Commands.Shared;
+using Ollix.Domain.Aggregates.ClientAppAggregate;
 
 namespace Ollix.Application.UseCases.Clients.Commands.CreateClient
 {
-    public sealed record CreateClientCommand : IRequest<Result<ClientApp>>
+    public sealed record CreateClientCommand : UpsertClientCommand, IRequest<Result<ClientApp>>
     {
-        public string? CompanyName { get; set; }
-        public string? BussinessName { get; set; }
         public string? Cnpj { get; set; }
     }
 }

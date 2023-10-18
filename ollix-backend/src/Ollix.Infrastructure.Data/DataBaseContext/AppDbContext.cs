@@ -1,8 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
-using Ollix.Domain.ClientAppAggregate;
-using Ollix.Domain.UserAggregate;
+using Ollix.Domain.Aggregates.AddressAppAggregate;
+using Ollix.Domain.Aggregates.ClientAppAggregate;
+using Ollix.Domain.Aggregates.LogAggregate;
+using Ollix.Domain.Aggregates.OrderAggregate;
+using Ollix.Domain.Aggregates.PropellerAggregate;
+using Ollix.Domain.Aggregates.UserAppAggregate;
 using Ollix.Infrastructure.Data.DataBaseContext.Config;
 using Ollix.SharedKernel;
 using Ollix.SharedKernel.Interfaces;
@@ -24,13 +28,22 @@ public class AppDbContext : DbContext
 
     public DbSet<UserApp> UserApp => Set<UserApp>();
     public DbSet<ClientApp> ClientApp => Set<ClientApp>();
+    public DbSet<LogApp> LogApp => Set<LogApp>();
+    public DbSet<AddressApp> AddressApp => Set<AddressApp>();
+    public DbSet<Order> Order => Set<Order>();
+    public DbSet<Propeller> Propeller => Set<Propeller>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.ApplyConfiguration(new ClientAppEfConfig());
-        modelBuilder.ApplyConfiguration(new UserAppEFConfig());
+        modelBuilder.ApplyConfiguration(new UserAppEfConfig());
+        modelBuilder.ApplyConfiguration(new LogAppEfConfig());
+        modelBuilder.ApplyConfiguration(new AddressAppEfConfig());
+        modelBuilder.ApplyConfiguration(new OrderEfConfig());
+        modelBuilder.ApplyConfiguration(new PropellerInfoDateEfConfig());
+        modelBuilder.ApplyConfiguration(new PropellerEfConfig());
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

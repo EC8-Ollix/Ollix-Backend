@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Ollix.Domain.ClientAppAggregate;
+using Ollix.Domain.Aggregates.ClientAppAggregate;
 
 namespace Ollix.Infrastructure.Data.DataBaseContext.Config
 {
@@ -24,6 +24,9 @@ namespace Ollix.Infrastructure.Data.DataBaseContext.Config
                 .Property(x => x.Value)
                 .HasColumnName("Cnpj")
                 .HasMaxLength(18)
+                .IsRequired();
+
+            builder.Property(p => p.Active)
                 .IsRequired();
         }
     }

@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Ollix.Domain.ClientAppAggregate;
-using Ollix.Domain.UserAggregate;
+using Ollix.Domain.Aggregates.UserAppAggregate;
 
 namespace Ollix.Infrastructure.Data.DataBaseContext.Config;
 
-public class UserAppEFConfig : IEntityTypeConfiguration<UserApp>
+public class UserAppEfConfig : IEntityTypeConfiguration<UserApp>
 {
     public void Configure(EntityTypeBuilder<UserApp> builder)
     {
@@ -20,7 +19,9 @@ public class UserAppEFConfig : IEntityTypeConfiguration<UserApp>
         builder.Property(p => p.LastName)
             .HasMaxLength(200);
 
-        builder.Property(p => p.ClientId)
+        builder.HasOne(p => p.ClientApp)
+            .WithMany()
+            .HasForeignKey(e => e.ClientId)
             .IsRequired();
 
         builder.Property(p => p.UserType)
