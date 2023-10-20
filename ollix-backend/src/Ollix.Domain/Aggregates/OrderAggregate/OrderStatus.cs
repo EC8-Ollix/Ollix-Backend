@@ -17,6 +17,6 @@ namespace Ollix.Domain.Aggregates.OrderAggregate
         Denied = 4,
 
         [Description("Cancelado")]
-        Cancel = 4
+        Cancel = 5
     }
 }

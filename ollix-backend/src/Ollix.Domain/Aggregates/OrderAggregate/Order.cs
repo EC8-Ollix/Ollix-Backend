@@ -43,8 +43,6 @@ namespace Ollix.Domain.Aggregates.OrderAggregate
             QuantityRequested = quantityRequested;
             AddressId = address.Id;
             ClientId = clientId;
-
-            AddressApp = address;
             InstallationDate = null;
         }
 

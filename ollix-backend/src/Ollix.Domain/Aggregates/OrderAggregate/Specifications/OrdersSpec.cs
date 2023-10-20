@@ -17,9 +17,11 @@ namespace Ollix.Domain.Aggregates.OrderAggregate.Specifications
             if (requestedDate.HasValue)
                 Query.Where(u => u.RequestDate.Date == requestedDate.Value.Date);
 
+            if(orderStatus != 0)
+                Query.Where(u =>u.OrderStatus == orderStatus);
+            
             Query
-                .Where(u =>
-                    u.OrderStatus == orderStatus)
+                .Include(u => u.ClientApp)
                 .Skip(paginationRequest.GetSkip())
                 .Take(paginationRequest.PageSize)
                 .AsNoTracking();
