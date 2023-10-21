@@ -17,6 +17,7 @@ namespace Ollix.Domain.Aggregates.LogAppAggregate.Specifications
                 Query.Where(q => q.ClientId == clientId);
 
             Query
+                .OrderByDescending(q => q.Date)
                 .Skip(paginationRequest.GetSkip())
                 .Take(paginationRequest.PageSize)
                 .AsNoTracking();

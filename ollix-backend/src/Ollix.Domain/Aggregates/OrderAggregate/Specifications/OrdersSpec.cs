@@ -22,6 +22,7 @@ namespace Ollix.Domain.Aggregates.OrderAggregate.Specifications
             
             Query
                 .Include(u => u.ClientApp)
+                .OrderByDescending(o => o.RequestDate)
                 .Skip(paginationRequest.GetSkip())
                 .Take(paginationRequest.PageSize)
                 .AsNoTracking();
@@ -36,7 +37,10 @@ namespace Ollix.Domain.Aggregates.OrderAggregate.Specifications
             if (requestedDate.HasValue)
                 Query.Where(u => u.RequestDate.Date == requestedDate.Value.Date);
 
-            Query.Where(u => u.OrderStatus == orderStatus).AsNoTracking();
+            if (orderStatus != 0)
+                Query.Where(u => u.OrderStatus == orderStatus);
+
+            Query.AsNoTracking();
         }
     }
 }
