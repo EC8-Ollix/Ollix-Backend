@@ -21,11 +21,20 @@ namespace Ollix.Application.UseCases.Orders.Queries.GetOrders
         {
             var clientId = query.UserInfo.IsClient() ? query.UserInfo.ClientApp!.Id : query.ClientId;
 
-            var countOrders = await _repository
-                .CountAsync(new OrdersSpec(clientId, query.OrderStatus, query.RequestedDate), cancellationToken);
 
+            var ordersSpec = new OrdersSpec();
+            ordersSpec.WithBaseSpec(clientId,
+                              query.RequesterSearch,
+                              query.ClientSearch,
+                              query.OrderStatus,
+                              query.RequestedDate);
+
+            var countOrders = await _repository
+                .CountAsync(ordersSpec, cancellationToken);
+
+            ordersSpec.WithPagination(query.PaginationRequest);
             var orders = await _repository
-                .ListAsync(new OrdersSpec(query.PaginationRequest, clientId, query.OrderStatus, query.RequestedDate), cancellationToken);
+                .ListAsync(ordersSpec, cancellationToken);
 
             var ordersResult = new PaginationResponse<Order>
                 (orders, countOrders, query.PaginationRequest);

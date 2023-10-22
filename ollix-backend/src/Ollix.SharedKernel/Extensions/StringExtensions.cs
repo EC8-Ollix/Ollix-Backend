@@ -76,5 +76,13 @@ namespace Ollix.SharedKernel.Extensions
             clientIdOut = Guid.Empty;
             return !string.IsNullOrEmpty(guidInd) && !Guid.TryParse(guidInd, out clientIdOut);
         }
+
+        public static string ToTrim(this string? value)
+        {
+            if(string.IsNullOrEmpty(value))
+                return string.Empty;
+
+            return value.TrimStart().TrimEnd();          
+        }
     }
 }

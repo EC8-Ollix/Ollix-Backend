@@ -23,7 +23,7 @@ namespace Ollix.Application.UseCases.Propellers.Queries.GetAdressesFromPropeller
             var clientId = query.UserInfo.IsClient() ? query.UserInfo.ClientApp!.Id : query.ClientId;
 
             var adresses = await _repository
-                .ListAsync(new PropellersSpecByAddress(clientId, query.State, query.City, query.UserInfo.IsClient() ? true : null), cancellationToken);
+                .ListAsync(new PropellersSpecByAddress(clientId, query.State, query.City), cancellationToken);
 
             var uniqueAdresses = adresses.DistinctBy(a => a!.Id);
 

@@ -27,28 +27,28 @@ namespace Ollix.Application.UseCases.Orders.Commands.ProcessOrder
             if (order is null)
                 return Result.NotFound("Pedido não encontrado!");
 
-            if (order.OrderStatus is OrderStatus.Cancel)
-                return Result.Error("O pedido está cancelado!");
+            if (order.OrderStatus is not OrderStatus.Pending)
+                return Result.Error("O pedido precisa estar Pendente para ser processado!");
 
-            await ProcessOrder(request, order);
-            order.RegisterDomainEvent(new EntityControlEvent(request.UserInfo!, EntityEnum.Order, OperationEnum.ProcessOrder, order));
-
+            var operation = await ProcessOrder(request, order);
+            order.RegisterDomainEvent(new EntityControlEvent(request.UserInfo!, EntityEnum.Order, operation, order));
             await _repository.UpdateAsync(order, cancellationToken);
 
             return Result.Success(order);
         }
 
-        private async Task ProcessOrder(ProcessOrderCommand request, Order order)
+        private async Task<OperationEnum> ProcessOrder(ProcessOrderCommand request, Order order)
         {
             if (request.Approved)
             {
                 order.ScheduleInstallation(request.IntallationDate);
                 await _mediator.Send(new CreatePropellersCommand(order, request.UserInfo!));
 
-                return;
+                return OperationEnum.OrderApproved;
             }
 
             order.SetOrderStatus(OrderStatus.Denied);
+            return OperationEnum.OrderDenied;
         }
     }
 }

@@ -5,15 +5,14 @@ namespace Ollix.Domain.Aggregates.PropellerAggregate.Specifications
 {
     public class PropellersSpecByAddress : Specification<Propeller, AddressApp>
     {
-        public PropellersSpecByAddress(Guid clientId, string? state, string? city, bool? installed)
+        public PropellersSpecByAddress(Guid clientId, string? state, string? city)
         {
             Query.Where(u => u.ClientId == clientId);
 
             Query.Select(p => p.AddressApp!)
                 .Include(p => p.AddressApp!);
 
-            if (installed.HasValue)
-                Query.Where(u => u.Active == installed.Value);
+            Query.Where(u => u.Installed == true);
 
             if (!string.IsNullOrEmpty(state))
                 Query.Where(p => p.AddressApp!.State!.Contains(state));

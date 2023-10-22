@@ -22,6 +22,10 @@
         {
             Data = data;
         }
-        public PaginationResponse() { }
+        public PaginationResponse(PaginationRequest paginationRequest)
+        {
+            Page = paginationRequest.Page;
+            PageSize = paginationRequest.PageSize;
+        }
     }
 }

@@ -20,9 +20,12 @@ namespace Ollix.Domain.Aggregates.PropellerAggregate.Specifications
                 Query.Where(u => u.Active == active.Value);
 
             if (installed.HasValue)
-                Query.Where(u => u.Active == installed.Value);
+                Query.Where(u => u.Installed == installed.Value);
 
             Query
+                .Include(i => i.AddressApp)
+                .Include(i => i.Order)
+                .OrderByDescending(i => i.Order!.InstallationDate)
                 .Skip(paginationRequest.GetSkip())
                 .Take(paginationRequest.PageSize)
                 .AsNoTracking();
@@ -40,7 +43,7 @@ namespace Ollix.Domain.Aggregates.PropellerAggregate.Specifications
                 Query.Where(u => u.Active == active.Value);
 
             if (installed.HasValue)
-                Query.Where(u => u.Active == installed.Value);
+                Query.Where(u => u.Installed == installed.Value);
 
             Query.AsNoTracking();
         }
