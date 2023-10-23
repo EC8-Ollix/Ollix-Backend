@@ -22,7 +22,7 @@ namespace Ollix.Application.UseCases.Logs.Queries.GetLogs
         public async Task<Result<PaginationResponse<LogAppModel>>> Handle(GetLogsQuery query,
             CancellationToken cancellationToken)
         {
-            var clientId = query.UserInfo.IsClient() ? query.UserInfo.ClientApp!.Id : query.ClientId;
+            var clientId = query.ClientId != Guid.Empty ? query.ClientId : query.UserInfo.ClientApp!.Id;
 
             var logsCount = await _repository.CountAsync(new LogsSpec(clientId), cancellationToken);
             var logsResult = await _repository.ListAsync(new LogsSpec(query.PaginationRequest, clientId), cancellationToken);
