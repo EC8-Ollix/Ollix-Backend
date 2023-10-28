@@ -37,6 +37,7 @@ namespace Ollix.API.Endpoints.Orders
             var query = new GetOrdersQuery(
                 userInfo!,
                 request.ClientId,
+                request.OrderNumber,
                 request.RequesterSearch,
                 request.ClientSearch,
                 request.OrderStatus,

@@ -41,7 +41,7 @@ namespace Ollix.Application.UseCases.Orders.Commands.ProcessOrder
         {
             if (request.Approved)
             {
-                order.ScheduleInstallation(request.IntallationDate);
+                order.ScheduleInstallation(request.InstallationDate);
                 await _mediator.Send(new CreatePropellersCommand(order, request.UserInfo!));
 
                 return OperationEnum.OrderApproved;

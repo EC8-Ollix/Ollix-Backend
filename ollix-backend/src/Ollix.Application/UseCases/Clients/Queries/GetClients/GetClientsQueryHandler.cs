@@ -31,7 +31,6 @@ namespace Ollix.Application.UseCases.Clients.Queries.GetClients
             clientSpec.WithPagination(query.PaginationRequest);
             var clientsResult = await _repository.ListAsync(clientSpec, cancellationToken);
 
-
             return Result.Success(new PaginationResponse<ClientApp>(clientsResult, clientsCount, query.PaginationRequest));
         }
     }

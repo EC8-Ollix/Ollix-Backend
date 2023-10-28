@@ -12,6 +12,10 @@ namespace Ollix.Infrastructure.Data.DataBaseContext.Config
 
             builder.HasKey(k => k.Id);
 
+            builder.Property(p => p.OrderNumber)
+                .HasMaxLength(100)
+                .IsRequired();
+
             builder.Property(p => p.RequesterName)
                 .HasMaxLength(200)
                 .IsRequired();

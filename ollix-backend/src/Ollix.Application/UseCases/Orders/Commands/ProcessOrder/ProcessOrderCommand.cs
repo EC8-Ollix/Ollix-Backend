@@ -10,7 +10,7 @@ namespace Ollix.Application.UseCases.Orders.Commands.ProcessOrder
     {
         public Guid OrderId { get; set; }
         public bool Approved { get; set; }
-        public DateTimeOffset IntallationDate { get; set; }
+        public DateTimeOffset InstallationDate { get; set; }
         public UserInfo? UserInfo { get; set; }
     }
 }

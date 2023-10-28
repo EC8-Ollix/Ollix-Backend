@@ -12,17 +12,25 @@ namespace Ollix.API.Endpoints.Orders
         [FromRoute(Name = "orderId")]
         [Required]
         public Guid OrderId { get; set; }
-        public bool Approved { get; set; }
-        public DateTimeOffset IntallationDate { get; set; }
 
+        [FromBody()]
+        public ProcessOrderRequestBody? ProcessOrderBody { get; set; }
         public ProcessOrderCommand ToCommand()
         {
+            var bodyRequest = ProcessOrderBody ?? new ProcessOrderRequestBody();
             return new ProcessOrderCommand()
             {
                 OrderId = OrderId,
-                Approved = Approved,
-                IntallationDate = IntallationDate
+                Approved = bodyRequest.Approved,
+                InstallationDate = bodyRequest.InstallationDate
             };
         }
     }
+
+    public class ProcessOrderRequestBody
+    {
+        public bool Approved { get; set; }
+        public DateTimeOffset InstallationDate { get; set; }
+    }
+
 }

@@ -9,6 +9,7 @@ namespace Ollix.Domain.Aggregates.OrderAggregate.Specifications
     {
         public void WithBaseSpec(
                           Guid clientId,
+                          string? OrderNumber,
                           string? requesterSearch,
                           string? clientSearch,
                           OrderStatus orderStatus,
@@ -24,6 +25,9 @@ namespace Ollix.Domain.Aggregates.OrderAggregate.Specifications
                     u.RequestDate.Date <= requestedDate.Last().Date
                 );
 
+            if (!string.IsNullOrEmpty(OrderNumber))
+                Query.Where(u => u.OrderNumber!.Contains(OrderNumber.ToTrim()));
+   
             if (!string.IsNullOrEmpty(requesterSearch))
             {
                 requesterSearch = requesterSearch.ToTrim();
@@ -34,12 +38,13 @@ namespace Ollix.Domain.Aggregates.OrderAggregate.Specifications
             {
                 clientSearch = clientSearch.ToTrim();
                 Query.Search(u => u.ClientApp!.CompanyName!, "%" + clientSearch + "%")
-                    .Search(u => u.ClientApp!.BussinessName!, "%" + clientSearch + "%");            }
+                    .Search(u => u.ClientApp!.BussinessName!, "%" + clientSearch + "%");            
+            }
 
             if (orderStatus != 0)
                 Query.Where(u => u.OrderStatus == orderStatus);
 
-            Query.AsNoTracking();
+            Query.Include(u => u.AddressApp).AsNoTracking();
         }
 
         public void WithPagination(PaginationRequest paginationRequest)

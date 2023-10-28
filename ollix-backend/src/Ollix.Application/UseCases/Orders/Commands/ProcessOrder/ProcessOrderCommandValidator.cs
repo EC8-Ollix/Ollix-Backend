@@ -10,9 +10,10 @@ namespace Ollix.Application.UseCases.Orders.Commands.ProcessOrder
             RuleFor(p => p.OrderId)
                 .NotEmpty().WithMessage("O Pedido é obrigatório");
 
-            RuleFor(p => p.IntallationDate)
+            RuleFor(p => p.InstallationDate)
+                .NotEmpty().WithMessage("Necessário informar a data de instalação para um pedido aprovado")
                 .GreaterThan(DateTimeOffset.UtcNow.Date).When(p => p.Approved)
-                .WithMessage("Necessário informar a Data de Instalação para um Pedido Aprovado");
+                .WithMessage("Necessário informar uma a data de instalação maior do que hoje");
 
             RuleFor(p => p.UserInfo)
                 .NotEmpty().WithMessage("O Usuário é obrigatório");

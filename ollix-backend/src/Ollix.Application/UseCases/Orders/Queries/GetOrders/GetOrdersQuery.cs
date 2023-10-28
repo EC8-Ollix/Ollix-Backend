@@ -9,6 +9,7 @@ namespace Ollix.Application.UseCases.Orders.Queries.GetOrders
     public sealed record GetOrdersQuery(
         UserInfo UserInfo,
         Guid ClientId,
+        string? OrderNumber,
         string? RequesterSearch,
         string? ClientSearch,
         OrderStatus OrderStatus,

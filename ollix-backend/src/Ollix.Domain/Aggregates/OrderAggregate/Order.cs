@@ -3,11 +3,13 @@ using Ollix.Domain.Aggregates.AddressAppAggregate;
 using Ollix.Domain.Aggregates.ClientAppAggregate;
 using Ollix.Domain.Aggregates.PropellerAggregate;
 using Ollix.SharedKernel;
+using Ollix.SharedKernel.Extensions;
 
 namespace Ollix.Domain.Aggregates.OrderAggregate
 {
     public class Order : EntityBase, IClientAppEntity
     {
+        public string? OrderNumber { get; private set; }
         public string? RequesterName { get; private set; }
         public string? RequesterEmail { get; private set; }
         public string? Observation { get; private set; }
@@ -35,6 +37,7 @@ namespace Ollix.Domain.Aggregates.OrderAggregate
             AddressApp address,
             Guid clientId)
         {
+            OrderNumber = ($"{DateTime.Now.ToString("dd-MM-yy-HH-mm")}{Guid.NewGuid().ToString().Substring(0, 4)}").JustNumbers();
             RequesterName = requesterName;
             RequesterEmail = requesterEmail;
             Observation = observation;

@@ -11,6 +11,7 @@ namespace Ollix.API.Endpoints.Orders
         [Required(ErrorMessage = "Informe os dados de Paginação")]
         public PaginationRequest? PaginationRequest { get; set; }
         public Guid ClientId { get; set; }
+        public string? OrderNumber { get; set; }
         public string? ClientSearch { get; set; }
         public string? RequesterSearch { get; set; }
         public OrderStatus OrderStatus { get; set; }

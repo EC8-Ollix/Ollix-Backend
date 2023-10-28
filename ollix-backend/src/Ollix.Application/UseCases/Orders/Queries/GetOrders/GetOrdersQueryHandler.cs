@@ -24,6 +24,7 @@ namespace Ollix.Application.UseCases.Orders.Queries.GetOrders
 
             var ordersSpec = new OrdersSpec();
             ordersSpec.WithBaseSpec(clientId,
+                              query.OrderNumber,
                               query.RequesterSearch,
                               query.ClientSearch,
                               query.OrderStatus,

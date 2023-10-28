@@ -9,6 +9,9 @@ namespace Ollix.Application.UseCases.Propellers.Queries.GetAdressesFromPropeller
     public sealed record GetAdressesFromPropellersQuery(
         UserInfo UserInfo,
         Guid ClientId,
+        string? PostalCode,
+        string? Street,
+        string? Neighborhood,
         string? State,
         string? City,
         PaginationRequest PaginationRequest) : IRequest<Result<PaginationResponse<AddressPropellerModel>>>;

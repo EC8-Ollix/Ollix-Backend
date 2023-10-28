@@ -1,6 +1,8 @@
 ﻿using Ardalis.Specification;
+using Newtonsoft.Json.Linq;
 using Ollix.Domain.Models;
 using Ollix.SharedKernel.Extensions;
+using System.IO;
 
 namespace Ollix.Domain.Aggregates.ClientAppAggregate.Specifications
 {
@@ -12,13 +14,13 @@ namespace Ollix.Domain.Aggregates.ClientAppAggregate.Specifications
                            bool? active)
         {
             if (!string.IsNullOrEmpty(companyName))
-                Query.Search(c => c.CompanyName!, "%" + companyName + "%");
+                Query.Where(u => u.CompanyName!.Contains(companyName.ToTrim()));
 
             if (!string.IsNullOrEmpty(bussinessName))
-                Query.Search(c => c.BussinessName!, "%" + bussinessName + "%");
+                Query.Where(u => u.BussinessName!.Contains(bussinessName.ToTrim()));
 
             if (!string.IsNullOrEmpty(cnpj))
-                Query.Search(c => c.Cnpj!.Value!, "%" + cnpj.JustNumbers() + "%");
+                Query.Where(u => u.Cnpj!.Value!.Contains(cnpj.ToTrim()));
 
             if (active.HasValue)
                 Query.Where(c => c.Active == active.Value);
