@@ -26,7 +26,8 @@ namespace Ollix.Application.UseCases.Propellers.Commands.TogglePropeller
             propeller.ToggleActive();
 
             var operation = propeller.Active ? OperationEnum.ActivePropeller : OperationEnum.InactivePropeller;
-            propeller.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, EntityEnum.Client, operation, propeller));
+            propeller.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, 
+                EntityEnum.Propeller, operation, propeller, propeller.HelixId!));
 
             await _repository.UpdateAsync(propeller, cancellationToken);
 

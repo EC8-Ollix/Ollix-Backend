@@ -31,7 +31,8 @@ namespace Ollix.Application.UseCases.Orders.Commands.ProcessOrder
                 return Result.Error("O pedido precisa estar Pendente para ser processado!");
 
             var operation = await ProcessOrder(request, order);
-            order.RegisterDomainEvent(new EntityControlEvent(request.UserInfo!, EntityEnum.Order, operation, order));
+            order.RegisterDomainEvent(new EntityControlEvent(request.UserInfo!, 
+                EntityEnum.Order, operation, order, order.OrderNumber!));
             await _repository.UpdateAsync(order, cancellationToken);
 
             return Result.Success(order);

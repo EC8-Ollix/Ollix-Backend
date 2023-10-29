@@ -26,7 +26,8 @@ namespace Ollix.Application.UseCases.Propellers.Commands.InstallPropellers
                 propeller.Active = true;
                 propeller.Installed = true;
 
-                propeller.RegisterDomainEvent(new EntityControlEvent(request.UserInfo!, EntityEnum.Propeller, OperationEnum.PropellerInstalled, propeller));
+                propeller.RegisterDomainEvent(new EntityControlEvent(request.UserInfo!, 
+                    EntityEnum.Propeller, OperationEnum.PropellerInstalled, propeller, propeller.HelixId!));
             }
 
             await _repository.UpdateRangeAsync(propellers, cancellationToken);

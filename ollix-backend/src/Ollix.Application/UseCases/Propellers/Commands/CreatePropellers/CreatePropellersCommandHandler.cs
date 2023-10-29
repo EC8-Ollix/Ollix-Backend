@@ -23,7 +23,8 @@ namespace Ollix.Application.UseCases.Propellers.Commands.CreatePropellers
             {
                 var propeller = new Propeller(request.Order);
 
-                propeller.RegisterDomainEvent(new EntityControlEvent(request.UserInfo!, EntityEnum.Propeller, OperationEnum.Create, propeller));
+                propeller.RegisterDomainEvent(new EntityControlEvent(request.UserInfo!, 
+                    EntityEnum.Propeller, OperationEnum.Create, propeller, propeller.HelixId!));
 
                 propellers.Add(propeller);
             }

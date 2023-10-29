@@ -11,12 +11,10 @@ namespace Ollix.Application.UseCases.Logs.Queries.GetLogs
     public sealed class GetLogsQueryHandler : IRequestHandler<GetLogsQuery, Result<PaginationResponse<LogAppModel>>>
     {
         private readonly IRepository<LogApp> _repository;
-        private readonly IMediator _mediator;
 
-        public GetLogsQueryHandler(IRepository<LogApp> repository, IMediator mediator)
+        public GetLogsQueryHandler(IRepository<LogApp> repository)
         {
             _repository = repository;
-            _mediator = mediator;
         }
 
         public async Task<Result<PaginationResponse<LogAppModel>>> Handle(GetLogsQuery query,
@@ -24,8 +22,13 @@ namespace Ollix.Application.UseCases.Logs.Queries.GetLogs
         {
             var clientId = query.ClientId != Guid.Empty ? query.ClientId : query.UserInfo.ClientApp!.Id;
 
-            var logsCount = await _repository.CountAsync(new LogsSpec(clientId), cancellationToken);
-            var logsResult = await _repository.ListAsync(new LogsSpec(query.PaginationRequest, clientId), cancellationToken);
+            var logsSpec = new LogsSpec();
+
+            logsSpec.WithBaseSpec(clientId, query.Entity, query.Operation, query.UserName, query.Date);
+            var logsCount = await _repository.CountAsync(logsSpec, cancellationToken);
+
+            logsSpec.WithPagination(query.PaginationRequest);
+            var logsResult = await _repository.ListAsync(logsSpec, cancellationToken);
 
             return Result.Success(new PaginationResponse<LogAppModel>(logsResult, logsCount, query.PaginationRequest));
         }

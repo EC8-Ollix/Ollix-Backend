@@ -9,7 +9,7 @@ namespace Ollix.Domain.Aggregates.OrderAggregate.Specifications
     {
         public void WithBaseSpec(
                           Guid clientId,
-                          string? OrderNumber,
+                          string? orderNumber,
                           string? requesterSearch,
                           string? clientSearch,
                           OrderStatus orderStatus,
@@ -25,8 +25,8 @@ namespace Ollix.Domain.Aggregates.OrderAggregate.Specifications
                     u.RequestDate.Date <= requestedDate.Last().Date
                 );
 
-            if (!string.IsNullOrEmpty(OrderNumber))
-                Query.Where(u => u.OrderNumber!.Contains(OrderNumber.ToTrim()));
+            if (!string.IsNullOrEmpty(orderNumber))
+                Query.Where(u => u.OrderNumber!.Contains(orderNumber.ToTrim()));
    
             if (!string.IsNullOrEmpty(requesterSearch))
             {

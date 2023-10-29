@@ -31,7 +31,8 @@ namespace Ollix.Application.UseCases.Users.Commands.DeleteUser
                 return Result.Error(userAppResult.Errors.ToArray());
 
             var userApp = userAppResult.Value;
-            userApp.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, EntityEnum.User, OperationEnum.Delete, userApp));
+            userApp.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, 
+                EntityEnum.User, OperationEnum.Delete, userApp, userApp.UserEmail!));
 
             await _repository.DeleteAsync(userApp, cancellationToken);
 

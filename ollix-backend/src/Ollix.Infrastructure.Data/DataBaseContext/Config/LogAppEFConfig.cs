@@ -12,6 +12,9 @@ namespace Ollix.Infrastructure.Data.DataBaseContext.Config
 
             builder.HasKey(k => k.Id);
 
+            builder.Property(p => p.Identifier)
+                .IsRequired();
+
             builder.Property(p => p.Entity)
                 .IsRequired();
 

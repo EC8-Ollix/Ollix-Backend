@@ -29,7 +29,8 @@ namespace Ollix.Application.UseCases.Clients.Commands.CreateClient
             client.SetCompanyName(request.CompanyName);
             client.SetBussinessName(request.BussinessName);
 
-            client.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, EntityEnum.Client, OperationEnum.Update, client));
+            client.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, 
+                EntityEnum.Client, OperationEnum.Update, client, client.BussinessName!));
 
             await _repository.UpdateAsync(client, cancellationToken);
 

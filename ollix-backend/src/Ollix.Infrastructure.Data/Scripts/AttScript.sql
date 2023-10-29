@@ -31,6 +31,7 @@ CREATE TABLE [LogApp] (
     [ClientId] uniqueidentifier NOT NULL,
     [UserName] nvarchar(500) NOT NULL,
     [Date] datetimeoffset NOT NULL,
+    [Identifier] varchar(400) NOT NULL,
     CONSTRAINT [PK_LogApp] PRIMARY KEY ([Id]),
     CONSTRAINT [FK_LogApp_ClientApp_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [ClientApp] ([Id]) ON DELETE CASCADE
 );

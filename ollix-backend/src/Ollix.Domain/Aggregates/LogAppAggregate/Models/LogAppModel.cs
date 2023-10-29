@@ -6,6 +6,7 @@ namespace Ollix.Domain.Aggregates.LogAppAggregate.Models
     public class LogAppModel
     {
         public Guid Id { get; set; }
+        public string? Identifier { get; set; }
         public string? Entity { get; set; }
         public string? Operation { get; set; }
         public Guid? EntityId { get; set; }
@@ -15,6 +16,7 @@ namespace Ollix.Domain.Aggregates.LogAppAggregate.Models
         public LogAppModel(LogApp logApp)
         {
             Id = logApp.Id;
+            Identifier = logApp.Identifier;
             Entity = logApp.Entity!.GetDescription();
             Operation = logApp.Operation!.GetDescription();
             EntityId = logApp.EntityId;

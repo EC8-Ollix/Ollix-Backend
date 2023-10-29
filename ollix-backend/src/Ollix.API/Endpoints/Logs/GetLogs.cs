@@ -34,7 +34,17 @@ namespace Ollix.API.Endpoints.Logs
             CancellationToken cancellationToken = default)
         {
             var userInfo = ApplicationClaims.GetUserInfoByClaims(User.Claims.ToArray());
-            var result = await _mediator.Send(new GetLogsQuery(userInfo!, getLogsRequest.ClientId, getLogsRequest.PaginationRequest!), cancellationToken);
+            var query = new GetLogsQuery(
+                userInfo!, 
+                getLogsRequest.ClientId, 
+                getLogsRequest.Entity,
+                getLogsRequest.Operation,
+                getLogsRequest.UserName,
+                new DateTimeOffset[] { getLogsRequest.RequestedDateFrom, getLogsRequest.RequestedDateTo },
+                getLogsRequest.PaginationRequest!);
+
+
+            var result = await _mediator.Send(query, cancellationToken);
 
             return Ok(result.Value);
         }
