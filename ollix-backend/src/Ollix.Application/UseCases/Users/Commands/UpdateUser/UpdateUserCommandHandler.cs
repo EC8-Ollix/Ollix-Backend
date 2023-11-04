@@ -29,10 +29,6 @@ namespace Ollix.Application.UseCases.Users.Commands.UpdateUser
 
             user.SetFirstName(request.FirstName!);
             user.SetLastName(request.LastName!);
-            user.SetUserPassword(request.UserPassword!.ToHash());
-
-            user.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, 
-                EntityEnum.User, OperationEnum.Update, user, user.UserEmail!));
 
             await _repository.UpdateAsync(user, cancellationToken);
 
