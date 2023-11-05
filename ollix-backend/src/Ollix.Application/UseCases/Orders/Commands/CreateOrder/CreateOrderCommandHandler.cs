@@ -45,10 +45,11 @@ namespace Ollix.Application.UseCases.Orders.Commands.CreateOrder
                 DateTimeOffset.UtcNow,
                 OrderStatus.Pending,
                 request.QuantityRequested,
-                address!,
+                address,
                 request.UserInfo!.ClientApp!.Id);
 
-            order.RegisterDomainEvent(new EntityControlEvent(request.UserInfo!, EntityEnum.Order, OperationEnum.Create, order));
+            order.RegisterDomainEvent(new EntityControlEvent(request.UserInfo!, 
+                EntityEnum.Order, OperationEnum.Create, order, order.OrderNumber!));
 
             await _repository.AddAsync(order, cancellationToken);
 

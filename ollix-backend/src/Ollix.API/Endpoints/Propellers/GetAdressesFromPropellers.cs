@@ -37,6 +37,9 @@ namespace Ollix.API.Endpoints.Propellers
             var query = new GetAdressesFromPropellersQuery(
                 userInfo!,
                 request.ClientId,
+                request.PostalCode,
+                request.Street,
+                request.Neighborhood,
                 request.State,
                 request.City,
                 request.PaginationRequest!);

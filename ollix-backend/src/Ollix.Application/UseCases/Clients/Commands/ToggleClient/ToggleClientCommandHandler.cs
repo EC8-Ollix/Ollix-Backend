@@ -32,7 +32,8 @@ namespace Ollix.Application.UseCases.Clients.Commands.ToggleClient
             clientApp.ToggleActive();
 
             var operation = clientApp.Active ? OperationEnum.ActiveClient : OperationEnum.InactiveClient;
-            clientApp.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, EntityEnum.Client, operation, clientApp));
+            clientApp.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, 
+                EntityEnum.Client, operation, clientApp, clientApp.BussinessName!));
 
             await _repository.UpdateAsync(clientApp, cancellationToken);
 

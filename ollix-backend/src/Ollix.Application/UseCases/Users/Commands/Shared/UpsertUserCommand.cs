@@ -6,7 +6,6 @@ namespace Ollix.Application.UseCases.Users.Commands.Shared
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public string? UserPassword { get; set; }
         public UserInfo? UserInfo { get; set; }
     }
 }

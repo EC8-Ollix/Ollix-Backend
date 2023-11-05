@@ -36,7 +36,13 @@ namespace Ollix.API.Endpoints.Clients
             CancellationToken cancellationToken = default)
         {
             var userInfo = ApplicationClaims.GetUserInfoByClaims(User.Claims.ToArray());
-            var result = await _mediator.Send(new GetClientsQuery(userInfo!, getClientsRequest.PaginationRequest!), cancellationToken);
+            var query = new GetClientsQuery(userInfo!,
+                                            getClientsRequest.PaginationRequest!,
+                                            getClientsRequest.CompanyName,
+                                            getClientsRequest.BussinessName,
+                                            getClientsRequest.Cnpj,
+                                            getClientsRequest.Active);
+            var result = await _mediator.Send(query, cancellationToken);
 
             return Ok(result.Value);
         }

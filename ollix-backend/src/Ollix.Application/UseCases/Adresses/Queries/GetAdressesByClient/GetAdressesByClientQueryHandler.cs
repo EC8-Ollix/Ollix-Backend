@@ -22,7 +22,7 @@ namespace Ollix.Application.UseCases.Adresses.Queries.GetAdressesByClient
             var clientId = query.UserInfo.IsClient() ? query.UserInfo.ClientApp!.Id : query.ClientId;
 
             var adresses = await _repository
-                .ListAsync(new PropellersSpecByAddress(clientId, null, null, query.UserInfo.IsClient() ? true : null), cancellationToken);
+                .ListAsync(new PropellersSpecByAddress(clientId, null, null, null, null, null), cancellationToken);
 
             return Result.Success(adresses.DistinctBy(a => a.Id!).ToArray());
         }

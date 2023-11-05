@@ -2,6 +2,7 @@
 using Ollix.API.Shared.Request;
 using Ollix.Application.UseCases.Orders.Commands.CreateOrder;
 using Ollix.Domain.Aggregates.OrderAggregate;
+using Ollix.SharedKernel.Extensions;
 
 namespace Ollix.API.Endpoints.Orders
 {
@@ -21,7 +22,7 @@ namespace Ollix.API.Endpoints.Orders
                 RequesterEmail = RequesterEmail,
                 Observation = Observation,
                 QuantityRequested = QuantityRequested,
-                PostalCode = PostalCode,
+                PostalCode = PostalCode.JustNumbers(),
             };
         }
     }

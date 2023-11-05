@@ -34,12 +34,14 @@ namespace Ollix.API.Endpoints.Orders
             CancellationToken cancellationToken = default)
         {
             var userInfo = ApplicationClaims.GetUserInfoByClaims(User.Claims.ToArray());
-
             var query = new GetOrdersQuery(
                 userInfo!,
                 request.ClientId,
+                request.OrderNumber,
+                request.RequesterSearch,
+                request.ClientSearch,
                 request.OrderStatus,
-                request.RequestedDate,
+                new DateTimeOffset[] { request.RequestedDateFrom, request.RequestedDateTo },
                 request.PaginationRequest!);
 
             var result = await _mediator.Send(query, cancellationToken);

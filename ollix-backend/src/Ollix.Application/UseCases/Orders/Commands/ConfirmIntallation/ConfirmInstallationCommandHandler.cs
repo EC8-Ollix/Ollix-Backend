@@ -36,7 +36,8 @@ namespace Ollix.Application.UseCases.Orders.Commands.ConfirmIntallation
             order.SetOrderStatus(OrderStatus.Completed);
             await _mediator.Send(new InstallPropellersCommand(order, request.UserInfo!), cancellationToken);
 
-            order.RegisterDomainEvent(new EntityControlEvent(request.UserInfo!, EntityEnum.Order, OperationEnum.OrderCompleted, order));
+            order.RegisterDomainEvent(new EntityControlEvent(request.UserInfo!, 
+                EntityEnum.Order, OperationEnum.OrderCompleted, order, order.OrderNumber!));
 
             await _repository.UpdateAsync(order, cancellationToken);
 

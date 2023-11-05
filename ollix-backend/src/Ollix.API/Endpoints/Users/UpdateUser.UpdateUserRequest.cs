@@ -24,7 +24,6 @@ namespace Ollix.API.Endpoints.Users
             {
                 FirstName = UpsertUserRequest?.FirstName,
                 LastName = UpsertUserRequest?.LastName,
-                UserPassword = UpsertUserRequest?.UserPassword,
             };
 
         }

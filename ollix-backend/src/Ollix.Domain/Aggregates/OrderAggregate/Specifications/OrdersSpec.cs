@@ -1,40 +1,59 @@
 ﻿using Ardalis.Specification;
 using Ollix.Domain.Models;
+using Ollix.SharedKernel.Extensions;
 using System.Data.Entity;
 
 namespace Ollix.Domain.Aggregates.OrderAggregate.Specifications
 {
     public class OrdersSpec : Specification<Order>
     {
-        public OrdersSpec(PaginationRequest paginationRequest,
-            Guid clientId, OrderStatus orderStatus, DateTimeOffset? requestedDate)
+        public void WithBaseSpec(
+                          Guid clientId,
+                          string? orderNumber,
+                          string? requesterSearch,
+                          string? clientSearch,
+                          OrderStatus orderStatus,
+                          DateTimeOffset[]? requestedDate)
         {
-            paginationRequest.NormalizePager();
-
+            Query.Include(u => u.ClientApp);
             if (clientId != Guid.Empty)
                 Query.Where(u => u.ClientId == clientId);
 
-            if (requestedDate.HasValue)
-                Query.Where(u => u.RequestDate.Date == requestedDate.Value.Date);
+            if (requestedDate is not null && requestedDate.Any())
+                Query.Where(u =>
+                    u.RequestDate.Date >= requestedDate.First().Date &&
+                    u.RequestDate.Date <= requestedDate.Last().Date
+                );
 
-            Query
-                .Where(u =>
-                    u.OrderStatus == orderStatus)
-                .Skip(paginationRequest.GetSkip())
-                .Take(paginationRequest.PageSize)
-                .AsNoTracking();
+            if (!string.IsNullOrEmpty(orderNumber))
+                Query.Where(u => u.OrderNumber!.Contains(orderNumber.ToTrim()));
+   
+            if (!string.IsNullOrEmpty(requesterSearch))
+            {
+                requesterSearch = requesterSearch.ToTrim();
+                Query.Search(u => u.RequesterName!, "%" + requesterSearch + "%")
+                    .Search(u => u.RequesterEmail!, "%" + requesterSearch + "%");
+            }
+            if (!string.IsNullOrEmpty(clientSearch))
+            {
+                clientSearch = clientSearch.ToTrim();
+                Query.Search(u => u.ClientApp!.CompanyName!, "%" + clientSearch + "%")
+                    .Search(u => u.ClientApp!.BussinessName!, "%" + clientSearch + "%");            
+            }
+
+            if (orderStatus != 0)
+                Query.Where(u => u.OrderStatus == orderStatus);
+
+            Query.Include(u => u.AddressApp).AsNoTracking();
         }
 
-        public OrdersSpec(Guid clientId,
-            OrderStatus orderStatus, DateTimeOffset? requestedDate)
+        public void WithPagination(PaginationRequest paginationRequest)
         {
-            if (clientId != Guid.Empty)
-                Query.Where(u => u.ClientId == clientId);
-
-            if (requestedDate.HasValue)
-                Query.Where(u => u.RequestDate.Date == requestedDate.Value.Date);
-
-            Query.Where(u => u.OrderStatus == orderStatus).AsNoTracking();
+            paginationRequest.NormalizePager();
+            Query
+                .OrderByDescending(o => o.RequestDate)
+                .Skip(paginationRequest.GetSkip())
+                .Take(paginationRequest.PageSize);
         }
     }
 }

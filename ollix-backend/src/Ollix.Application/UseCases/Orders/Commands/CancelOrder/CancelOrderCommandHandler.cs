@@ -34,7 +34,8 @@ namespace Ollix.Application.UseCases.Orders.Commands.CancelOrder
                 return Result.Error($"Não é possivel cancelar um pedido com status '{order.OrderStatus.GetDescription()}'");
 
             order.SetOrderStatus(OrderStatus.Cancel);
-            order.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, EntityEnum.Order, OperationEnum.Cancel, order));
+            order.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, 
+                EntityEnum.Order, OperationEnum.CancelOrder, order, order.OrderNumber!));
 
             await _repository.UpdateAsync(order, cancellationToken);
 

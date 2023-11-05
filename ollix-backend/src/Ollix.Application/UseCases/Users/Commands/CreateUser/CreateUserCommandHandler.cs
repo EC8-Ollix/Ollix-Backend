@@ -35,7 +35,8 @@ namespace Ollix.Application.UseCases.Users.Commands.CreateUser
                 request.UserPassword!.ToHash(),
                 request.UserInfo.ClientApp!.Id);
 
-            user.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, EntityEnum.User, OperationEnum.Create, user));
+            user.RegisterDomainEvent(new EntityControlEvent(request.UserInfo, 
+                EntityEnum.User, OperationEnum.Create, user, user.UserEmail!));
 
             await _repository.AddAsync(user, cancellationToken);
 

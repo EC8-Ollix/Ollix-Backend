@@ -31,6 +31,7 @@ CREATE TABLE [LogApp] (
     [ClientId] uniqueidentifier NOT NULL,
     [UserName] nvarchar(500) NOT NULL,
     [Date] datetimeoffset NOT NULL,
+    [Identifier] varchar(400) NOT NULL,
     CONSTRAINT [PK_LogApp] PRIMARY KEY ([Id]),
     CONSTRAINT [FK_LogApp_ClientApp_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [ClientApp] ([Id]) ON DELETE CASCADE
 );
@@ -53,6 +54,7 @@ CREATE TABLE [AddressApp] (
 
 CREATE TABLE [Order] (
     [Id] uniqueidentifier NOT NULL,
+    [OrderNumber] nvarchar(100) NOT NULL,
     [RequesterName] nvarchar(200) NOT NULL,
     [RequesterEmail] nvarchar(200) NOT NULL,
     [Observation] nvarchar(600) NULL,
@@ -66,6 +68,7 @@ CREATE TABLE [Order] (
     CONSTRAINT [FK_Order_AddressApp_AddressId] FOREIGN KEY ([AddressId]) REFERENCES [AddressApp] ([Id]) ON DELETE NO ACTION,
     CONSTRAINT [FK_Order_ClientApp_ClientId] FOREIGN KEY ([ClientId]) REFERENCES [ClientApp] ([Id]) ON DELETE CASCADE
 );
+
 
 CREATE TABLE [Propeller] (
     [Id] uniqueidentifier NOT NULL,

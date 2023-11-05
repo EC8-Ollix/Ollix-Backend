@@ -6,10 +6,11 @@ namespace Ollix.Domain.Events
 {
     public class EntityControlEvent : DomainEventBase
     {
-        public EntityControlEvent(UserInfo userInfo, EntityEnum entityType, OperationEnum operation, EntityBase entity)
+        public EntityControlEvent(UserInfo userInfo, EntityEnum entityType, OperationEnum operation, EntityBase entity, string identifier)
         {
             LogApp = new LogApp
             {
+                Identifier = identifier,
                 Entity = entityType,
                 Operation = operation,
                 EntityId = entity.Id,

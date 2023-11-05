@@ -5,6 +5,7 @@ namespace Ollix.Domain.Aggregates.LogAggregate
 {
     public class LogApp : EntityBase
     {
+        public string? Identifier { get; set; }
         public EntityEnum? Entity { get; set; }
         public OperationEnum? Operation { get; set; }
         public Guid? EntityId { get; set; }
