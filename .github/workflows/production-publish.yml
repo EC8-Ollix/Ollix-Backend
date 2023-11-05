@@ -7,7 +7,7 @@ on:
     - master
 
 env:
-  AZURE_WEBAPP_NAME: ollix-api
+  AZURE_WEBAPP_NAME: oliix-api
   AZURE_WEBAPP_PACKAGE_PATH: "./publish"
 
 jobs:
